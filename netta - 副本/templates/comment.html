@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content_block %}
+
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/btn.css">
+    <link rel="stylesheet" href="../static/css/icons.css">
+    <link rel="stylesheet" href="../static/css/comment.css">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <!-- 用户信息 -->
+                <div class="card user-info">
+                    <div class="avatar">
+                        <img src="{{ url_for('static', filename= user.get("head_pic") if user.get("head_pic") else "head_pic/default.jpg") }}"
+                             height="80px" width="80px" class="img-circle center-block">
+                    </div>
+                    <div class="name text-center">
+                        {{ user.get("nick_name") }}
+                    </div>
+                    <div class="detail text-center">
+                        <span class="location">{{ user.get("province") if user.get("province") else "" }} {{ user.get("city") if user.get("city") else "" }} {{ user.get("country") if user.get("country") else "" }}</span>
+                        {% if user.get("sex") == "male" %}
+                            <div class="icon-male"></div>  <!--<div class="icon-female"></div>-->
+                        {% elif user.get("sex") == "female" %}
+                            <div class="icon-female"></div>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="read">
+                        <button class="btn beauty-btn center-block" onclick="javascrtpt:window.location.href='/'">开始阅读
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 菜单 -->
+                <div class="card menu">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="/manage/favourite">我的喜欢</a></li>
+                        <li class="list-group-item activate"><a href="/manage/comment">我的评论</a></li>
+                        <li class="list-group-item"><a href="/manage/notice">消息通知</a></li>
+                        <li class="list-group-item"><a href="/manage/information">账号信息</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9 card">
+                <!-- 评论内容 -->
+                <div class="comment-list">
+                    <h1>您共有<span class="number">{{ comments|length }}</span>条评论</h1>
+                    <hr class="hr">  <!-- 仅标题下的水平线需要class="hr" -->
+                    {% for comment in comments %}
+                        <div class="comment">
+                            <div class="content">
+                                {{ comment.comment }}
+                            </div>
+                            <div class="target">
+                                {{ comment.news_title }}
+                            </div>
+                            <div class="info">
+                                <input type="hidden" value={{ comment.id }}>
+                                <input type="hidden" value={{ comment.news_id }}>
+                                <span class="time">评论时间：{{ comment.timestamp }}</span>
+                                <span class="icon-delete"></span>
+                                <a href="javascript:void(0)" class="delete">删除</a>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $(".delete").click(function () {
+                var id_ = $(this).siblings(":first").val();
+                var news_id = $(this).siblings(":first").next().val();
+                var this_ = this;
+                var formdata = new FormData;
+                formdata.append("delete_comment_id", id_);
+                formdata.append("delete_type", "comment");
+                formdata.append("news_id", news_id);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/delete_comment",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $(this_).html("评论已删除");
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}

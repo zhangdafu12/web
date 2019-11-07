@@ -1,0 +1,27 @@
+footer{
+    height: 257px;
+    background-color: black;
+    bottom:0;
+    color: #828282;
+    position: relative;
+}
+.footer-logo{
+    background-image: url("../img/logo-white.png");
+    width:146px;
+    height:38px;
+    float: right;
+    margin-top: 25px;
+
+}
+.qr-code{
+    background-image: url("../img/qecode.png");
+    width:106px;
+    height:105px;
+    margin: 0 auto;
+}
+.copyright{
+    bottom: 0;
+    position: absolute;
+    height: 25px;
+    left: 38%;
+}

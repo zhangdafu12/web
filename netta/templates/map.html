@@ -1,0 +1,747 @@
+{% extends 'base.html' %}
+
+
+{% block content_block %}
+    <style>
+        #froms {
+            width: 30%;
+            height: 64%;
+            border-radius: 8px;
+            background: #ffffff;
+            float: right;
+            color: #000;
+            font-size: 16px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            margin-top: 20px;
+        }
+
+        #froms table {
+            width: 100%;
+            border-radius: 8px;
+            border-left: solid 1px #f3f3f3;
+            border-top: solid 1px #f3f3f3;
+            position: relative;
+
+        }
+
+        #froms table tr {
+            height: 45px;
+            border-bottom: solid 1px #f3f3f3;
+
+        }
+
+        #froms table th, td {
+            width: 25%;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 45px;
+            font-weight: normal;
+            border-right: solid 1px #f3f3f3;
+
+        }
+
+        #froms .upDown {
+            position: absolute;
+            top: 18px;
+            left: 45%;
+        }
+
+        .category {
+            cursor: pointer;
+        }
+
+        .details {
+            width: 25%;
+            position: absolute;
+            top: 48px;
+            left: 25%;
+            padding: 0px;
+            display: none;
+            background: #fff;
+        }
+
+        .details li {
+            width: 100%;
+            height: 45px;
+            border-radius: 6px;
+            text-align: center;
+            line-height: 45px;
+            border: solid 1px #f3f3f3;
+            border-bottom: solid 1px #f3f3f3;
+            list-style: none;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .details li:last-child {
+            border: solid 1px #f3f3f3;
+        }
+
+        .details li:hover {
+            background-color: #3f7dff;
+            color: #ffffff;
+        }
+
+        .search {
+            width: 30%;
+            height: 300px;
+            position: absolute;
+            right: 10px;
+            top: 150px;
+        }
+
+
+        .search input {
+            width: 60%;
+            height: 50px;
+            border: solid 1px #f3f3f3;
+            border-radius: 6px;
+            padding-left: 6px;
+            padding-right: 10%;
+        }
+
+        .search > div {
+            position: relative;
+        }
+
+        .search .imgs {
+            width: 50px;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+        }
+
+        .search .imgs img {
+            float: right;
+        }
+
+        .search .imgs #eliminate {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            display: none;
+        }
+
+        .type {
+            width: 100%;
+            height: 80px;
+            margin-top: 40px;
+            color: #000;
+            font-size: 16px;
+            position: relative;
+
+        }
+
+        .type .categoryType, .type .number {
+            float: left;
+            display: inline-block;
+            width: 25%;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 6px 0 0 6px;
+            border: solid 1px #f3f3f3;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .type .number {
+            border-radius: 0 6px 6px 0;
+            border-left: solid 1px #f3f3f3;
+        }
+
+        .type .upDown {
+
+            position: absolute;
+            top: 20px;
+            left: 20%;
+            z-index: 100;
+        }
+
+        .types {
+            width: 25%;
+            list-style: none;
+            position: absolute;
+            top: 52px;
+            left: 0;
+            padding: 0px;
+            background: #fff;
+            display: none;
+        }
+
+        .types li {
+            width: 100%;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            border: solid 1px #f2f2f3;
+            border-bottom: 0;
+            list-style: none;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .types li:last-child {
+            border: solid 1px #f2f2f3;
+        }
+
+        .types li:hover {
+            background-color: #3f7dff;
+            color: #ffffff;
+        }
+
+        .upDown {
+            width: 12px;
+            height: 12px;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+
+    <div id="mapBox" style="width: 68% ;height: 800px;float: left"></div>
+    <div class="search">
+        <div>
+            <input type="text" id="searchNode">
+            <div class="imgs">
+                <img src="../static/img/search.png" alt="">
+                <img id="eliminate" src="../static/img/eliminate.svg" alt="">
+            </div>
+        </div>
+        <div class="type">
+            <span class="categoryType">类 &nbsp;型 </span>
+            <span class="number">0</span>
+            <img class="upDown" src="../static/img/upDown.svg" alt="">
+            <ul class="types">
+                <li>类型一</li>
+                <li>类型二</li>
+                <li>类型三</li>
+            </ul>
+
+        </div>
+
+    </div>
+    <div id="froms">
+        <table>
+            <tbody>
+            <tr class="title">
+                <th>节点id</th>
+                <th class="category">
+                    类型
+                </th>
+                <th>ip</th>
+                <th>创建时间</th>
+            </tr>
+            {#            <tr>#}
+            {#                <td>11</td>#}
+            {#                <td>22</td>#}
+            {#                <td>33</td>#}
+            {#                <td>44</td>#}
+            {##}
+            {#            </tr>#}
+
+            </tbody>
+
+        </table>
+        <img class="upDown" src="../static/img/upDown.svg" alt="">
+        <ul class="details">
+            <li>类型一</li>
+            <li>类型二</li>
+            <li>类型三</li>
+        </ul>
+
+    </div>
+
+    <script>
+        $(function () {
+            //搜索节点oninput
+            $("#searchNode").change(function (e) {
+                console.log(e, 111)
+
+            });
+            let input = document.getElementById('searchNode');
+            let eliminate = document.getElementById('eliminate')
+            input.oninput = function (e) {
+                console.log(e, "oninput");
+                console.log($(input), input.value);
+                if (input.value == "") {
+                    $(eliminate).hide()
+
+                } else {
+                    $(eliminate).show()
+                    console.log($(eliminate));
+                }
+            };
+            $(eliminate).click(function (e) {
+                input.value = "";
+                $(input).val("");
+                $(eliminate).hide()
+            });
+//不同类型节点数
+            $(".categoryType").click(function () {
+                $('.types').toggle();
+                event.stopPropagation();
+            });
+            $(".types li").click(function () {
+                let category = $(this).text();
+                console.log(category)
+                $(".categoryType").text(category);
+
+                let number;
+
+                if (category == '类型一') {
+                    number = "100"
+                } else if (category == '类型二') {
+                    number = "200"
+                } else {
+                    number = "300"
+                }
+                //根据类型传入不同数据
+                $(".number").text(number);
+
+            });
+            //默认传入所有值加载
+            {#appendTb(data);#}
+
+
+            $(".category").click(function () {
+                $('.details').toggle();
+                event.stopPropagation();
+            });
+            $("body").click(function () {
+                $('.details').hide();
+                $('.types').hide();
+                console.log(111)
+            });
+            $(".details li").click(function () {
+                let category = $(this).text();
+                console.log(category)
+                $(".category").text(category);
+                let data1 = [{
+                    name: 11,
+                    category: "1",
+                    ip: "192.168.12.1",
+                    time: "18:00"
+                }, {
+                    name: 11,
+                    category: "1",
+                    ip: "192.168.12.1",
+                    time: "18:00"
+                }];
+                let data2 = [{
+                    name: 22,
+                    category: "2",
+                    ip: "192.168.12.1",
+                    time: "18:00"
+                }, {
+                    name: 22,
+                    category: "2",
+                    ip: "192.168.12.1",
+                    time: "18:00"
+                }];
+                let data3 = [{
+                    name: 11,
+                    category: "3",
+                    ip: "192.168.12.1",
+                    time: "18:00"
+                }, {
+                    name: 11,
+                    category: "3",
+                    ip: "192.168.12.1",
+                    time: "18:00"
+                }]
+
+                let data;
+
+                if (category == '类型一') {
+                    data = data1
+                } else if (category == '类型二') {
+                    data = data2
+                } else {
+                    data = data3
+                }
+                //根据类型传入不同数据
+                appendTb(data)
+
+            });
+            appendTb = data => {
+                let html = '';
+                data.forEach(function (val, ind, list) {
+                    html += " <tr>\n" +
+                        "                <td>" + val.name + "</td>\n" +
+                        "                <td>" + val.category + "</td>\n" +
+                        "                <td>" + val.ip + "</td>\n" +
+                        "                <td>" + val.time + "</td>\n" +
+                        "\n" +
+                        "            </tr>"
+                });
+                $(".title").siblings().remove();
+                $("#froms tbody").append(html)
+
+            };
+
+        })
+
+
+        //各省份的地图json文件
+        var provinces = {
+            "China": '../static/map/china1.json',
+            '上海': '../static/map/上海.json',
+            '河北': '../static/map/河北.json',
+            '山西': '../static/map/山西.json',
+            '内蒙古': '../static/map/内蒙古.json',
+            '辽宁': '../static/map/辽宁.json',
+            '吉林': '../static/map/吉林.json',
+            '黑龙江': '../static/map/黑龙江.json',
+            '江苏': '../static/map/江苏.json',
+            '浙江': '../static/map/浙江.json',
+            '安徽': '../static/map/安徽.json',
+            '福建': '../static/map/福建.json',
+            '江西': '../static/map/江西.json',
+            '山东': '../static/map/山东.json',
+            '河南': '../static/map/河南.json',
+            '湖北': '../static/map/湖北.json',
+            '湖南': '../static/map/湖南.json',
+            '广东': '../static/map/广东.json',
+            '广西': '../static/map/广西.json',
+            '海南': '../static/map/海南.json',
+            '四川': '../static/map/四川.json',
+            '贵州': '../static/map/贵州.json',
+            '云南': '../static/map/云南.json',
+            '西藏': '../static/map/西藏.json',
+            '陕西': '../static/map/陕西.json',
+            '甘肃': '../static/map/甘肃.json',
+            '青海': '../static/map/青海.json',
+            '宁夏': '../static/map/宁夏.json',
+            '新疆': '../static/map/新疆.json',
+            '北京': '../static/map/北京.json',
+            '天津': '../static/map/天津.json',
+            '重庆': '../static/map/重庆.json',
+            '香港': '../static/map/香港.json',
+            '澳门': '../static/map/澳门.json',
+
+        };
+
+
+        var geoCoordMap = JSON.parse('{{ back_data|safe }}');
+        var datas = JSON.parse('{{ name_value|safe }}');
+
+
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var geoCoord = geoCoordMap[data[i].name];
+                if (geoCoord) {
+                    res.push({
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value),
+                        type: data[i].type,
+                    });
+                }
+            }
+            return res;
+        };
+        console.log(convertData(datas));
+        //各省份的数据
+        var allData = [
+            {
+                name: '北京'
+            }, {
+                name: '天津'
+            }, {
+                name: '上海'
+            }, {
+                name: '重庆'
+            }, {
+                name: '河北'
+            }, {
+                name: '河南'
+            }, {
+                name: '云南'
+            }, {
+                name: '辽宁'
+            }, {
+                name: '黑龙江'
+            }, {
+                name: '湖南'
+            }, {
+                name: '安徽'
+            }, {
+                name: '山东'
+            }, {
+                name: '新疆'
+            }, {
+                name: '江苏'
+            }, {
+                name: '浙江'
+            }, {
+                name: '江西'
+            }, {
+                name: '湖北'
+            }, {
+                name: '广西'
+            }, {
+                name: '甘肃'
+            }, {
+                name: '山西'
+            }, {
+                name: '内蒙古'
+            }, {
+                name: '陕西'
+            }, {
+                name: '吉林'
+            }, {
+                name: '福建'
+            }, {
+                name: '贵州'
+            }, {
+                name: '广东'
+            }, {
+                name: '青海'
+            }, {
+                name: '西藏'
+            }, {
+                name: '四川'
+            }, {
+                name: '宁夏'
+            }, {
+                name: '海南'
+            }, {
+                name: '台湾'
+            }, {
+                name: '香港'
+            }, {
+                name: '澳门'
+            }];
+
+        for (var i = 0; i < allData.length; i++) {
+            allData[i].value = Math.round(Math.random() * 100);
+        }
+        ;
+        loadMap('../static/world/world.json', 'world');//初始化全国地图
+        var mapBoxChart = echarts.init(document.getElementById('mapBox'));
+        var timeFn = null;
+        var dbNames = "china";
+        //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
+        mapBoxChart.on('click', function (params) {
+            clearTimeout(timeFn);
+            //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
+            timeFn = setTimeout(function () {
+                console.log(params.name);
+                var name = params.name; //地区name
+                var mapCode = provinces[name]; //地区的json数据
+
+                if (!mapCode) {
+                    alert('无此区域地图显示');
+                    return;
+                }
+                console.log(provinces[name]);
+                console.log(mapCode);
+                faultByHourIndex = 0;
+                loadMap(mapCode, name);
+
+            }, 250);
+        });
+
+
+        // 绑定双击事件，返回全国地图
+        mapBoxChart.on('dblclick', function (params) {
+            //当双击事件发生时，清除单击事件，仅响应双击事件
+            clearTimeout(timeFn);
+            faultByHourIndex = 0;
+            console.log(dbNames, 1111)
+            if (dbNames == "china" || dbNames == "world") {
+                //返回世界
+
+                loadMap('../static/world/world.json', 'world');
+
+            } else {
+
+                //返回全国地图
+                loadMap('../static/map/china1.json', 'china');
+
+            }
+
+
+        });
+
+        /**
+         获取对应的json地图数据，然后向echarts注册该区域的地图，最后加载地图信息
+         @params {String} mapCode:json数据的地址
+         @params {String} name: 地图名称
+         */
+        function loadMap(mapCode, name) {
+            $.get(mapCode, function (data) {
+                if (data) {
+                    echarts.registerMap(name, data);
+                    console.log(name, data);
+                    dbNames = name;
+                    var dataNew;
+                    if (name == "china") {
+                        dataNew = allData;
+                    } else {
+                        dataNew = [];
+                    }
+                    var mapBoxOption = {
+                        tooltip: {
+                            trigger: 'item',
+                            show: true,
+                            formatter: function (params) {
+                                console.log(params);
+                                return params.name + '节点类型：' + "<br/>" + params.data['type']
+                            },
+
+                        },
+                        //左下角标注1
+                        // dataRange: {
+                        //     x: 'left',
+                        //     y: 'bottom',
+                        //     splitList: [{
+                        //         start: 200
+                        //     },
+                        //         {
+                        //             start: 125,
+                        //             end: 195
+                        //         },
+                        //         {
+                        //             start: 85,
+                        //             end: 120
+                        //         },
+                        //         {
+                        //             start: 25,
+                        //             end: 80
+                        //         },
+                        //         {
+                        //             start: 10,
+                        //             end: 20,
+                        //             label: '10 到 200'
+                        //         },
+                        //         {
+                        //             start: 5,
+                        //             end: 5,
+                        //             label: '5',
+                        //             color: 'black'
+                        //         },
+                        //         {
+                        //             end: 5
+                        //         }
+                        //     ],
+                        //     color: ['#eee', '#949fb1', '#f3ce85']
+                        // },
+                        //左下角标注2
+                        visualMap: {
+                            type: 'continuous',
+                            text: ['', ''],
+                            showLabel: true,
+                            left: '50',
+                            min: 0,
+                            max: 100,
+                            inRange: {
+                                color: ['#fb080b', '#f38c13', '#e9ed12', '#c12271', '#9AC127',]
+                            },
+                            splitNumber: 0
+                        },
+                        geo: {
+                            map: name,
+                            selectedMode: 'false',//是否允许选中多个区域
+                            label: {
+                                emphasis: {
+                                    show: false
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: 'rgb(19, 91, 153)',
+                                    borderColor: 'rgb(9, 54, 95)'
+                                },
+                                emphasis: {
+                                    areaColor: 'rgb(10, 105, 187)'
+                                }
+                            }
+                        },
+                        series: [
+                            {
+                                name: convertData(datas).name,
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                data: convertData(datas),
+                                symbolSize: 8,
+                                label: {
+
+                                    normal: {
+                                        show: false
+                                    },
+                                    emphasis: {
+                                        show: false
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        areaColor: 'rgb(19, 91, 153)',
+                                        borderColor: 'rgb(9, 54, 95)'
+                                    },
+                                    emphasis: {
+                                        areaColor: 'rgb(10, 105, 187)',
+                                        borderWidth: 1,
+                                    }
+                                }
+                            },
+
+                        ],
+                    };
+
+                    mapBoxChart.setOption(mapBoxOption);
+                } else {
+                    alert('无法加载该地图');
+                }
+            });
+        }
+
+        var faultByHourIndex = 0; //播放所在下标
+        var faultByHourTime = setInterval(function () {
+            //使得tootip每隔三秒自动显示
+            mapBoxChart.dispatchAction({
+                type: "showTip", // 根据 tooltip 的配置项显示提示框。
+                seriesIndex: 0,
+                dataIndex: faultByHourIndex
+            });
+            mapBoxChart.dispatchAction({
+                type: 'highlight',
+                // 可选，系列 index，可以是一个数组指定多个系列
+                seriesIndex: 0,
+                // 可选，系列名称，可以是一个数组指定多个系列
+                // seriesName: string|Array,
+                // 可选，数据的 index
+                dataIndex: faultByHourIndex,
+                // 可选，数据的 名称
+                // name: string
+            });
+            if (faultByHourIndex > 0) {
+                mapBoxChart.dispatchAction({
+                    type: 'downplay',
+                    // 可选，系列 index，可以是一个数组指定多个系列
+                    seriesIndex: 0,
+                    // 可选，系列名称，可以是一个数组指定多个系列
+                    // seriesName: string|Array,
+                    // 可选，数据的 index
+                    dataIndex: faultByHourIndex - 1,
+                    // 可选，数据的 名称
+                    // name: string
+                });
+            }
+
+
+            faultByHourIndex++;
+            // faultRateOption.series[0].data.length 是已报名纵坐标数据的长度
+            if (faultByHourIndex > datas.length) {
+                faultByHourIndex = 0;
+            }
+        }, 3000);
+
+    </script>
+    </html>
+
+{% endblock %}

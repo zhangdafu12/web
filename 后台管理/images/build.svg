@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 65 65">
+  <g id="组_14" data-name="组 14" transform="translate(-325 -223.28)">
+    <g id="Group_21" data-name="Group 21" transform="translate(325 223.28)">
+      <circle id="Oval_2" data-name="Oval 2" cx="32.5" cy="32.5" r="32.5" fill="#ffbf00"/>
+    </g>
+    <g id="Group_129" data-name="Group 129" transform="translate(346 244)">
+      <rect id="Rectangle_44" data-name="Rectangle 44" width="24" height="24" fill="none"/>
+      <g id="edit" transform="translate(1.5 1.5)">
+        <path id="Shape" d="M20.156,21H.843a.844.844,0,0,1,0-1.687H20.156a.844.844,0,0,1,0,1.688ZM5.141,16.608a.754.754,0,0,1-.688-1.046l2.339-5.517a.755.755,0,0,1,.159-.239L16.261.5a1.694,1.694,0,0,1,2.39,0L20.51,2.35a1.693,1.693,0,0,1,0,2.391L11.2,14.05a.755.755,0,0,1-.239.159L5.438,16.547A.763.763,0,0,1,5.141,16.608ZM14.808,4.335h0L8.274,10.869,6.909,14.09l3.22-1.364,6.535-6.534L14.808,4.335Zm2.651-2.651h0l0,0L16,3.143,17.857,5,19.31,3.545l0,0L17.458,1.685Z" transform="translate(0 0.001)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

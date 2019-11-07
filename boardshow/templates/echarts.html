@@ -1,0 +1,1024 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #page {
+            width: 1980px;
+            height: 1080px;
+            background-image: url('../static/images/backdrop2.png');
+            background-repeat: no-repeat;
+            position: relative;
+            font-family: 微软雅黑;
+        }
+
+        #title {
+            position: absolute;
+            left: 760px;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+
+        #title .nowTime {
+            margin-top: 10px;
+        }
+
+        #pandect {
+            width: 600px;
+            height: 90px;
+            position: absolute;
+            top: 190px;
+            left: 530px;
+            font-size: 24px;
+            color: #99a0b6;
+        }
+
+        #pandect div {
+            float: left;
+            margin-right: 30px;
+        }
+
+        #pandect span {
+            display: inline-block;
+            color: #19d1ff;
+            margin: 0 10px;
+        }
+
+        #seach input {
+            width: 459px;
+            height: 47px;
+            border: solid 1px #1663b4;
+            border-radius: 10px;
+            position: absolute;
+            top: 20px;
+            right: 31px;
+            background: transparent;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        #seach img {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 30px;
+            right: 95px;
+            cursor: pointer;
+        }
+
+        #seach #browsers option {
+            background: #0a0d35;
+            color: #ffffff;
+        }
+
+        #lefttable {
+            width: 411px;
+            height: 740px;
+            /*background: red;*/
+            border-radius: 10px;
+            /*border: solid 1px #1663b4;*/
+            color: #a6aec2;
+            position: absolute;
+            top: 106px;
+            left: 30px;
+        }
+
+        #lefttable div {
+            width: 100%;
+            height: 33%;
+            /*background-color: #1663b4;*/
+            text-align: center;
+            line-height: 30px;
+            border-radius: 10px;
+            border: solid 1px #1663b4;
+
+        }
+
+        #lefttable div h1 {
+            display: block;
+            padding-top: 30px;
+            letter-spacing: 8px;
+        }
+
+        #lefttable div p {
+            font-size: 24px;
+            margin-top: 20px;
+            letter-spacing: 4px;
+        }
+
+        #lefttable div p span {
+            color: #19d1ff;
+        }
+
+
+        #righttable {
+            width: 460px;
+            border-radius: 10px;
+            border: solid 1px #1663b4;
+            color: #a6aec2;
+            position: absolute;
+            top: 108px;
+            right: 30px;
+        }
+
+        #righttable ul li {
+            width: 50%;
+            text-align: center;
+        }
+
+        #righttable ul {
+            width: 350px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+
+        #righttable ul {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            list-style: none;
+            display: flex;
+            margin: 10px auto;
+            padding: 0px;
+        }
+
+        #righttable ul li {
+            width: 25%;
+            text-align: center;
+        }
+
+        #righttable table tr {
+            width: 100%;
+            padding: 0px;
+        }
+
+        #righttable p {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #19d1ff;
+        }
+
+        #righttable table {
+            width: 350px;
+            height: 330px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #righttable table td {
+            width: 25%;
+            padding-bottom: 10px;
+
+        }
+
+        #Table_r {
+            overflow: hidden;
+            height: 351px;
+        }
+
+        #visit {
+            width: 1600px;
+            height: 250px;
+            position: absolute;
+            bottom: -3px;
+            left: 150px;
+        }
+
+        #circle {
+            width: 500px;
+            height: 290px;
+            position: absolute;
+            top: 560px;
+            right: 40px;
+        }
+
+        #mapBox {
+            width: 900px;
+            height: 650px;
+            margin: 110px auto 0 auto;
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="page">
+    <!--    标题-->
+    <div id="title">
+        <h1>{{data.shop_name}}全国数据实时看板</h1>
+        <p class="nowTime">
+
+        </p>
+    </div>
+    <!--    搜索-->
+    <div id="seach">
+        <input type="text" list="browsers">
+        <img src="../static/images/seach.png">
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
+    </div>
+    <!--    总览数据-->
+    <div id="pandect">
+        <div>
+            <!--            <p>今日访问人数<span>12342</span>万人</p>-->
+            <p>本月实收<span>{{data.this_month_income}}</span>万元</p>
+        </div>
+
+    </div>
+    <!--    左侧表格-->
+    <div id="lefttable">
+
+        <div>
+            <h1>昨日实收</h1>
+            <p><span>{{data.last_day_income}}</span>万元</p>
+            <h1>今日已收</h1>
+            <p><span>{{data.this_day_income}}</span>万元</p>
+        </div>
+        <div>
+            <h1>昨日到店人数</h1>
+            <p><span>{{data.last_day_people}}</span>人</p>
+            <h1>今日到店人数</h1>
+            <p><span>{{data.this_day_people}}</span>人</p>
+        </div>
+        <div>
+            <h1>昨日出菜量</h1>
+            <p><span>{{data.last_day_dish}}</span>份</p>
+            <h1>今日出菜量</h1>
+            <p><span>{{data.this_day_dish}}</span>份</p>
+        </div>
+
+
+    </div>
+    <!--    右侧表格-->
+    <div id="righttable">
+        <p>该地区菜品销量排名</p>
+        <ul>
+            <li>排名</li>
+            <li>菜名</li>
+            <li>单价</li>
+            <li>销量</li>
+        </ul>
+        <div id="Table_r">
+            <table>
+                <!--            数据加载HTML-->
+            </table>
+
+        </div>
+
+    </div>
+    <!-- 中国地图展示 -->
+    <div id="mapBox"></div>
+    <!--   折线图 -->
+    <div id="visit"></div>
+    <!--    饼状图-->
+    <div id="circle"></div>
+</div>
+
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  //饼状图
+  var circleChart = echarts.init(document.getElementById('circle'));
+  // 指定图表的配置项和数据
+  var circleOption = {
+    title: {
+      text: '客户年龄分布',
+      textStyle: {
+        color: "#19d1ff"
+      },
+      left: "60px",
+      x: 'left'
+    },
+    tooltip: {//鼠标移入提示
+      trigger: 'item',
+      formatter: "{b} : {c} ({d}%)"
+    },
+    toolbox: {//工具按钮
+      show: false,
+      feature: {
+        mark: {show: true},
+        dataView: {show: true, readOnly: false},
+        magicType: {
+          show: true,
+          type: ['pie', 'funnel']
+        },
+        restore: {show: true},
+        saveAsImage: {show: true}
+      }
+    },
+    calculable: true,
+    color: ['red', 'orange', 'yellow', 'green', '#91f2ff', '#f077ff'],
+    series: [
+      {
+        name: '',
+        type: 'pie',
+        radius: [30, 110],
+        center: ['60%', '50%'],
+        roseType: 'area',
+        x: '50%',               // for funnel
+        max: 40,                // for funnel
+        sort: 'ascending',     // for funnel
+        label: {
+          normal: {
+            //饼形图显示格式
+            //formatter : '{per|{d}%} {b|{b}}',
+            rich: {
+              b: {
+                color: 'white',
+                fontSize: 12,
+                lineHeight: 33
+              },
+              //设置百分比数字颜色
+              per: {
+                color: '#00B4FB',
+                fontSize: 12,
+                // padding : [ 2, 2 ],
+                // borderRadius : 2
+              }
+            }
+          }
+        },
+
+        labelLine: {
+          normal: {
+            length: 5,  // 改变标示线的长度
+            lineStyle: {
+              color: "#a9ddee"  // 改变标示线的颜色
+            }
+          },
+        },
+        data: [
+          {value: 18, name: '0-18岁'},
+          {value: 24, name: '18-25岁'},
+          {value: 44, name: '25-30岁'},
+          {value: 52, name: '30-40岁'},
+          {value: 21, name: '40-50岁'},
+          {value: 21, name: '50以上'}
+        ]
+      }
+    ]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  circleChart.setOption(circleOption);
+  // 基于准备好的dom，初始化echarts实例
+  //折线图
+  var visitChart = echarts.init(document.getElementById('visit'));
+  var visitOption = {
+    title: {
+      text: '当日销售额',
+      textStyle: {
+        color: "#19d1ff",
+        fontSize: "16"
+      },
+      left: "left",
+      x: 'left',
+      y: "50px"
+    },
+
+    tooltip: {//鼠标移入提示
+      trigger: 'item',
+      formatter: "{b} : {c}"
+    },
+    xAxis: {
+      type: 'category',
+      name: "时间",
+      nameTextStyle: {
+        color: "#16809e",
+        fontSize: "14",
+        verticalAlign: "bottom"
+      },
+      nameLocation: "end",
+      data: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '24:00',],
+
+      //坐标轴样式
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(171,171,171,0.51)',
+          fontSize: "16",
+        },
+      },
+
+      axisTick: {
+        data: [0, 5, 10, 15, 20],
+        inside: "true",
+        lineStyle: {
+          opacity: "0",
+        }
+      }
+    },
+    yAxis: {
+      type: 'value',
+
+      name: "万",//y轴脚注
+      min: 0,
+      splitNumber: 5,
+
+      // data: [ '0万','1万','2万','3万','4万','5万', '6万', '7万', '8万', '9万','10万','11万','12万','13万','14万','15万','16万','17万','18万','19万','20万'],
+      nameTextStyle: {
+        color: "#16809e",
+        fontSize: "14",
+        verticalAlign: "top",
+        align: "left",
+      },
+
+      nameLocation: "start",
+//y轴
+      axisLine: {
+        onZero: true,
+        lineStyle: {
+          color: 'rgba(171,171,171,0.51)',
+        }
+      },
+//轴线
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(171,171,171,0.51)',
+        }
+      },
+      axisTick: {
+        show: true,
+        inside: "true",
+        length: 100,
+        lineStyle: {
+          opacity: "0"
+        }
+      }
+    },
+    series: [{
+      data: [3, 2, 0.5, 0, 2, 5, 15, 18, 7, 6, 10, 18, 13],
+      // data: ["0万", "12万", "15万", "20万", "15万", "5万", "10万", "15万", "15万", "20万", "15万", "15万", "10万"],
+      type: 'line',
+      symbolSize: 8,   //拐点圆的大小
+      color: ['#17bae7'],  //折线条的颜色
+      smooth: true
+    }]
+  };
+  visitChart.setOption(visitOption);
+
+  //页面加载后发送请求获取服务器的数据
+  // $(function () {
+  //     $.ajax({
+  //         url: url,
+  //         dataType: "json",
+  //         async: false,
+  //         success: function (data) {
+  //             var datas = data.result;
+  //             var length = datas.length;
+  //             //逻辑控制
+  //         }
+  //     });
+  /*新版地图*/
+  //各省份的地图json文件
+  var provinces = {
+    '上海': './map/上海.json',
+    '河北': './map/河北.json',
+    '山西': './map/山西.json',
+    '内蒙古': './map/内蒙古.json',
+    '辽宁': './map/辽宁.json',
+    '吉林': './map/吉林.json',
+    '黑龙江': './map/黑龙江.json',
+    '江苏': './map/江苏.json',
+    '浙江': './map/浙江.json',
+    '安徽': './map/安徽.json',
+    '福建': './map/福建.json',
+    '江西': './map/江西.json',
+    '山东': './map/山东.json',
+    '河南': './map/河南.json',
+    '湖北': './map/湖北.json',
+    '湖南': './map/湖南.json',
+    '广东': './map/广东.json',
+    '广西': './map/广西.json',
+    '海南': './map/海南.json',
+    '四川': './map/四川.json',
+    '贵州': './map/贵州.json',
+    '云南': './map/云南.json',
+    '西藏': './map/西藏.json',
+    '陕西': './map/陕西.json',
+    '甘肃': './map/甘肃.json',
+    '青海': './map/青海.json',
+    '宁夏': './map/宁夏.json',
+    '新疆': './map/新疆.json',
+    '北京': './map/北京.json',
+    '天津': './map/天津.json',
+    '重庆': './map/重庆.json',
+    '香港': './map/香港.json',
+    '澳门': './map/澳门.json',
+
+  };
+
+  //各省份的数据
+  var allData = [{
+    name: '北京'
+  }, {
+    name: '天津'
+  }, {
+    name: '上海'
+  }, {
+    name: '重庆'
+  }, {
+    name: '河北'
+  }, {
+    name: '河南'
+  }, {
+    name: '云南'
+  }, {
+    name: '辽宁'
+  }, {
+    name: '黑龙江'
+  }, {
+    name: '湖南'
+  }, {
+    name: '安徽'
+  }, {
+    name: '山东'
+  }, {
+    name: '新疆'
+  }, {
+    name: '江苏'
+  }, {
+    name: '浙江'
+  }, {
+    name: '江西'
+  }, {
+    name: '湖北'
+  }, {
+    name: '广西'
+  }, {
+    name: '甘肃'
+  }, {
+    name: '山西'
+  }, {
+    name: '内蒙古'
+  }, {
+    name: '陕西'
+  }, {
+    name: '吉林'
+  }, {
+    name: '福建'
+  }, {
+    name: '贵州'
+  }, {
+    name: '广东'
+  }, {
+    name: '青海'
+  }, {
+    name: '西藏'
+  }, {
+    name: '四川'
+  }, {
+    name: '宁夏'
+  }, {
+    name: '海南'
+  }, {
+    name: '台湾'
+  }, {
+    name: '香港'
+  }, {
+    name: '澳门'
+  }, {
+    name: '南海诸岛'
+  }];
+  for (var i = 0; i < allData.length; i++) {
+    allData[i].value = Math.round(Math.random() * 100);
+  }
+
+  loadMap('./map/china1.json', 'china');//初始化全国地图
+  var mapBoxChart = echarts.init(document.getElementById('mapBox'));
+  var timeFn = null;
+
+  //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
+  mapBoxChart.on('click', function (params) {
+    clearTimeout(timeFn);
+    //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
+    timeFn = setTimeout(function () {
+      var name = params.name; //地区name
+      var mapCode = provinces[name]; //地区的json数据
+      if (!mapCode) {
+        alert('无此区域地图显示');
+        return;
+      }
+      faultByHourIndex = 0;
+      loadMap(mapCode, name);
+      //控制右侧表格内容
+      rightHtml = "";
+      rightTable[0].name = params.name;
+
+
+      $.each(rightTable, function (i, v) {
+        rightHtml += "<tr>" +
+          "<td>" + rightTable[i].ranking + "</td>" +
+          "<td>" + rightTable[i].name + "</td>" +
+          "<td>" + rightTable[i].price + "</td>" +
+          "<td>" + rightTable[i].number + "</td>"
+          + "</tr>"
+      });
+      console.log(rightHtml);
+      $("#righttable table").empty();
+
+      $("#righttable table").append(rightHtml);
+
+
+    }, 250);
+  });
+
+
+  // 绑定双击事件，返回全国地图
+  mapBoxChart.on('dblclick', function (params) {
+    //当双击事件发生时，清除单击事件，仅响应双击事件
+    clearTimeout(timeFn);
+    faultByHourIndex = 0;
+    //返回全国地图
+    loadMap('./map/china1.json', 'china');
+  });
+
+  /**
+   获取对应的json地图数据，然后向echarts注册该区域的地图，最后加载地图信息
+   @params {String} mapCode:json数据的地址
+   @params {String} name: 地图名称
+   */
+  function loadMap(mapCode, name) {
+    $.get(mapCode, function (data) {
+      if (data) {
+        echarts.registerMap(name, data);
+        var mapBoxOption = {
+          tooltip: {
+            show: true,
+            formatter: function (params) {
+              console.log(params);
+              if (params.data)
+                return params.name + '该地区分店数量：' + "<br/>" + params.data['value']
+            },
+          },
+          visualMap: {
+            type: 'continuous',
+            text: ['', ''],
+            showLabel: true,
+            left: '50',
+            min: 0,
+            max: 100,
+            inRange: {
+              color: ['#edfbfb', '#b7d6f3', '#40a9ed', '#3598c1', '#215096',]
+            },
+            splitNumber: 0
+          },
+          series: [{
+            name: 'MAP',
+            type: 'map',
+            mapType: name,
+            data: allData,
+            selectedMode: 'false',//是否允许选中多个区域
+            label: {
+              normal: {
+                show: true,
+
+                formatter: function (val) {
+                  console.log(val, 9999999999)
+                  var area_content = '{a|' + val.name + '}' + '-' + '{b|' + val.value + '}';
+                  return area_content.split("-").join("\n");
+                },//让series 中的文字进行换行
+                rich: {
+                  a: {
+                    color: '#cecece'
+                  },
+                  b: {
+                    color: '#3aff1e',
+                    fontFamily: 'Microsoft YaHei',
+                    fontSize: 14,
+                    width: 16,
+                    height: 16,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    borderColor: '#f00',
+                    textAlign: 'center',
+                    padding: 2
+                  }
+                },//富文本样式,就是上面的formatter中'{a|'和'{b|'
+              },
+              emphasis: {show: false}
+            },//地图中文字内容及样式控制
+
+          }]
+        };
+
+        mapBoxChart.setOption(mapBoxOption);
+
+
+      } else {
+        alert('无法加载该地图');
+      }
+    });
+  }
+
+
+  var faultByHourIndex = 0; //播放所在下标
+  var faultByHourTime = setInterval(function () {
+    //使得tootip每隔三秒自动显示
+    mapBoxChart.dispatchAction({
+      type: "showTip", // 根据 tooltip 的配置项显示提示框。
+      seriesIndex: 0,
+      dataIndex: faultByHourIndex
+    });
+    mapBoxChart.dispatchAction({
+      type: 'highlight',
+      // 可选，系列 index，可以是一个数组指定多个系列
+      seriesIndex: 0,
+      // 可选，系列名称，可以是一个数组指定多个系列
+      // seriesName: string|Array,
+      // 可选，数据的 index
+      dataIndex: faultByHourIndex,
+      // 可选，数据的 名称
+      // name: string
+    });
+    if (faultByHourIndex > 0) {
+      mapBoxChart.dispatchAction({
+        type: 'downplay',
+        // 可选，系列 index，可以是一个数组指定多个系列
+        seriesIndex: 0,
+        // 可选，系列名称，可以是一个数组指定多个系列
+        // seriesName: string|Array,
+        // 可选，数据的 index
+        dataIndex: faultByHourIndex - 1,
+        // 可选，数据的 名称
+        // name: string
+      });
+    }
+
+
+    faultByHourIndex++;
+    // faultRateOption.series[0].data.length 是已报名纵坐标数据的长度
+    if (faultByHourIndex > allData.length) {
+      faultByHourIndex = 0;
+    }
+  }, 3000);
+
+  //模糊搜索
+  // var  mapData;//地图数据
+  // $('#seach').keyup(function() {
+  //     $("#browsers option").remove();
+  //     $.ajaxSetup({async: true});
+  //     $.get("url", {'username' : $("#seach").val() == "" ? null : $("#seach").val()}, function(data) {
+  //         for(var i in data) {
+  //             /* $("#browsers").append("<option value=data[i].username data-userId=data[i].id ></option>"); */
+  //             var html = "";
+  //             html += "<option value='" + data[i].username + "' data-userId='" + data[i].id + "'></option>";
+  //             $("#browsers").append(html);
+
+  //             /* console.log(html); */
+  //         }
+  //          mapData=data.map;
+  //     }, "json")
+  // });
+
+  //获取到数据通过js渲染到页面
+  //使用定时器刷新页面
+  //setInterval()
+  //获取到的数据
+  // var data=options.data;
+  //页面加载数据
+  // //饼状图
+  // circleOption.data=data.circle;
+  // circleChart.setOption(circleOption);
+  // //折线图
+  // visitOption.data=data.visit;
+  // visitChart.setOption(visitOption);
+  // //地图
+
+
+  var $this2 = $("#Table_r");
+
+  var scrollTimer2;
+
+  function scrollSome($this, scrollTimer) {
+    $this.hover(function () {
+      clearInterval(scrollTimer);
+    }, function () {
+      scrollTimer = setInterval(function () {
+        scrollNews($this);
+      }, 3000);
+    }).trigger("mouseleave");
+  };
+
+  //右侧
+  scrollSome($this2, scrollTimer2);
+
+
+  //滚动函数
+  function scrollNews(obj) {
+    var $self = obj.find("table");
+    var lineHeight = $self.find("tr:first").height();
+    $self.animate({
+      "marginTop": -lineHeight + "px"
+    }, 600, function () {
+      $self.css({
+        marginTop: 0
+      }).find("tr:first").appendTo($self);
+    })
+  };
+
+  var rightTable = [
+    {
+      ranking: "NO.1",
+      name: "蒜泥小龙虾",
+      price: "228",
+      number: "2587"
+    }, {
+      ranking: "NO.2",
+      name: "十三香大龙虾",
+      price: "116",
+      number: "2236"
+    }, {
+      ranking: "NO.3",
+      name: "蒸汽鸡",
+      price: "160",
+      number: "2315"
+    }, {
+      ranking: "NO.4",
+      name: "羊蝎子",
+      price: "160",
+      number: "2120"
+    }, {
+      ranking: "NO.5",
+      name: "手撕辣黄鳝",
+      price: "98",
+      number: "2012"
+    }, {
+      ranking: "NO.6",
+      name: "清蒸拉菲黄鱼",
+      price: "98",
+      number: "2010"
+    }, {
+      ranking: "NO.7",
+      name: "炭烤生蚝",
+      price: "99",
+      number: "1985"
+    }, {
+      ranking: "NO.8",
+      name: "蟹仙粥",
+      price: "128",
+      number: "1983"
+    }, {
+      ranking: "NO.9",
+      name: "虾蟹煲",
+      price: "128",
+      number: "1826"
+    }, {
+      ranking: "NO.9",
+      name: "红烧老鹅",
+      price: "68",
+      number: "1725"
+    }, {
+      ranking: "NO.10",
+      name: "徽味臭桂鱼",
+      price: "98",
+      number: "1685"
+    }, {
+      ranking: "NO.11",
+      name: "诸葛烤鱼",
+      price: "88",
+      number: "1685"
+    }, {
+      ranking: "NO.12",
+      name: "精品雪花牛肉",
+      price: "45",
+      number: "1425"
+    }, {
+      ranking: "NO.13",
+      name: "韩式肥牛",
+      price: "45",
+      number: "1356"
+    }, {
+      ranking: "NO.14",
+      name: "糖醋里脊",
+      price: "38",
+      number: "1206"
+    }, {
+      ranking: "NO.15",
+      name: "石锅蒜蓉虾",
+      price: "48",
+      number: "1130"
+    }, {
+      ranking: "NO.16",
+      name: "特色小肠",
+      price: "28",
+      number: "1130"
+    },
+
+
+  ];
+  //右侧表格
+
+  var rightHtml = "";
+
+  $.each(rightTable, function (i, v) {
+
+    rightHtml += "<tr>" +
+      "<td>" + rightTable[i].ranking + "</td>" +
+      "<td>" + rightTable[i].name + "</td>" +
+      "<td>" + rightTable[i].price + "</td>" +
+      "<td>" + rightTable[i].number + "</td>"
+      + "</tr>"
+  });
+
+  $("#righttable table").append(rightHtml);
+
+
+  setInterval(
+    function () {
+      //获取时间
+      var date = new Date();
+
+      var year = date.getFullYear();
+
+      var month = date.getMonth() + 1;
+
+      var day = date.getDate();
+
+      var hour = date.getHours();
+
+      var minute = date.getMinutes();
+
+      var second = date.getSeconds();
+      var week = date.getDay();
+      var weeks = ["一", "二", "三", "四", "五", "六", "日"];
+      var newWeek = weeks[week];
+      // console.log(year + '-' + month + '-' + day + '  ' + "星期" + newWeek + ' ' + hour + ':' + minute + ':' + second);
+      var nowTime = year + '-' + month + '-' + day + '  ' + "星期" + newWeek + ' ' + hour + ':' + minute + ':' + second;
+      $(".nowTime").text = "";
+      $(".nowTime").text(nowTime);
+
+    }, 1000);
+  //获取时间
+  var date = new Date();
+
+  var year = date.getFullYear();
+
+  var month = date.getMonth() + 1;
+
+  var day = date.getDate();
+
+  var hour = date.getHours();
+
+  var minute = date.getMinutes();
+
+  var second = date.getSeconds();
+  var week = date.getDay();
+  var weeks = ["一", "二", "三", "四", "五", "六", "日"];
+  var newWeek = weeks[week];
+  // console.log(year + '-' + month + '-' + day + '  ' + "星期" + newWeek + ' ' + hour + ':' + minute + ':' + second);
+  var nowTime = year + '-' + month + '-' + day + '  ' + "星期" + newWeek + ' ' + hour + ':' + minute + ':' + second;
+  $(".nowTime").text = "";
+  $(".nowTime").text(nowTime);
+
+  // //获取随机数
+  // function number() {
+  //     return parseInt(Math.random() * 5000 + 1, 10);
+  // };
+  // setInterval(function () {
+  //     sale_data();
+  //     // $("#pandect span").eq(0).text();
+  //     // $("#pandect span").eq(1).text();
+  // }, 1000);
+  //
+  // function sale_data() {
+  //     var sale = "";
+  //     $.ajax({
+  //         type: "get",
+  //         url: "/json_data",
+  //         dataType: "json",
+  //         success: function (result) {
+  //             console.log(result);
+  //             $("#lefttable span").eq(0).text(result.last_day_income);
+  //             $("#lefttable span").eq(1).text(result.this_day_income);
+  //             $("#lefttable span").eq(2).text(result.last_day_people);
+  //             $("#lefttable span").eq(3).text(result.this_day_people);
+  //             $("#lefttable span").eq(4).text(result.last_day_dish);
+  //             $("#lefttable span").eq(5).text(result.this_day_dish);
+  //             $("#pandect div p  span").eq(0).text(result.this_month_income);
+  //         },
+  //     });
+  // }
+
+
+</script>
+
+</body>
+</html>

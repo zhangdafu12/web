@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0px;
+    font-size: 14px;
+}
+#page {
+    position: relative;
+    width: 100%;
+    height: 98%;
+    background-color: #0a0d35;
+    /*background-image: url('../images/backdrop.png');*/
+    /* margin: 10px; */
+    color: #119dc4;
+}
+
+#mapBox {
+    width: 490px;
+    height: 362px;
+    border: solid 2px #13406a;
+    float: left;
+}
+
+#bar {
+    width: 338px;
+    height:362px;
+    float: right;
+    border: solid 2px #13406a;
+}
+
+#more {
+    width: 490px;
+    height: 221px;
+    border: solid 2px #13406a;
+    position: absolute;
+    top: 67%;
+    left: 0;
+    background-Color: '#0a0d35',
+}
+#more1,#more2{
+    width: 146px;
+    height: 217px;
+    /* border-right:solid 1px #ffffff; */
+
+    float: left;
+}
+#more3{
+    width: 190px;
+    height: 217px;
+    float: right;
+
+}
+.more3_title{
+    display: inline-block;
+    position: absolute;
+    top: 90%;
+    left: 61%;
+    font-size: 18px;
+    font-weight: bold;
+}
+#old {
+    width: 338px;
+    height: 221px;
+    border: solid 2px #13406a;
+    position: absolute;
+    top: 67%;
+    right: 0;
+}
+#old1,#old2{
+    width: 334px;
+    height: 108px;
+    /* border: solid 1px #ffff; */
+}
+
+p {
+    height: 40px;
+    display: block;
+    font-size: 20px;
+    /* color: #ffffff; */
+    border: solid 2px #13406a;
+    background-color: #13406a;
+    line-height: 40px;
+
+}
+
+
+#page .left_bord {
+    width: 58%;
+}
+
+#page .right_bord {
+    width: 40%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#page .left_bot_bord {
+    width: 58%;
+    position: absolute;
+    bottom: 33%;
+    left: 0px;
+}
+
+#page .right_bot_bord {
+    width: 40%;
+    position: absolute;
+    bottom: 33%;
+    right: 0px;
+}

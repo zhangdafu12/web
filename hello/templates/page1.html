@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    ul#nav {
+        width: 100%;
+        height: 60px;
+        background: #00A2CA;
+        margin: 0 auto
+    }
+
+    ul#nav li {
+        display: inline;
+        height: 60px
+    }
+
+    ul#nav li a {
+        display: inline-block;
+        padding: 0 20px;
+        height: 60px;
+        line-height: 60px;
+        color: #FFF;
+        font-family: "\5FAE\8F6F\96C5\9ED1";
+        font-size: 16px
+    }
+
+    ul#nav li a:hover {
+        background: #0095BB
+    }
+
+    /*设置鼠标滑过或悬停时变化的背景颜色*/
+</style>
+<script>
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = []
+        if (url.indexOf("?") != -1) {
+            var str1 = url.substr(1);
+            theRequest = str1.split("$");
+            console.log(theRequest);
+            document.getElementById("result_body").innerHTML = theRequest;
+        }
+    }
+
+    window.onload = function () {
+        GetRequest();
+    };
+
+    function addAPI() {
+        /*var id = 0; //add == 0
+        $.post("/page1/"+id, {}, function(data){
+        showData(data);
+        },"json");*/
+    }
+
+    function SearchApi() {
+        /*var id = 1; //search == 0
+        $.post("/page1/"+id, {}, function(data){
+        showData(data);
+        },"json");*/
+    }
+</script>
+
+<body>
+<ul id="nav">
+    <li><a href="http://127.0.0.1:5000">服务描述</a></li>
+    <li><a href="http://127.0.0.1:5000/page2">术语定义</a></li>
+    <li><a href="http://127.0.0.1:5000/page3">术语可执行</a></li>
+    <li><a href="http://127.0.0.1:5000/page4">规则定义</a></li>
+</ul>
+<div class="container-fluid" style="margin-top: 30px">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6">
+            <form class="form-horizontal" id="myform" action="/" method="post">
+                <div class="form-group">
+                    <label for="parm" class="col-sm-2 control-label">API</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="apiName" id="parm" placeholder="API">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="parm" class="col-sm-2 control-label">参数</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="parm1" id="parm" placeholder="参数1">
+                        <input type="text" class="form-control" name="parm2" id="parm" placeholder="参数2">
+                        <input type="text" class="form-control" name="parm3" id="parm" placeholder="参数3">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="name" class="col-sm-2 control-label">名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="describe" class="col-sm-2 control-label">描述</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="describe" id="describe" placeholder="描述">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tag" class="col-sm-2 control-label">标签</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="tag1" id="tag" placeholder="标签1">
+                        <input type="text" class="form-control" name="tag2" id="tag" placeholder="标签2">
+                        <input type="text" class="form-control" name="tag3" id="tag" placeholder="标签3">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" onclick="addAPI()" class="btn btn-default pull-right">提交</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3 style="display: inline;" class="pull-left"><a href="/hello">服务描述说明</a></h3>
+                    </div>
+                    <div class="col-md-3 col-md-offset-6" style="margin-top: 21px">
+                        <div class="input-group">
+                            <input type="text" name="question" class="form-control" id="search_ipt"
+                                   placeholder="Search for...">
+                            <span class="input-group-btn">
+                                    <button class="btn btn-default" id="search" type="submit"
+                                            onclick="SearchApi() ">Go!</button>
+                                </span>
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table">
+            <caption>
+
+            </caption>
+            <thead>
+            </thead>
+            <tbody id="result_body">
+            <tr>
+                <th scope="row">
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <table id="backString">
+        <tr>
+            <th>API</th>
+            <th>参数</th>
+            <th>名称</th>
+            <th>描述</th>
+            <th>标签</th>
+        </tr>
+        {% for each in data %}
+
+            <tr>
+                <td>{{ each.apiname }}</td>
+                <td>{{ each.param }}</td>
+                <td>{{ each.name }}</td>
+                <td>{{ each.describe }}</td>
+                <td>{{ each.tag }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+<script>
+    var strings = "{{ backString }}";
+    var trid = document.getElementById("backString");
+    if (strings.toString() != "") {
+        var ns = strings.split("$");
+        for (var i = 0; i < ns.length; i++) {
+            trid.rows[1].cells[i].innerText = ns[i].toString();//对表格的第二行进行动态操作
+        }
+    }
+
+
+</script>
+</html>

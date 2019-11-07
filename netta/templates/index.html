@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+{% block content_block %}
+<link rel="stylesheet" type="text/css" href="../static/css/index.css">
+
+
+<div class="bigpic">
+    <!--<img class="bigpic" src="https://i.loli.net/2019/03/31/5ca05dec88519.jpg" />-->
+</div>
+<div class="container">
+    <div style="margin-top: 24px;display: -webkit-box">
+        <div class="bignews">
+{#            <a href="{{ top_news_list[0].get('news_url') }}">#}
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[0][0]) }}">
+                <img src="{{ url_for('static', filename=top_news_list[0][8]) }}">
+                <div class="titlewordbackground">
+                </div>
+                <div class="titleword">
+                    {{ top_news_list[0][1] }}
+                </div>
+            </a>
+        </div>
+
+        <div class="item-bottom">
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[1][0]) }}">
+            <div class="littlenews">
+                <img src="{{ url_for('static', filename=top_news_list[1][8]) }}">
+            </div>
+            <div class="item-title">
+                {{ top_news_list[1][1] }}
+            </div>
+            <div class="num-bar">
+                <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ top_news_list[1][5] }}</span>
+                <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ top_news_list[1][6] }}</span>
+                <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ top_news_list[1][7] }}</span>
+            </div>
+            </a>
+        </div>
+
+        <div class="item-bottom">
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[2][0]) }}">
+            <div class="littlenews">
+                <img src="{{ url_for('static', filename=top_news_list[2][8]) }}">
+            </div>
+            <div class="item-title">
+                {{ top_news_list[2][1] }}
+            </div>
+            <div class="num-bar">
+                <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ top_news_list[2][5] }}</span>
+                <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ top_news_list[2][6] }}</span>
+                <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ top_news_list[2][7] }}</span>
+            </div>
+            </a>
+        </div>
+    </div>
+
+    <div style="margin-top: 24px;display: -webkit-box">
+        <div class="item-bottom">
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[3][0]) }}">
+            <div class="littlenews">
+                <img src="{{ url_for('static', filename=top_news_list[3][8]) }}">
+            </div>
+            <div class="item-title">
+                {{ top_news_list[3][1] }}
+            </div>
+            <div class="num-bar">
+                <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ top_news_list[3][5] }}</span>
+                <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ top_news_list[3][6] }}</span>
+                <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ top_news_list[3][7] }}</span>
+            </div>
+            </a>
+        </div>
+
+        <div class="item-bottom">
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[4][0]) }}">
+            <div class="littlenews">
+                <img src="{{ url_for('static', filename=top_news_list[4][8]) }}">
+            </div>
+            <div class="item-title">
+                {{ top_news_list[4][1] }}
+            </div>
+            <div class="num-bar">
+                <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ top_news_list[4][5] }}</span>
+                <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ top_news_list[4][6] }}</span>
+                <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ top_news_list[4][7] }}</span>
+            </div>
+            </a>
+        </div>
+
+        <div class="item-bottom">
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[5][0]) }}">
+            <div class="littlenews">
+                <img src="{{ url_for('static', filename=top_news_list[5][8]) }}">
+            </div>
+            <div class="item-title">
+                {{ top_news_list[5][1] }}
+            </div>
+            <div class="num-bar">
+                <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ top_news_list[5][5] }}</span>
+                <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ top_news_list[5][6] }}</span>
+                <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ top_news_list[5][7] }}</span>
+            </div>
+            </a>
+        </div>
+
+        <div class="item-bottom">
+            <a href="{{ url_for(".news_detail", news_id=top_news_list[6][0]) }}">
+            <div class="littlenews">
+                <img src="{{ url_for('static', filename=top_news_list[6][8]) }}">
+            </div>
+            <div class="item-title">
+                {{ top_news_list[6][1] }}
+            </div>
+            <div class="num-bar">
+                <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ top_news_list[6][5] }}</span>
+                <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ top_news_list[6][6] }}</span>
+                <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ top_news_list[6][7] }}</span>
+            </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div
+            style="width:100%;height:60px;background:rgba(255,255,255,1);border:0px solid rgba(179,178,174,1);box-shadow:0px 3px 7px 0px rgba(0, 0, 0, 0.15);margin-top: 24px">
+        <div class="hot-topic-block">
+            <select
+                    style="width:10%;height:40px;background:rgba(255,255,255,1);box-shadow:0px 0px 5px 0px rgba(0, 0, 0, 0.35);opacity:0.98;border-radius:5px;font-size:16px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;display: inline-block" class="form-control">
+                <option value="volvo">推荐</option>
+            </select>
+            <img style="margin-right: 110px;margin-left: 35px" src="https://i.loli.net/2019/03/31/5ca0668f69dfa.png" />
+            <img src="https://i.loli.net/2019/03/31/5ca0676c38232.png" />
+            <span class="hot-topic">热门话题</span>
+            {% for item in hot_topic %}
+                <a href="{{ item.get('url') }}" class="hot-topic">{{ item.get('title') }}</a>
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+
+    <div class="bottomleft">
+        {% for item in bottom_left %}
+            <div style="font-size:20px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;">
+                <a href="{{ url_for(".news_detail", news_id=item[0]) }}">
+
+                {% if item[8] %}
+                <img style="width:140px;height:87px;float: left;margin-top: 16px;margin-left: 16px" src="{{ item[8] }}" />
+                {% endif %}
+
+                <div style="{% if item[8] %}margin-left: 178px;{% endif %}padding: 10px">
+                    {{ item[1] }}
+                    <div style="display:-webkit-box;margin-top: 30px">
+{#                        <div class="news-from">#}
+{#                            {{ item[9] }}#}
+{#                        </div>#}
+                        <div style="font-size:12px;font-family:PingFang-SC-Regular;font-weight:400;color:rgba(133,133,133,1);line-height:24px;margin-left: 18px">
+                            {% for i in item[10].split(',') %}
+                                <span>{{ i }}</span>
+                            {% endfor %}
+                            {% if item[3] %}
+                            <span class="pub-time">{{ item[3] }}</span>
+                            {% endif %}
+                        </div>
+                        {% if item[5] and item[6] and item[7]%}
+                        <div class="num-bar-2">
+                            <img src="../static/img/watch-icon.png" class="watch-icon"/><span class="watch-num">{{ item[5] }}</span>
+                            <img src="../static/img/comment-icon.png" class="comment-icon"/><span class="comment-num">{{ item[6] }}</span>
+                            <img src="../static/img/like-icon.png" class="like-icon"/><span class="like-num">{{ item[7] }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                </a>
+            </div>
+        <!--<div style="width:788px;height:1px;border:1px solid rgba(225,225,225,1);margin-left: 16px"></div>-->
+            <hr/>
+        {% endfor %}
+    </div>
+
+    <div class="buttomright">
+        {% if hot_24 %}
+        <!--24小时热文-->
+        <div class="organization-news-right">
+            <div class="news-title"><div class="news-logo actual-time" ></div><span>24小时热文</span></div>
+            <div class="news-list">
+                {% for item in hot_24 %}
+                    <div class="news-item">
+                        <a href="{{ item.get('news_url') }}">
+                           {% if item.get('img')%}
+                        <div class="news-pic">
+                            <img src="{{ item.get('img') }}">
+                        </div>
+                            {% endif %}
+                        <div class="news-content">
+                            <span>
+                                {{ item.get('title') }}
+                            </span>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if near_news %}
+        <div class="organization-news-right">
+            <div class="news-title"><div class="news-logo"></div><span>最近新闻</span></div>
+            <div class="news-list">
+                {% for item in near_news %}
+                    <div class="news-item">
+                        <a href="{{ item.get('news_url') }}">
+                        <div class="news-pic">
+                            <img src="{{ item.get('img') }}">
+                        </div>
+                        <div class="news-content">
+                            <span>
+                                {{ item.get('title') }}
+                            </span>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if hot_video %}
+            <div class="organization-news-right">
+                <div class="news-title"><div class="news-logo video-logo"></div><span>热门视频</span></div>
+                <div class="news-list">
+                    {% for item in hot_video %}
+                    <div class="video-item">
+                        <a href="{{ item.get('video_url') }}">
+                            <div class="video-pic">
+                                <img src="{{ item.get('img') }}">
+                            </div>
+                            <div class="video-content">
+                                <span>{{ item.get('title') }}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <script>
+
+        function handlePublishTimeDesc(post_modified){
+        // 拿到当前时间戳和发布时的时间戳，然后得出时间戳差
+        var curTime = new Date();
+        //var postTime = new Date(post_modified);                  //部分浏览器不兼容此转换建议所以对此进行补充（指定调用自己定义的函数进行生成发布时间的时间戳）
+
+        //var timeDiff = curTime.getTime() - postTime.getTime();
+        //上面一行代码可以换成以下（兼容性的解决）
+        var timeDiff = curTime.getTime()/1000 - post_modified;
+
+        // 单位换算
+        var min = 60 * 1000;
+        var hour = min * 60;
+        var day = hour * 24;
+        var week = day * 7;
+        var month =  week*4;
+        var year = month*12;
+
+        // 计算发布时间距离当前时间的周、天、时、分
+        var  exceedyear = Math.floor(timeDiff/year);
+        var exceedmonth = Math.floor(timeDiff/month);
+        var exceedWeek = Math.floor(timeDiff/week);
+        var exceedDay = Math.floor(timeDiff/day);
+        var exceedHour = Math.floor(timeDiff/hour);
+        var exceedMin = Math.floor(timeDiff/min);
+
+
+        // 最后判断时间差到底是属于哪个区间，然后return
+
+        if(exceedyear<100&&exceedyear>0){
+            return exceedyear + '年前';
+            }else{
+            if(exceedmonth<12&&exceedmonth>0){
+                return exceedmonth + '月前';
+                }else{
+                if(exceedWeek<4&&exceedWeek>0){
+                    return exceedWeek + '星期前';
+                    }else{
+                    if(exceedDay < 7 && exceedDay > 0){
+                        return exceedDay + '天前';
+                        }else {
+                        if (exceedHour < 24 && exceedHour > 0) {
+                            return exceedHour + '小时前';
+                        } else {
+                            if(exceedMin==0){
+                                return '刚刚'
+                            }
+                            return exceedMin + '分钟前';
+                        }
+                    }
+                    }
+                }
+            }
+    }
+
+
+
+        $(function () {
+            var re = /^[0-9]+.?[0-9]*$/;
+            $.each($('.pub-time'),function (i,val) {
+                    if (re.test(val.innerText)) {
+                        times = handlePublishTimeDesc(parseInt(val.innerText));
+                        val.innerText = times;
+                    }
+
+                }
+            )
+        });
+    </script>
+
+</div>
+{% endblock %}

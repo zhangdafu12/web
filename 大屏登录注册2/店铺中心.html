@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content .head {
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
+            background-color: #00135E;
+            margin-bottom: 32px;
+        }
+
+        .content .head .head-cont {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .content .head .head-cont .head-left {
+            font-size: 25px;
+        }
+
+        .content .head .head-cont .head-right {
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .content .head .head-cont .head-right .phone {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 36px;
+        }
+
+        .content .head .head-cont .head-right .phone img {
+            width: 12px;
+            height: 16px;
+            margin: 27px 3px 27px 0;
+        }
+
+        .content .head .head-cont .head-right .nickname {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 42px;
+        }
+
+        .content .head .head-cont .head-right .nickname img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin: 23px 0 23px 3px;
+        }
+
+        .content .boxes {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content .boxes .left_side {
+            width: 190px;
+            height: 533px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+        }
+
+        .content .boxes .left_side .side-name {
+            font-size: 25px;
+            font-weight: 600;
+            text-align: center;
+            margin: 20px 0 26px 0;
+        }
+
+        .content .boxes .left_side ul li {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+            font-size: 16px;
+        }
+
+
+        .content .boxes .left_side ul li img:nth-child(2) {
+            display: none;
+        }
+
+        .content .boxes .left_side ul li:first-child .now {
+            display: none;
+        }
+
+        .content .boxes .left_side ul li:first-child>img:nth-child(2) {
+            display: block;
+        }
+
+        .content .boxes .left_side ul li:first-child>div {
+            color: #41bfe7;
+        }
+
+        /* .content .boxes .left_side ul li:hover>img:nth-child(2) {
+            display: block;
+        } */
+
+        .content .boxes .left_side ul li img {
+            margin-right: 5px;
+        }
+
+        .shop .message {
+            width: 990px;
+            height: 174px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            margin-bottom: 21px;
+            padding: 32px 0 32px 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .shop .message .message-count {
+            width: 340px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .shop .message .message-count img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+        }
+
+        .shop .message .message-count .name {
+            margin: 30px 0 0 22px;
+        }
+
+        .shop .message .message-count .name .name-text {
+            font-size: 16px;
+            font-weight: 600;
+
+        }
+
+        .shop .message .message-count .name p {
+            font-size: 10px;
+            color: #C8C8C8;
+        }
+
+        .shop .message .shop-count,
+        .shop .message .greens-count,
+        .shop .message .template-count {
+            width: 202px;
+            border-left: 2px solid #F8F8F8;
+            text-align: center;
+            margin-top: 13px;
+        }
+
+        .shop .message .shop-count p,
+        .shop .message .greens-count p,
+        .shop .message .template-count p {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .shop .message .count span {
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .shop-count .count {
+            color: #fc463f;
+        }
+
+        .greens-count .count {
+            color: #ffb031;
+        }
+
+        .template-count .count {
+            color: #00adef;
+        }
+
+        .content .boxes .right_content .list-message {
+            width: 990px;
+            height: 384px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+        }
+
+        .store {
+            width: 83px;
+            border-bottom: 2px solid #41bfe7;
+            text-align: center;
+            color: #41bfe7;
+            padding-bottom: 6px;
+        }
+
+        .list-message .tem-box {
+            border-bottom: 0;
+        }
+
+        .store-box {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #EFEFEF;
+            padding: 21px 0;
+        }
+
+
+        .store-box .revision {
+            line-height: 70px;
+            color: #41bfe7;
+            margin-right: 37px;
+        }
+
+        .list-message .store-box .store-left {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .list-message .store-box .store-left img {
+            width: 70px;
+            height: 70px;
+            border-radius: 6px;
+            margin-right: 18px;
+        }
+
+        .store-box .store-left p:first-child {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .store-box .store-left p:nth-child(2) {
+            font-size: 12px;
+            color: #939393;
+            margin-bottom: 7px;
+        }
+
+        .store-box .store-left p:last-child {
+            font-size: 12px;
+            color: #939393;
+        }
+
+        /* ***************************模版列表************************ */
+        .amend {
+            width: 990px;
+            height: 775px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+        }
+
+        .amend-cont {
+            height: 700px;
+            margin: 30px 167px 0 37px;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+            font-family: PingFang SC;
+            position: relative;
+        }
+
+        .amend-cont p {
+            font-weight: 600;
+        }
+
+        .amend-cont .left {
+            width: 380px;
+
+        }
+
+        .amend-cont .right {
+            width: 252px;
+        }
+
+        input {
+            /* text-indent: 12px; */
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #E2E2E2;
+            font-size: 16px;
+            line-height: 40px;
+            margin-top: 24px;
+            outline: none;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #E5E5E5;
+            font-size: 16px;
+        }
+
+        .amend-cont .name,
+        .amend-cont .site,
+        .amend-cont .phone,
+        .amend-cont .code,
+        .amend-cont .count1 {
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .amend-cont .principal {
+            width: 300px;
+            text-indent: 12px;
+        }
+        .amend-cont .time_cont {
+            position: relative;
+            width: 224px;
+        }
+        .amend-cont .time_cont img{
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+        }
+
+        .amend-cont .time {
+            width: 222px;
+            text-indent: 12px;
+        }
+
+        .amend-cont .type {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #E2E2E2;
+            outline: none;
+            color: #E5E5E5;
+            margin-top: 24px;
+            border-radius: 5px;
+            text-indent: 12px;
+        }
+
+        .amend-cont .always {
+            margin-top: 22px;
+            ;
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .amend-cont .annex {
+            margin: 0;
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .amend-cont .right .upload-head {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .amend-cont .right .upload-head .upload {
+            width: 104px;
+            height: 104px;
+            border-radius: 4px;
+            margin-top: 20px;
+            border: 1px dashed #DFDFDF;
+            background-color: #EDEDED;
+            position: relative;
+        }
+
+        .amend-cont .right .upload-head .upload .photo {
+            font-size: 14px;
+            color: #808080;
+            text-align: center;
+            margin-top: 62px;
+        }
+
+        .amend-cont .right .upload-head .upload .across {
+            width: 24px;
+            height: 2px;
+            background-color: #9A9A9A;
+            position: absolute;
+            left: calc(50% - 12px);
+            top: 36px;
+        }
+
+        .amend-cont .right .upload-head .upload .vertical {
+            width: 2px;
+            height: 24px;
+            background-color: #9A9A9A;
+            position: absolute;
+            left: calc(50% - 1px);
+            top: 25px;
+        }
+
+        .amend-cont .right .upload-head .upload-box .support {
+            color: #B4B4B4;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .amend-cont .right .upload-head .upload-end {
+            width: 104px;
+            height: 104px;
+            border-radius: 4px;
+            margin-top: 20px;
+            /* border: 1px dashed #DFDFDF; */
+            margin-left: 44px;
+        }
+
+        .amend-cont .right .upload-head .upload-end img {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            border: 1px solid #DFDFDF;
+        }
+
+        .amend .button {
+            text-align: center;
+            margin-top: 24px;
+            position: absolute;
+            left: calc(50% - 88px);
+            bottom: 35px;
+        }
+
+        .amend .button input {
+            width: 176px;
+            height: 40px;
+            border: 0;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        .amend .button .cancel {
+            background-color: #e74141;
+            margin-right: 14px;
+        }
+
+        .amend .button .refer {
+            background-color: #41bfe7;
+        }
+
+        #pic {
+            width: 104px;
+            height: 104px;
+            position: absolute;
+            opacity: 0;
+            margin-top: 0px;
+            top: 41px;
+            right: 147px;
+            z-index: 999;
+        }
+
+        /* ********************************模版列表******************************************** */
+        .template {
+            width: 990px;
+            height: 384px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+        }
+
+        .tem-box {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .tem-box .add {
+            width: 80px;
+            height: 28px;
+            background-color: #fb7500;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 28px;
+            color: #ffffff;
+            position: relative;
+            bottom: 9px;
+            font-size: 13px;
+        }
+
+        .template .store-box .store-left {
+            margin-left: 11px;
+        }
+
+        /* *************************添加模板********************************** */
+        .add-template {
+            width: 990px;
+            /* height: 1820px; */
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+            margin-bottom: 10px;
+        }
+
+        .add-template input {
+            width: 378px;
+            height: 38px;
+            text-indent: 12px;
+        }
+
+        .add-template .tem-name {
+            margin-top: 0;
+        }
+
+        .add-template .tem-list {
+            margin: 20px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .add-template .input {
+            margin-left: 37px;
+        }
+
+        .add-template .input .span {
+            margin-left: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .add-template .input span {
+            margin-left: 20px;
+        }
+
+        .add-template .input .span1 img {
+            width: 24px;
+            height: 24px;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+        }
+
+
+        .add-template .input .span1 {
+            width: 101px;
+            padding-top: 5px;
+            position: relative;
+        }
+
+        .add-template .input .lump {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .add-template .input .lump input {
+            margin-top: 0;
+        }
+
+        .add-template .type {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #E2E2E2;
+            outline: none;
+            color: #E5E5E5;
+            margin-top: 24px;
+            border-radius: 5px;
+            text-indent: 12px;
+        }
+
+        .add-template textarea {
+            width: 380px;
+            height: 101px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            border-color: #E2E2E2;
+            margin-top: 24px;
+            text-indent: 12px;
+            font-size: 16px;
+            outline: none;
+            color: #D0D0D0;
+        }
+
+
+        .add-template .present {
+            width: 176px;
+            height: 40px;
+            border-radius: 5px;
+            border: 0;
+            background-color: #41bfe7;
+            margin: 24px 385px 24px 385px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .add-template input.radio {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 6px;
+            left: -5px;
+            opacity: 0;
+        }
+
+        /*************************修改密码********************************* */
+        .alter-password {
+            width: 990px;
+            height: 474px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+        }
+
+        .alter-password .confirm-password {
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .alter-password .password {
+            width: 300px;
+            text-indent: 12px;
+        }
+
+        .alter-password .input {
+            margin-left: 38px;
+        }
+
+        .alter-password .input .phone {
+            width: 378px;
+            height: 40px;
+            margin: 30px 10px 0 0;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #E2E2E2;
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .alter-password .input .phone select {
+            width: 72px;
+            height: 42px;
+            color: #E5E5E5;
+            border: 1px solid #E2E2E2;
+            position: relative;
+            bottom: 2px;
+            border-left: 0;
+            outline: none;
+            text-indent: 12px;
+        }
+
+        .alter-password .input .phone .cell {
+            width: 300px;
+            margin: 0;
+            border-radius: 0;
+            border: 0;
+            text-indent: 12px;
+        }
+
+        .alter-password .input .verify-code {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .alter-password .input .verify-code .verify {
+            width: 270px;
+            margin-top: 0;
+            text-indent: 12px;
+        }
+
+        .alter-password .input .verify-code .code {
+            color: #41bfe7;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 40px;
+            margin-left: 24px;
+        }
+
+        .alter-password .commit {
+            width: 176px;
+
+            background-color: #41bfe7;
+            margin: 24px 0 0 140px;
+            color: #ffffff;
+            font-size: 16px;
+            text-indent: 0;
+        }
+    </style>
+
+<body>
+    <div class="content">
+        <div class="head">
+            <div class="head-cont">
+                <div class="head-left">复联数据实时看板</div>
+                <div class="head-right">
+                    <div class="help">帮助</div>
+                    <div class="phone">
+                        <img src="./images/手机.svg" alt="">
+                        <p>手机APP</p>
+                    </div>
+                    <div class="nickname">
+                        <p>曼****m</p>
+                        <img src="./images/img11.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="left_side">
+                <div class="side-name">店铺中心</div>
+                <ul class="sidebar">
+                    <li class="mainMenu" id="shop">
+                        <img class="now" src="./images/店铺列表.svg" alt="">
+                        <img src="./images/店铺列表2.svg" alt="">
+                        <div class="mainMenu_cilk">店铺列表</div>
+                    </li>
+                    <li class="mainMenu" id="template">
+                        <img class="now" src="./images/模版列表.svg" alt="">
+                        <img src="./images/模板列表2.svg" alt="">
+                        <div class="mainMenu_cilk">模版列表</div>
+                    </li>
+                    <li class="mainMenu">
+                        <img class="now" src="./images/大屏展示.svg" alt="">
+                        <img src="./images/大屏展示2.svg" alt="">
+                        <div class="mainMenu_cilk">大屏展示</div>
+                    </li>
+                    <li class="mainMenu" id="alter-password">
+                        <img class="now" src="./images/密码修改.svg" alt="">
+                        <img src="./images/密码修改2.svg" alt="">
+                        <div class="mainMenu_cilk">修改密码</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_content">
+                <!-- 店铺列表 -->
+                <div class="shop">
+                    <div class="message">
+                        <div class="message-count">
+                            <img src="./images/img11.png" alt="">
+                            <div class="name">
+                                <div class="name-text">欢迎登录，<span>曼****m</span></div>
+                                <p>来杯下午茶，提提精神呗！</p>
+                            </div>
+                        </div>
+                        <div class="shop-count">
+                            <p>店铺数量</p>
+                            <div class="count"><span>6</span>个</div>
+                        </div>
+                        <div class="greens-count">
+                            <p>菜品数量</p>
+                            <div class="count"><span>3251</span>个</div>
+                        </div>
+                        <div class="template-count">
+                            <p>模版数量</p>
+                            <div class="count"><span>200</span>个</div>
+                        </div>
+                    </div>
+                    <div class="list-message">
+                        <div class="tem-box">
+                            <div class="store">店铺列表</div>
+                            <div class="add">添加分店</div>
+                        </div>
+
+                        <div class="store-box">
+                            <div class="store-left">
+                                <img src="./images/img11.png" alt="">
+                                <div>
+                                    <p>干锅牛蛙独墅湖店</p>
+                                    <p>苏州市工业园区独墅湖邻里中心3楼</p>
+                                    <p>0512-67897566</p>
+                                </div>
+                            </div>
+                            <div class="revision alter">修改信息</div>
+                        </div>
+                        <div class="store-box">
+                            <div class="store-left">
+                                <img src="./images/img11.png" alt="">
+                                <div>
+                                    <p>干锅牛蛙独墅湖店</p>
+                                    <p>苏州市工业园区独墅湖邻里中心3楼</p>
+                                    <p>0512-67897566</p>
+                                </div>
+                            </div>
+                            <div class="revision alter">修改信息</div>
+                        </div>
+                        <div class="store-box">
+                            <div class="store-left">
+                                <img src="./images/img11.png" alt="">
+                                <div>
+                                    <p>干锅牛蛙独墅湖店</p>
+                                    <p>苏州市工业园区独墅湖邻里中心3楼</p>
+                                    <p>0512-67897566</p>
+                                </div>
+                            </div>
+                            <div class="revision alter">修改信息</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 修改信息 -->
+                <div class="amend" style="display: none">
+                    <div class="tem-box">
+                        <div class="store"></div>
+                    </div>
+                    <div class="amend-cont">
+                        <div class="left">
+                            <p>基本资料</p>
+                            <form action="">
+                                <input type="text" placeholder="干锅牛蛙独墅湖邻里中心店" class="name"><br>
+                                <input type="text" placeholder="周新月" class="principal"><br>
+                                <input type="text" placeholder="苏州市工业园区江陵西路389号" class="site"><br>
+                                <input type="text" placeholder="0512-68797899" class="phone"><br>
+                                <input type="text" placeholder="UEF5489628999564547F" class="code"><br>
+                                <input type="text" placeholder="35座位" class="count1"><br>
+                                <div class="time_cont">
+                                    <input type="text" placeholder="9:00am~17:00pm" class="time">
+                                    <img src="./images/时间.svg" alt="">
+                                </div>
+                                <input type="file" name="pic" id="pic" accept="image/*" />
+                                <select name="" id="" class="type">
+                                    <option value="">店铺类型</option>
+                                    <option value="always">总店</option>
+                                    <option value="annex">分店</option>
+                                </select><br>
+                                <input type="text" placeholder="总店" class="always" style="display: none"><br>
+                                <input type="text" placeholder="分店" class="annex" style="display: none"><br>
+                                <div class="button">
+                                    <input type="submit" value="取 消" class="cancel">
+                                    <input type="submit" value="提 交" class="refer">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="right">
+                            <p>店铺头像</p>
+                            <div class="upload-head">
+                                <div class="upload-box">
+                                    <div class="upload">
+                                        <div class="across"></div>
+                                        <div class="vertical"></div>
+                                        <div class="photo">上传照片</div>
+                                    </div>
+                                    <div class="support">只支持.jpg 格式</div>
+                                </div>
+
+                                <div class="upload-end"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <section></section>
+                    <!-- <div class="button">
+                        <button>取 消</button>
+                        <button>提 交</button>
+                    </div> -->
+
+                </div>
+                <!-- 模板列表 -->
+                <div class="template" style="display: none">
+                    <div class="tem-box">
+                        <div class="store">模版列表</div>
+                        <div class="add" id="add-template">添加模版</div>
+                    </div>
+                    <div class="store-box">
+                        <div class="store-left">
+                            <p>干锅牛蛙独墅湖店</p>
+                            <p>苏州市工业园区独墅湖邻里中心3楼</p>
+                            <p>0512-67897566</p>
+                        </div>
+                        <div class="revision alter">修改信息</div>
+                    </div>
+                    <div class="store-box">
+                        <div class="store-left">
+                            <p>干锅牛蛙独墅湖店</p>
+                            <p>苏州市工业园区独墅湖邻里中心3楼</p>
+                            <p>0512-67897566</p>
+                        </div>
+                        <div class="revision alter">修改信息</div>
+                    </div>
+                    <div class="store-box">
+                        <div class="store-left">
+                            <p>干锅牛蛙独墅湖店</p>
+                            <p>苏州市工业园区独墅湖邻里中心3楼</p>
+                            <p>0512-67897566</p>
+                        </div>
+                        <div class="revision alter">修改信息</div>
+                    </div>
+                </div>
+                <!-- 添加模板 -->
+                <div class="add-template" style="display: none">
+                    <div class="tem-box">
+                        <div class="store">添加模板</div>
+                    </div>
+                    <div class="input">
+                        <div class="tem-list">模块列表</div>
+                        <input type="text" placeholder="模版名" class="tem-name"><br>
+                        <input type="text" placeholder="销量" class="melt"><br>
+                        <input type="text" placeholder="人数" class="people"><br>
+                        <input type="text" placeholder="增长率" class="increase"><br>
+                        <input type="text" placeholder="波动范围" class="wave"><br>
+                        <input type="text" placeholder="店名" class="shop-name"><br>
+                        <div class="lump">
+                            <input type="text" placeholder="最高日销量" class="sun">
+                            <div class="span">
+                                <p class="span1">
+                                    <input class="radio" name="dayMarket" type="radio" />
+                                    <img src="./images/check-circle-o.svg" alt="">单数</p>
+                                <p class="span1">
+                                    <input class="radio" name="dayMarket" type="radio" checked="checked" />
+                                    <img src="./images/check-circle.svg" alt="">总价</p>
+                            </div><br>
+                        </div>
+                        <div class="lump">
+                            <input type="text" placeholder="最高午销量" class="noon">
+                            <div class="span">
+                                <p class="span1">
+                                    <input class="radio" name="noonMarket" type="radio" />
+                                    <img src="./images/check-circle-o.svg" alt="">单数</p>
+                                <p class="span1">
+                                    <input class="radio" name="noonMarket" type="radio" checked="checked" />
+                                    <img src="./images/check-circle.svg" alt="">总价</p>
+                            </div><br>
+                        </div>
+                        <div class="lump">
+                            <input type="text" placeholder="最高晚销量" class="night">
+                            <div class="span">
+                                <p class="span1">
+                                    <input class="radio" name="nightMarket" type="radio" />
+                                    <img src="./images/check-circle-o.svg" alt="">单数</p>
+                                <p class="span1">
+                                    <input class="radio" name="nightMarket" type="radio" checked="checked" />
+                                    <img src="./images/check-circle.svg" alt="">总价</p>
+                            </div><br>
+                        </div>
+                        <div class="lump">
+                            <input type="text" placeholder="热销菜品名" class="hot">
+                            <div class="span">
+                                <p class="span1">
+                                    <input class="radio" name="dish" type="radio" />
+                                    <img src="./images/check-circle-o.svg" alt="">日单数</p>
+                                <p class="span1">
+                                    <input class="radio" name="dish" type="radio" checked="checked" />
+                                    <img src="./images/check-circle.svg" alt="">日总价</p>
+                            </div><br>
+                        </div>
+                        <div class="lump">
+                            <input type="text" placeholder="波动范围" class="wave">
+                            <div class="span">
+                                <p class="span1">
+                                    <input class="radio" name="wave" type="radio" />
+                                    <img src="./images/check-circle-o.svg" alt="">日单数</p>
+                                <p class="span1">
+                                    <input class="radio" name="wave" type="radio" checked="checked" />
+                                    <img src="./images/check-circle.svg" alt="">日总价</p>
+                            </div><br>
+                        </div>
+                        <input type="text" placeholder="店名" class="shop-name"><br>
+                        <input type="text" placeholder="外卖最高销量" class="take-out"><br>
+                        <input type="text" placeholder="外卖销量最高菜品名" class="dish-name"><br>
+                        <input type="text" placeholder="今日实收" class="actual"><span>元</span><br>
+                        <input type="text" placeholder="今日翻台" class="rockover"><span>桌</span><br>
+                        <input type="text" placeholder="今日外卖单量" class="quantity"><span>件</span><br>
+                        <input type="text" placeholder="昨日实收" class="yester-actual"><span>元</span><br>
+                        <input type="text" placeholder="昨日翻台" class="yester-rockover"><span>桌</span><br>
+                        <input type="text" placeholder="昨日外卖单量" class="yester-quantity"><span>件</span><br>
+                        <input type="text" placeholder="各门店销售排行" class="rank"><br>
+                        <input type="text" placeholder="各门店热销菜品排行" class="greens-rank"><br>
+                        <input type="text" placeholder="今日到店人数" class="this-people"><br>
+                        <select name="" id="" class="type">
+                            <option value="">应用到</option>
+                            <option value="">XXXXXX</option>
+                        </select><br>
+                        <textarea name="" id="" cols="30" rows="10">描述</textarea>
+                        <input type="submit" value="提交" class="present">
+                    </div>
+                    <!-- <button>提 交</button> -->
+                </div>
+                <!-- 大屏展示 -->
+                <div class="show" style="display: none">
+
+                </div>
+                <!-- 修改密码 -->
+                <div class="alter-password" style="display: none">
+                    <div class="tem-box">
+                        <div class="store">修改密码</div>
+                    </div>
+                    <div class="input">
+                        <form action="">
+                            <div class="phone">
+                                <select name="" id="">
+                                    <option value="">+86</option>
+                                    <option value="">+11</option>
+                                </select>
+                                <input type="text" placeholder="11 位⼿机号" class="cell"><br>
+                            </div>
+                            <div class="verify-code">
+                                <input type="text" placeholder="输⼊验证码" class="verify"><br>
+                                <div class="code">获取验证码</div>
+                            </div>
+                            <input type="text" placeholder="6 - 16 位密码，区分⼤⼩写" class="password"><br>
+                            <input type="text" placeholder="确认密码" class="confirm-password"><br>
+                            <input type="submit" value="提交" class="commit">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    // 店铺列表
+    $('#shop').click(function () {
+        $(".shop").siblings().css("display", "none");
+        $(".shop").css("display", "block");
+        $('#shop img:eq(0)').css("display", "none");
+        $('#shop img:eq(1)').css("display", "block");
+        $('#shop div').css("color", "#41bfe7");
+        $('#shop').siblings().children("img").hide();
+        $('#shop').siblings().children(".now").show();
+        $('#shop').siblings().children().css("color", "#000");
+
+
+
+    });
+    // 模板列表
+    $('#template').click(function () {
+        $(".template").siblings().css("display", "none");
+        $(".template").css("display", "block");
+        $('#template img:eq(0)').css("display", "none");
+        $('#template img:eq(1)').css("display", "block");
+        $('#template div').css("color", "#41bfe7");
+        console.log($('#template').siblings().children(".now"))
+        $('#template').siblings().children("img").hide();
+        $('#template').siblings().children(".now").show();
+        $('#template').siblings().children().css("color", "#000");
+
+    });
+    // 修改密码 
+    $('#alter-password').click(function () {
+        $(".alter-password").siblings().css("display", "none");
+        $(".alter-password").css("display", "block");
+        $('#alter-password img:eq(0)').css("display", "none");
+        $('#alter-password img:eq(1)').css("display", "block");
+        $('#alter-password div').css("color", "#41bfe7");
+        $('#alter-password').siblings().children("img").hide();
+        $('#alter-password').siblings().children(".now").show();
+        $('#alter-password').siblings().children().css("color", "#000");
+    });
+    // 添加模板
+    $('#add-template').click(function () {
+        $(".add-template").siblings().css("display", "none");
+        $(".add-template").css("display", "block");
+    });
+    // 添加分店
+    $('.shop .add').click(function () {
+        $(".amend").siblings().css("display", "none");
+        $(".amend").css("display", "block");
+        $(".amend .store").text('添加店铺');
+    });
+    // 修改信息
+    $('.alter').click(function () {
+        $(".amend").siblings().css("display", "none");
+        $(".amend").css("display", "block");
+        $(".amend .store").text('修改信息');
+    });
+    // 上传店铺照
+    var pic = document.getElementById("pic");
+    console.log(pic);
+    pic.onchange = function (e) {
+
+        var img = document.createElement("img")
+        //获取用户上传的文件对象
+        var theFile = pic.files[0];
+        //实例化一个文件读取器
+        var fileReader = new FileReader();
+        //将用户上传的文件对象作为参数，传入文件读取器的方法readAsDataURL
+        fileReader.readAsDataURL(theFile);
+        //文件读取器方法执行完毕后调用函数
+        fileReader.onload = function () {
+            //文件读取器的result属性即fileReader.result，就是上传文件的dataURL
+            img.src = fileReader.result;
+        };
+
+        var upload_end = document.getElementsByClassName("upload-end");
+        upload_end[0].innerHTML = "";
+        upload_end[0].appendChild(img);
+
+    }
+    // ****************************************************
+    $(".type").change(function () {
+        if ($(".type").val() == "always") {
+            $('.always').css("display", "block");
+            $('.annex').css("display", "none");
+        }
+        if ($(".type").val() == "annex") {
+            $('.annex').css("display", "block");
+            $('.always').css("display", "none");
+        }
+    })
+    // 8*8*****************************************************
+    $(".lump .span1 input.radio").on("change", function () {
+        if ($(this).val()) {
+            $(this).next().attr({ src: "./images/check-circle.svg" })
+            $(this).parent().siblings().find("img").attr({ src: "./images/check-circle-o.svg" })
+        } else {
+            $(this).next().attr({ src: "./images/check-circle-o.svg" })
+            $(this).parent().siblings().find("img").attr({ src: "./images/check-circle.svg" })
+        }
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,165 @@
+.nav-head{
+    height: 72px;
+}
+
+.nav-logo{
+    height: 35px;
+    width: 133px;
+}
+
+.is-sticky .navbar.navbar-default.navbar-static-top {
+    width: 100%;
+}
+.nav-shadow{
+    box-shadow: 0 1px 10px #a2a2a2;
+}
+.form-control-nav-head:focus {
+    border-color: #cecece;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.form-control-nav-head-search{
+    border-left: 0;
+    z-index: 10;
+    height: 40px;
+}
+.form-control-nav-head-button{
+    height: 40px;
+    border-right: 0;
+    margin-right: -4px;
+    width: 85px !important;
+    border-radius: 4px !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    z-index: 0!important;
+
+}
+.search-button{
+    background: url('../img/search.png');
+    height: 17px;
+    width: 18px;
+    display:inline-block
+}
+.nav-search{
+    width: 260px;
+    height: 40px;
+}
+.search-button-box{
+    width: 40px;
+    height: 40px;
+}
+.search-button-box > button{
+    height: 40px;
+    width: 100%;
+    outline: none !important;
+    background-color: white;
+    border-left: 0;
+    border-color: #cecece;
+
+}
+.search-button-box > button :active{
+    outline: none !important;
+    background-color: white !important;
+    border: #cecece !important;
+}
+.search-button-box > button :focus{
+    outline: none !important;
+    background-color: white !important;
+    border: #cecece !important;
+}
+.search-button-box > button :hover {
+    outline: none !important;
+    background-color: white !important;
+    border: #cecece !important;
+}
+.nav-head-li{
+    height: 100%;
+}
+.nav-head-li > a{
+    line-height: 33px!important;
+}
+.button-login{
+    width: 59px;
+    height: 32px;
+}
+
+
+
+.login-block{
+            width:360px;
+            height:400px;
+}
+.input-account{
+    width:300px;
+    height:42px;
+    margin-top: 36px;
+    border:1px solid rgb(133, 111, 111);
+    border-radius:5px;
+    font-size:16px;
+    font-family:SourceHanSansCN-Normal;
+    font-weight:400;
+    color:rgba(133,133,133,1);
+    line-height:48px;
+}
+.input-nickname{
+    display: inline-block;
+    width:300px;
+    height:42px;
+    border:1px solid rgba(133,133,133,1);
+    border-radius:5px;
+    margin-top: 16px;
+    font-size:16px;
+    font-family:SourceHanSansCN-Normal;
+    font-weight:400;
+    color:rgba(133,133,133,1);
+    line-height:48px;
+}
+.input-passwd{
+    display: inline-block;
+    width:300px;
+    height:42px;
+    border:1px solid rgba(133,133,133,1);
+    border-radius:5px;
+    margin-top: 16px;
+    font-size:16px;
+    font-family:SourceHanSansCN-Normal;
+    font-weight:400;
+    color:rgba(133,133,133,1);
+    line-height:48px;
+}
+
+.send-code{
+    width:119px;
+    height:46px;
+    border:1px solid rgba(224,0,1,1);
+    border-radius:5px;
+    background-color: white;
+}
+
+.span-error{
+    color: rgba(224,0,1,1);
+}
+.head-pic {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 30px;
+    border-radius: 50%;
+}
+.head-pic-small {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    float: left;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+a{
+    text-decoration:none;
+    color: black;
+}
+a:focus, a:hover{
+    color: #aaaaaa;
+    text-decoration:none;
+}

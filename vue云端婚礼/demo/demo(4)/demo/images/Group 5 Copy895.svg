@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69.534" height="54.631" viewBox="0 0 69.534 54.631">
+  <defs>
+    <clipPath id="clip-path"/>
+  </defs>
+  <g id="Group_5_Copy895" data-name="Group 5 Copy895" transform="translate(0 0)" clip-path="url(#clip-path)">
+    <g id="列表" transform="translate(0 0)">
+      <path id="Shape" d="M64.644,54.631H4.89A5.016,5.016,0,0,1,0,49.509V5.123A5.016,5.016,0,0,1,4.89,0H64.644a5.016,5.016,0,0,1,4.89,5.123V49.509A5.016,5.016,0,0,1,64.644,54.631ZM47.8,39.836v9.673H64.644V39.836Zm-21.728,0v9.673H43.456V39.836Zm-21.183,0v9.673H21.728V39.836ZM47.8,25.608v9.677H64.644V25.608Zm-21.728,0v9.677H43.456V25.608Zm-21.183,0v9.677H21.728V25.608ZM47.8,11.38v9.677H64.644V11.38Zm-21.728,0v9.677H43.456V11.38Zm-21.183,0v9.677H21.728V11.38Z" transform="translate(0 0)" fill="#1890ff"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复联数据实时看板</title>
+</head>
+<style>
+    h1,
+    p {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #359CC6;
+    }
+
+    input {
+        padding: 0;
+    }
+
+    .container {
+        width: 742px;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 120px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .container .text {
+        color: #C0C0C0;
+        font-size: 14px;
+    }
+
+    .container .content {
+        margin-top: 38px;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        font-family: PingFang SC;
+        position: relative;
+    }
+
+    .container .content p {
+        font-weight: 600;
+    }
+
+    .container .content .left {
+        width: 380px;
+
+    }
+
+    .container .content .right {
+        width: 252px;
+    }
+
+    .container .content input {
+        text-indent: 12px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #E2E2E2;
+        font-size: 16px;
+        line-height: 40px;
+        margin-top: 24px;
+        outline: none;
+    }
+
+    .container input::-webkit-input-placeholder {
+        color: #E5E5E5;
+        font-size: 16px;
+    }
+
+    .container .content .name,
+    .container .content .site,
+    .container .content .phone,
+    .container .content .code,
+    .container .content .count {
+        width: 378px;
+    }
+
+    .container .content .principal {
+        width: 300px;
+    }
+
+    .container .content .time {
+        width: 222px;
+    }
+
+    .container .content .type {
+        width: 120px;
+        height: 40px;
+        border: 1px solid #E2E2E2;
+        outline: none;
+        color: #E5E5E5;
+        margin-top: 24px;
+        border-radius: 5px;
+        text-indent: 12px;
+    }
+
+    .container .content .right .head {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .content .right .head .upload {
+        width: 104px;
+        height: 104px;
+        border-radius: 4px;
+        margin-top: 20px;
+        border: 1px dashed #DFDFDF;
+        background-color: #EDEDED;
+        position: relative;
+    }
+
+    .content .right .head .upload .photo {
+        font-size: 14px;
+        color: #808080;
+        text-align: center;
+        margin-top: 62px;
+    }
+
+    .content .right .head .upload .across {
+        width: 24px;
+        height: 2px;
+        background-color: #9A9A9A;
+        position: absolute;
+        left: calc(50% - 12px);
+        top: 36px;
+    }
+
+    .content .right .head .upload .vertical {
+        width: 2px;
+        height: 24px;
+        background-color: #9A9A9A;
+        position: absolute;
+        left: calc(50% - 1px);
+        top: 25px;
+    }
+
+    .content .right .head .upload-box .support {
+        color: #B4B4B4;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    .content .right .head .upload-end {
+        width: 104px;
+        height: 104px;
+        border-radius: 4px;
+        margin-top: 20px;
+        /* border: 1px dashed #DFDFDF; */
+        margin-left: 44px;
+    }
+
+    .content .right .head .upload-end img {
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+         border: 1px solid #DFDFDF;
+    }
+
+    .container button {
+        width: 176px;
+        height: 40px;
+        border-radius: 5px;
+        border: 0;
+        background-color: #41bfe7;
+        margin-top: 24px;
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    #pic {
+        width: 104px;
+        height: 104px;
+        position: absolute;
+        opacity: 0;
+        margin-top: 0px;
+        top:41px;
+        right: 147px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>复联数据实时看板</h1>
+        <div class="text">是东半球最具影响⼒的数据实时看板 </div>
+        <div class="content">
+            <div class="left">
+                <p>基本资料</p>
+                <input type="text" placeholder="店名" class="name"><br>
+                <input type="text" placeholder="负责人" class="principal"><br>
+                <input type="text" placeholder="地址" class="site"><br>
+                <input type="text" placeholder="电话" class="phone"><br>
+                <input type="text" placeholder="统一机构代码" class="code"><br>
+                <input type="text" placeholder="座位数量" class="count"><br>
+                <input type="text" placeholder="营业时间" class="time"><br>
+                <input type="file" name="pic" id="pic" accept="image/*" />
+                <select name="" id="" class="type">
+                    <option value="">总店</option>
+                    <option value="">店铺类型</option>
+                </select>
+            </div>
+            <div class="right">
+                <p>店铺头像</p>
+                <div class="head">
+                    <div class="upload-box">
+                        <div class="upload">
+                           
+                            <div class="across"></div>
+                            <div class="vertical"></div>
+                            <div class="photo">上传照片</div>
+                        </div>
+                        <div class="support">只支持.jpg 格式</div>
+                    </div>
+
+                    <div class="upload-end"></div>
+                </div>
+            </div>
+        </div>
+        <button>下一步</button>
+    </div>
+</body>
+<script>
+    var pic = document.getElementById("pic");
+    console.log(pic);
+    pic.onchange = function (e) {
+
+        var img = document.createElement("img")
+        //获取用户上传的文件对象
+        var theFile = pic.files[0];
+        //实例化一个文件读取器
+        var fileReader = new FileReader();
+        //将用户上传的文件对象作为参数，传入文件读取器的方法readAsDataURL
+        fileReader.readAsDataURL(theFile);
+        //文件读取器方法执行完毕后调用函数
+        fileReader.onload = function () {
+            //文件读取器的result属性即fileReader.result，就是上传文件的dataURL
+            img.src = fileReader.result;
+        };
+
+        var upload_end = document.getElementsByClassName("upload-end");
+        upload_end[0].innerHTML = "";
+        upload_end[0].appendChild(img);
+
+    }
+
+
+
+
+</script>
+
+</html>

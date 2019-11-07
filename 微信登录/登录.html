@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+</head>
+<style>
+    h1,
+    p {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #359CC6;
+    }
+
+    body {
+        background-color: #00084A;
+    }
+
+    .container {
+        width: 400px;
+        margin: 180px auto;
+        text-align: center;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 50px;
+        color: #40BDE4;
+    }
+
+    .container .logon {
+        width: 136px;
+        color: #308EBC;
+        margin: 0 auto;
+        padding: 42px 0 12px 0;
+        font-weight: bold;
+        border-bottom: 2px solid #308EBC;
+    }
+
+    .container input {
+        width: 368px;
+        height: 38px;
+        border-radius: 5px;
+        border: 0;
+        margin-top: 24px;
+        font-size: 16px;
+        line-height: 40px;
+        outline: none;
+
+    }
+
+    .container input::-webkit-input-placeholder {
+        color: #E5E5E5;
+        font-size: 16px;
+    }
+
+    .container p {
+        /* color: #359CC6; */
+        font-size: 14px;
+        text-align: right;
+        margin: 24px 17px 0 17px;
+    }
+
+    .container .account,
+    .container .password {
+        text-indent: 12px;
+    }
+
+    .container .log-in {
+        background-color: #41BFE7;
+        font-weight: bold;
+    }
+
+    .logon-way {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logon-way .way {
+        display: flex;
+        justify-content: flex-end;
+        color: #fff;
+    }
+
+    .way img {
+        margin: 23px 20px 0 0;
+    }
+
+    .weixin {
+        width: 500px;
+        background-color: #fff;
+        display: none;
+        position: absolute;
+        top: 100px;
+        left: calc(50% - 250px);
+        z-index: 200;
+        border-radius: 10px;
+        padding-top: 20px;
+    }
+    #weixin{
+        width: 25px;
+        height: 25px;
+    }
+
+    .box{
+        width: 100%;
+        height: 100%;
+        background: rgba(43, 42, 42, 0.5);
+        position: fixed;
+        top:0;
+        left: 0;
+        z-index: 100;
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <div class="container">
+        <h1>*********</h1>
+        <div class="logon">登录</div>
+        <form action="">
+            <input type="text" placeholder="账号" class="account"><br>
+            <input type="text" placeholder="密码" class="password"><br>
+            <p><a href="#">忘记密码</a></p>
+            <input type="submit" value="登录" class="log-in">
+            <div class="logon-way">
+                <div class="way">
+                    <p>其他登录方式</p>
+                    <img src="./images/微信.svg " alt="" id="weixin">
+                </div>
+                <p><a href="#">注册账户</a></p>
+            </div>
+        </form>
+        <div class="weixin" id="login_container"></div>
+    </div>
+
+</body>
+<script>
+    $('#weixin').click(function () {
+        $('.weixin').show();
+        $('.box').show();
+
+    });
+    $('.box').click(function () {
+        $('.weixin').hide();
+        $('.box').hide();
+
+    });
+    var obj = new WxLogin({
+        self_redirect: true,
+        id: "login_container",
+        appid: "wx1b1a4d18adc72986",
+        scope: "snsapi_login",
+        redirect_uri: 'http://www.heiyunworld.com/callback',
+    });
+</script>
+
+</html>

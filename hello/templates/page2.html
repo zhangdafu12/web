@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+    <title>数据类型结构描述</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container,.hangyes{
+            width: 680px;
+            margin: 20px auto;
+            font-size: 20px;
+            word-wrap:normal;
+        }
+        .container ul{
+            margin-top: 0px;
+            padding-left: 40px;
+        }
+        .hangyes{
+height: 42px;
+            position: relative;
+        }
+        #hangyes{
+            margin-left: 20px;
+            width: 190px;
+        }
+
+        ul#nav {
+            width: 100%;
+            height: 60px;
+            background: #00A2CA;
+            margin: 0 auto
+        }
+
+        ul#nav li {
+            display: inline;
+            height: 60px
+        }
+
+        ul#nav li a {
+            display: inline-block;
+            padding: 0 20px;
+            height: 60px;
+            line-height: 60px;
+            color: #FFF;
+            font-family: "\5FAE\8F6F\96C5\9ED1";
+            font-size: 16px
+        }
+
+        ul#nav li a:hover {
+            background: #0095BB
+        }
+
+        /*设置鼠标滑过或悬停时变化的背景颜色*/
+        body {
+            zoom: 70%;
+            background-color: #E1DEDE;
+        }
+
+        input[type=text] {
+            width: 180px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding-left: 10px;
+            margin-left: 15px;
+        }
+
+        button {
+            width: 80px;
+            height: 38px;
+            color: white;
+            background: #006cca;
+            border: 0px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 160px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            padding-left: 6px;
+            line-height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .submit {
+            position: absolute;
+                right: 148px;
+        }
+    </style>
+</head>
+<body>
+<!--<ul id="nav">-->
+<!--    <li><a href="http://127.0.0.1:5000">服务描述</a></li>-->
+<!--    <li><a href="http://127.0.0.1:5000/page2">术语定义</a></li>-->
+<!--    <li><a href="http://127.0.0.1:5000/page3">术语可执行</a></li>-->
+<!--    <li><a href="http://127.0.0.1:5000/page4">规则定义</a></li>-->
+<!--</ul>-->
+<div class="hangyes">
+    <select id="hangyes">
+        <option>请选择行业</option>
+        <option value="boolean">金融</option>
+        <option value="time">保险</option>
+        <option value="compound">投资</option>
+    </select>
+    <button type="button" class="submit">提交</button>
+</div>
+<div class="container">
+<!--    <span>构成属性描述</span>-->
+    <ul class='complex-box'>
+        <li>
+            <input type="text" class="name" placeholder="构成属性描述"/>
+            <span>：</span>
+            <select class="type">
+                <option>请选择类型</option>
+                <option value="string">string</option>
+                <option value="decimal">decimal</option>
+                <option value="integer">integer</option>
+                <option value="boolean">boolean</option>
+                <option value="date">date</option>
+                <option value="time">time</option>
+                <option value="compound">complextype</option>
+            </select>
+        </li>
+        <li><button class="add">添加</button></li>
+    </ul>
+
+
+</div>
+
+
+<script>
+    var num = 1;
+    var text = '';
+    $("body").on("change", ".type", function () {
+        if ($(this).val() == "compound") {
+            $(this).after(
+                "<ul class='\"complex-box\"'>\n" +
+                "        <li>\n" +
+                "            <input type=\"text\" class=\"name\" placeholder=\"请输入名称\"/>\n" +
+                "            <span>：</span>\n" +
+                "            <select class=\"type\">\n" +
+                "                <option>请选择类型</option>\n" +
+                "                <option value =\"string\">string</option>\n" +
+                "                <option value =\"decimal\">decimal</option>\n" +
+                "                <option value =\"integer\">integer</option>\n" +
+                "                <option value =\"boolean\">boolean</option>\n" +
+                "                <option value =\"date\">date</option>\n" +
+                "                <option value =\"time\">time</option>\n" +
+                "                <option value =\"compound\">complexType</option>\n" +
+                "            </select>\n" +
+                "        </li>\n" +
+                "        <li><button class=\"add\">添加</button></li>\n"+
+                " </ul>"
+            )
+        } else {
+            $(this).next().remove();
+        }
+    });
+    $("body").on("click", ".add", function () {
+        var li_id = $(this).closest('li').index() + 1;
+        $(this).closest('li').before("<li>\n" +
+            "                <input type=\"text\" id=\"name\" class=\"name\" placeholder=\"请输入名称\"/>\n" +
+            "                <span>：</span>\n" +
+            "                <select class=\"type\">\n" +
+            "                    <option>请选择类型</option>\n" +
+            "                    <option value =\"string\">string</option>\n" +
+            "                    <option value =\"decimal\">decimal</option>\n" +
+            "                    <option value =\"integer\">integer</option>\n" +
+            "                    <option value =\"boolean\">boolean</option>\n" +
+            "                    <option value =\"date\">date</option>\n" +
+            "                    <option value =\"time\">time</option>\n" +
+            "                    <option value =\"compound\">complexType</option>\n" +
+            "                </select>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </li>")
+    });
+    $(".submit").click(function () {
+        text = '';
+        num = 1;
+        names = [];
+        types = [];
+        var flag = true;
+        //判断是否为空
+        $(".name").each(function () {
+            if (flag)
+                if ($(this).val() == '') {
+                    alert("名称不能为空!!");
+                    flag = false;
+                    return;
+                } else {
+                    names.push($(this).val())
+                }
+        });
+        //判断是否选择类别
+        if (flag)
+            $(".type").each(function () {
+                if (flag)
+                    if ($(this).val() == '请选择类型') {
+                        alert("类型未选择!!");
+                        flag = false;
+                        return;
+                    } else {
+                        types.push($(this).val())
+                    }
+            });
+        //获取数据;
+        if (flag) {
+             var XSD_name = $(".container   .name").val();//标题
+            var XSD_type = $(".container   .type").val();//标题
+
+            if (XSD_type != 'compound') {//没有下一级结构时
+                text += "<xs:element name='" + XSD_name + "' type='xs:" + XSD_type + "'/>\n" + "</xs:element>\n";
+
+            } else {//有下一级结构时
+                // text += "<xs:element   ='" + XSD_name + "'/>\n";
+                // text += "<xs:complexType>\n" +
+                //     "<xs:sequence>\n";
+
+                num += 1;
+
+                write();
+                text += "</xs:sequence>\n" +
+                    "</xs:complexType>\n"
+                    + "</xs:element>\n";
+            }
+            console.log(text);
+            var obj = document.getElementById("sele25");
+            var hangye = $('#hangyes option:selected').text();
+            alert(hangye);
+            $.ajax({
+                url: "http://127.0.0.1:5000/page2",
+                type: "POST",
+                data: {
+                    "text": text,
+                    "hangye": hangye
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result) {
+                        console.log("success")
+
+                    } else {
+                        $("#error").attr("value", result['error']);
+                    }
+                },
+                error: function (msg) {
+                    console.log("error:", msg)
+                }
+            })
+        }
+    });
+
+
+
+
+
+    function write() {
+        // console.log($(".container>ul>li:nth-child(1)> .name"));
+        // console.log($(".container>ul>li:nth-child(1)> .name").val());
+        // console.log($(".container>ul>li>ul>li:nth-child(1)> .type").val());
+        // console.log($(".container>ul>li>ul>li"));
+        $(".container  ul > li");
+        var selector = ".container ";
+         for (var i = 1; i < num; i++){
+             selector += " >ul > li"
+         };
+
+
+        var length=$(selector).length;
+
+        for (var j = 1; j < $(selector).length; j++) {
+            var XSD_name = $(selector + ":nth-child(" + j + ") > .name").val();
+            var XSD_type = $(selector + ":nth-child(" + j + ") > .type").val();
+            if (XSD_type != 'compound') {
+                text += "<xs:element name='" + XSD_name + "' type='xs:" + XSD_type + "'/>\n";
+                console.log(text)
+            } else {
+                text += "<xs:element name='" + XSD_name + "'/>\n";
+                text += "<xs:complexType>\n" +
+                    "<xs:sequence>\n";
+                num += 1;
+                write(num, text);
+                text += "</xs:sequence>\n" +
+                    "</xs:complexType>\n";
+            }
+        }
+    }
+</script>
+</body>
+</html>

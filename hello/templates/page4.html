@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        ul#nav {
+            width: 100%;
+            height: 60px;
+            background: #00A2CA;
+            margin: 0 auto
+        }
+
+        ul#nav li {
+            display: inline;
+            height: 60px
+        }
+
+        ul#nav li a {
+            display: inline-block;
+            padding: 0 20px;
+            height: 60px;
+            line-height: 60px;
+            color: #FFF;
+            font-family: "\5FAE\8F6F\96C5\9ED1";
+            font-size: 16px
+        }
+
+        ul#nav li a:hover {
+            background: #0095BB
+        }
+
+        /*设置鼠标滑过或悬停时变化的背景颜色*/
+        body {
+            zoom: 75%;
+        }
+
+        #table1 {
+            background-color: #afd9ee;
+            width: 1424px;
+            border-collapse: collapse;
+        }
+
+        #table2 {
+            background-color: #c9e2b3;
+            width: 1424px;
+            border-collapse: collapse;
+        }
+
+        table tr:nth-child(1) {
+            width: 100%;
+            height: 30px;
+            text-align: left;
+            line-height: 30px;
+        }
+
+        #sele1 {
+            float: left;
+            width: 150px;
+            height: 30px;
+            margin-left: 10px;
+            color: #626161;
+            border-radius: 5px;
+        }
+
+        #sele2 {
+            float: left;
+            width: 150px;
+            height: 30px;
+            margin-left: 10px;
+            color: #626161;
+            border-radius: 5px;
+        }
+
+        #sele3 {
+            float: left;
+            width: 150px;
+            height: 30px;
+            margin-left: 10px;
+            color: #626161;
+            border-radius: 5px;
+        }
+
+        #sele4 {
+            float: left;
+            width: 150px;
+            height: 30px;
+            margin-left: 10px;
+            color: #626161;
+            border-radius: 5px;
+        }
+
+        .describe {
+            width: 300px;
+            height: 23px;
+            margin-top: 10px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        #td01 {
+            width: 300px;
+        }
+
+        button {
+            margin-left: 400px;
+            width: 100px;
+            height: 40px;
+            border: 0px;
+            border-radius: 5px;
+            color: white;
+            background-color: #ccc;
+        }
+
+        #rad1 {
+            margin-top: 8px;
+        }
+
+        #rad2 {
+            margin-top: 8px;
+        }
+
+        .iftt {
+            margin-left: 30px;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .btn-block {
+            position: fixed;
+            bottom: 50px;
+            right: 100px;
+        }
+
+        .big_button {
+            position: fixed;
+            bottom: 50px;
+            right: 300px;
+        }
+    </style>
+</head>
+<body>
+<ul id="nav">
+    <li><a href="http://127.0.0.1:5000/">服务描述</a></li>
+    <li><a href="http://127.0.0.1:5000/page2">术语定义</a></li>
+    <li><a href="http://127.0.0.1:5000/page3">术语可执行</a></li>
+    <li><a href="http://127.0.0.1:5000/page4">规则定义</a></li>
+</ul>
+<div class="box">
+    <div class="block" id="block_1">
+        <div class="main" id="main_1">
+            <hr style="height:15px;border:none;border-top:20px;background-color: darkorange">
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果：<br/>
+            <table id="table1">
+                <tr>
+                    <td rowspan="3" colspan="1" id="td11"><p></p>
+
+                        <select id="sele11">
+                            <option value="非">是</option>
+                            <option value="空">非</option>
+                        </select>
+                    </td>
+                    <td rowspan="1" colspan="2" id="td12"><p></p>
+                        <select class="data_kind" id="sele12">
+                            <option value="0">请选择</option>
+                            <option value="1">账户a</option>
+                            <option value="2">账户b</option>
+                            <option value="3">账户c</option>
+                        </select>
+                        <select class="data_field" id="sele13">
+                            <option value="0"></option>
+                        </select>
+                        <input type="radio" value="0" name="a" id="rad11"/>
+                    </td>
+                    <td rowspan="3" id="td04"><p></p>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp
+                        <select id="sele14">
+                            <option value="1">请选择</option>
+                            <option value="1">></option>
+                            <option value="2"><</option>
+                            <option value="3">=</option>
+                            <option value="4">≥</option>
+                            <option value="5">≤</option>
+                            <option value="6">并且</option>
+                            <option value="7">或者</option>
+                        </select>
+                    </td>
+                    <td rowspan="1" colspan="2" id="td12"><p></p>
+                        <select class="data_kind" id="sele15">
+                            <option value="0">请选择</option>
+                            <option value="1">{{ account1 }}</option>
+                            <option value="2">{{ account2 }}</option>
+                            <option value="3">{{ account3 }}</option>
+                        </select>
+                        <select class="data_field" id="sele16">
+                            <option value="0"></option>
+                        </select>
+                        <input type="radio" value="0" name="b" id="rad12"/>
+
+                    </td>
+                </tr>
+
+                <td rowspan="1" colspan="2">
+                    <input type="text" class="describe" id="d11" placeholder="固定属性"/>
+                    <input type="radio" value="1" name="a" class="radio_1" id="rad13"/>
+                </td>
+
+                <td rowspan="1" colspan="2">
+                    <input type="text" class="describe" id="d12" placeholder="固定属性"/>
+                    <input type="radio" value="1" name="b" class="radio_1" id="rad14"/>
+                    <p></p>
+                </td>
+            </table>
+        </div>
+        <p></p>
+
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp那么：<br/>
+        <table id="table2">
+            <tr>
+                <td></td>
+                <td rowspan="2" colspan="2" id="td12">
+                    <select class="data_kind" id="sele22"><p></p>
+                        <option value="0">请选择</option>
+                        <option value="1">{{ account1 }}</option>
+                        <option value="2">{{ account2 }}</option>
+                        <option value="3">{{ account3 }}</option>
+                    </select>
+                    <select class="data_field" id="sele23"><p></p>
+                        <option value="0"></option>
+                    </select>
+
+                </td>
+
+                <td rowspan="1" id="td04">
+                    <select id="sele24"><p></p>
+                        <option value="0">请选择</option>
+                        <option value="1">=</option>
+                    </select> <input type="radio" value="0" name="d" id="rad21"/>
+                </td>
+                <td rowspan="1" colspan="2" id="td12"><p></p>
+                    <select class="data_kind" id="sele25">
+                        <option value="0">请选择</option>
+                        <option value="1">{{ account1 }}</option>
+                        <option value="2">{{ account2 }}</option>
+                        <option value="3">{{ account3 }}</option>
+                    </select>
+                    <select class="data_field" id="sele26"><p></p>
+                        <option value="0"></option>
+                    </select> <input type="radio" value="0" name="c" id="rad22"/>
+                </td>
+            </tr>
+            <tr>
+
+                <td colspan="3"></td>
+                <td rowspan="1" colspan="1">
+                    <select class="data_kind" id="system" onchange="func()"><p></p>
+                        <option value="系统内转账">系统内转帐</option>
+                        <option value="0">微信支付</option>
+                        <option value="1">支付宝支付</option>
+                    </select> <input type="radio" value="0" name="d" id="rad23"/>
+                </td>
+                <td rowspan="1" colspan="2">
+                    <input type="text" class="describe" id="d21" placeholder="固定属性"/>
+                    <input type="radio" value="1" name="c" id="rad24" class="radio_1"/>
+                    <p></p>
+                </td>
+            </tr>
+            <tr id="tagsin2" style="display:none;">
+                <td colspan="3"></td>
+                <td rowspan="1" colspan="2">
+                    <input type="text" id="x_d21" placeholder="{{ tag1 }}"/>
+                    <p></p>
+                </td>
+                <td rowspan="1" colspan="2">
+                    <input type="text" id="x_d22" placeholder="{{ tag2 }}"/>
+                    <p></p>
+                </td>
+                <td rowspan="1" colspan="2">
+                    <input type="text" id="x_d23" placeholder="{{ tag3 }}"/>
+                    <p></p>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <button type="button" class="button" id="button_1">新增条件</button>
+        <button type="button" class="big_button" id="big_button_1">新增规则</button>
+        <button type="button" class=" btn btn-block" id="submit">提交</button>
+    </div>
+</div>
+
+<script>
+    var id = 1;
+    $(document).ready(function () {
+        $("#system").change(function () {
+            if ($(this).val() == 0 || $(this).val() == 1) {
+                $("#tagsin2").css("display", "block");
+            } else {
+                $("#tagsin2").css("display", "none");
+            }
+        });
+        $(".box").on('click', '.button', function () {
+            id += 1;
+            var p1 = "<div class=\"main\" id=\"main_" + id + "\">" +
+                " &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果：<br/>" +
+                "<hr>" +
+                "<table id=\"table1\">" +
+
+                "<tr>" +
+                "<td rowspan=\"1\" colspan=\"1\" id=\"td11\"><p></p>" +
+                "      <select id=\"sele1\">" +
+                "             <option value=\"与\">与</option>" +
+                "            <option value=\"或\">或</option>" +
+                "       </select>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\" id=\"td12\"><p></p>" +
+                "<select class=\"data_kind\" id=\"sele2\">" +
+                "<option value=\"0\">请选择</option>" +
+                "<option value=\"1\">账户a</option>" +
+                "<option value=\"2\">账户b</option>" +
+                "<option value=\"3\">账户c</option>" +
+                "</select>" +
+                "<select class=\"data_field\" id=\"sele3\">" +
+                "<option value=\"0\"> </option>" +
+                "</select>" +
+                "<input type=\"radio\" value=\"0\" name=\"a_" + id + "\"></input>" +
+                "</td>" +
+                "<td rowspan=\"3\" id=\"td04\"><p></p>" +
+                "&nbsp&nbsp&nbsp&nbsp&nbsp<select id=\"sele4\">" +
+                "<option value=\"1\">请选择</option>" +
+                "<option value=\"1\">></option>" +
+                "<option value=\"2\"><</option>" +
+                "<option value=\"3\">=</option>" +
+                "<option value=\"4\">≥</option>" +
+                "<option value=\"5\">≤</option>" +
+                "<option value=\"6\">并且</option>" +
+                "<option value=\"7\">或者</option>" +
+                "</select>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\" id=\"td12\"><p></p>" +
+                "<select class=\"data_kind\" id=\"sele2\">" +
+                "<option value=\"0\">请选择</option>" +
+                "<option value=\"1\">账户a</option>" +
+                "<option value=\"2\">账户b</option>" +
+                "<option value=\"3\">账户c</option>" +
+                "</select>" +
+                "<select class=\"data_field\" id=\"sele3\">" +
+                "<option value=\"0\"> </option>" +
+                "</select> <input type=\"radio\" value=\"0\" name=\"b_" + id + "\"/>" +
+                "</td>" +
+                "</tr>" +
+                "<td rowspan=\"1\" colspan=\"1\" id=\"td11\"><p></p>" +
+                "<select id=\"sele1\">" +
+                "<option value=\"非\">是</option>" +
+                "<option value=\"空\">非</option>" +
+                "</select>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\">" +
+                "<input type=\"text\" class=\"describe\" placeholder=\"固定属性\"/>" +
+                "<input type=\"radio\" value=\"1\"  name=\"a_" + id + "\" class=\"radio_1\"/><p></p>" +
+                " </td>" +
+                "<td rowspan=\"1\" colspan=\"2\">" +
+                "<input type=\"text\" class=\"describe\" placeholder=\"固定属性\"/>" +
+                "<input type=\"radio\" value=\"1\" name=\"b_" + id + "\" class=\"radio_1\"/><p></p>" +
+                "</td>" +
+                "</table><p></p>" +
+                "</div>";
+            $(this).before(p1);
+        });
+        $(".box").on('click', '.big_button', function () {
+            id += 1;
+            var p2 = "<div class=\"block\" id=\"block_" + id + "\">" +
+                "<div class=\"main\" id=\"main_1\">" +
+                "<table id=\"table1\">" +
+                "<hr style=\"height:15px;border:none;border-top:20px;background-color: darkorange\">" +
+                "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果：<br/>" +
+                "<tr>" +
+                "<td rowspan=\"3\" colspan=\"1\" id=\"td11\"><p></p>" +
+                "<select id=\"sele1\">" +
+                "<option value=\"非\">是</option>" +
+                "<option value=\"空\">非</option>" +
+                "</select>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\" id=\"td12\"><p></p>" +
+                "<select class=\"data_kind\" id=\"sele2\">" +
+                "<option value=\"0\">请选择</option>" +
+                "<option value=\"1\">账户a</option>" +
+                "<option value=\"2\">账户b</option>" +
+                "<option value=\"3\">账户c</option>" +
+                "</select>" +
+                "<select class=\"data_field\" id=\"sele3\">" +
+                "<option value=\"0\"> </option>" +
+                "</select>" +
+                "<input type=\"radio\" value=\"0\" name=\"a_" + id + "\"></input>" +
+                "</td>" +
+                "<td rowspan=\"3\" id=\"td04\"><p></p>" +
+                "&nbsp&nbsp&nbsp&nbsp&nbsp<select id=\"sele4\">" +
+                "<option value=\"1\">请选择</option>" +
+                "<option value=\"1\">></option>" +
+                "<option value=\"2\"><</option>" +
+                "<option value=\"3\">=</option>" +
+                "<option value=\"4\">≥</option>" +
+                "<option value=\"5\">≤</option>" +
+                "<option value=\"6\">并且</option>" +
+                "<option value=\"7\">或者</option>" +
+                "</select>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\" id=\"td12\"><p></p>" +
+                "<select class=\"data_kind\" id=\"sele2\">" +
+                "<option value=\"0\">请选择</option>" +
+                "<option value=\"1\">账户a</option>" +
+                "<option value=\"2\">账户b</option>" +
+                "<option value=\"3\">账户c</option>" +
+                "</select>" +
+                "<select class=\"data_field\" id=\"sele3\">" +
+                "</select> <input type=\"radio\" value=\"0\" name=\"b_" + id + "\"></input>" +
+                "</td>" +
+                "</tr>" +
+                "<td rowspan=\"1\" colspan=\"2\">" +
+                "<input type=\"text\" class=\"describe\" placeholder=\"固定属性\"/>" +
+                "<input type=\"radio\" value=\"1\" name=\"a_" + id + "\" class=\"radio_1\"/><p></p>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\">" +
+                "<input type=\"text\" class=\"describe\" placeholder=\"固定属性\"/>" +
+                "<input type=\"radio\" value=\"1\" name=\"b_" + id + "\" class=\"radio_1\"/><p></p>" +
+                "</td>" +
+                "</table>" +
+                "</div>" +
+                "<p></p>" +
+                "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp那么：<br/>" +
+                "<table id=\"table2\">" +
+                "<tr>" +
+                "<td ></td>" +
+                "<td rowspan=\"2\" colspan=\"2\" id=\"td12\">" +
+                "<select class=\"data_kind\" id=\"sele2\">" +
+                "    <option value=\"0\">请选择</option>" +
+                "<option value=\"1\">账户a</option>" +
+                " <option value=\"2\">账户b</option>" +
+                "<option value=\"3\">账户c</option>" +
+                " </select>" +
+                "<select class=\"data_field\" id=\"sele3\">" +
+                " <option value=\"0\"></option>" +
+                " </select>" +
+                " </td>" +
+                "<td rowspan=\"1\" id=\"td04\">" +
+                "<select id=\"sele4\">" +
+                " <option value=\"0\">请选择</option>" +
+                " <option value=\"1\">=</option>" +
+                " </select><input type=\"radio\" value=\"0\" name=\"d_" + id + "\"/>" +
+                "</td>" +
+                " <td rowspan=\"1\" colspan=\"2\" id=\"td12\"><p></p>" +
+                " <select class=\"data_kind\" id=\"sele2\">" +
+                "<option value=\"0\">请选择</option>" +
+                " <option value=\"1\">账户a</option>" +
+                " <option value=\"2\">账户b</option>" +
+                "<option value=\"3\">账户c</option>" +
+                " </select>" +
+                "<select class=\"data_field\" id=\"sele3\"><p></p>" +
+                " <option value=\"0\"> </option>" +
+                "</select> <input type=\"radio\" value=\"0\" name=\"c_" + id + "\"/>" +
+                "</td>" +
+                " </tr>" +
+                " <tr>" +
+                "<td colspan=\"3\"></td>" +
+                "<td rowspan=\"1\" colspan=\"1\">" +
+                "<select class=\"data_kind\" id=\"sele2\" ><p></p>" +
+                "<option value=\"系统内转账\">系统内转帐</option>" +
+                "</select><input type=\"radio\" value=\"0\" name=\"d_" + id + "\"/>" +
+                "</td>" +
+                "<td rowspan=\"1\" colspan=\"2\">" +
+                " <input type=\"text\" class=\"describe\" placeholder=\"固定属性\"/>" +
+                "<input type=\"radio\" value=\"1\" name=\"c_" + id + "\"class=\"radio_1\"/><p></p>" +
+                " </td>" +
+                "</tr>" +
+                " </table>" +
+                "<p></p>" +
+
+                "</div>" +
+                "<button type=\"button\" class=\"button\" id=\"button_" + id + "\">新增条件</button><p></p>" +
+                "</div>";
+            $(this).parent().after(p2);
+        });
+        $(".box").on('click', '.data_kind', function () {
+            if ($(this).find("option:selected").text() == "账户a") {
+                $(this).next().empty();
+                $(this).next().append("<option value='1'>账户余额</option>");
+            } else if ($(this).find("option:selected").text() == "账户b") {
+                $(this).next().empty();
+                $(this).next().append("<option value='1'>账户余额</option>");
+                $(this).next().append("<option value='2'>账户名</option>");
+
+            } else if ($(this).find("option:selected").text() == "数据类型b") {
+                $(this).next().empty();
+                $(this).next().append("<option value='1'>b1</option>");
+                $(this).next().append("<option value='2'>b2</option>");
+
+            } else if ($(this).find("option:selected").text() == "账户c") {
+                $(this).next().empty();
+                $(this).next().append("<option value='1'>账户余额</option>");
+                $(this).next().append("<option value='2'>账户名</option>");
+
+            } else {
+                $(this).next().empty();
+            }
+        });
+        $("#submit").click(function () {
+            var strs = [];
+            var obj = document.getElementById("sele11"); //定位id
+            var index = obj.selectedIndex; // 选中索引
+            var text = obj.options[index].text; // 选中文本
+            strs.push(text);
+            //var value = obj.options[index].value; // 选中值
+            if ($("input[name='a']:checked").val() == 0) {
+                strs.push("0");
+                obj = document.getElementById("sele12");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+                obj = document.getElementById("sele13");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+            } else {
+                strs.push("1");
+                text = document.getElementById("d11").value;
+                strs.push(text);
+                strs.push("X");
+            }
+            obj = document.getElementById("sele14");
+            text = obj.options[obj.selectedIndex].text;
+            strs.push(text);
+            if ($("input[name='b']:checked").val() == 0) {
+                strs.push("0");
+                obj = document.getElementById("sele15");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+                obj = document.getElementById("sele16");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+            } else {
+                strs.push("1");
+                text = document.getElementById("d12").value;
+                strs.push(text);
+                strs.push("X");
+            }
+            obj = document.getElementById("sele22");
+            text = obj.options[obj.selectedIndex].text;
+            strs.push(text);
+            obj = document.getElementById("sele23");
+            text = obj.options[obj.selectedIndex].text;
+            strs.push(text);
+            obj = document.getElementById("sele24");
+            text = obj.options[obj.selectedIndex].text;
+            strs.push(text);
+            if ($("input[name='c']:checked").val() == 0) {
+                strs.push("0");
+                obj = document.getElementById("sele25");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+                obj = document.getElementById("sele26");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+            } else {
+                strs.push("1");
+                obj = document.getElementById("system");
+                text = obj.options[obj.selectedIndex].text;
+                strs.push(text);
+                text = document.getElementById("x_d21").value;
+                strs.push(text);
+                text = document.getElementById("x_d22").value;
+                strs.push(text);
+                text = document.getElementById("x_d23").value;
+                strs.push(text);
+                strs.push("X");
+            }
+            var b = strs.join("-");
+            alert(strs);
+            $.ajax({
+                url: "http://127.0.0.1:5000/page4",
+                type: "POST",
+                data: {"text": b},
+                success: function (reslt) {
+                    console.log(reslt);
+                    if (reslt) {
+                        console.log("success")
+
+                    } else {
+                        $("#error").attr("value", result['error']);
+                    }
+                },
+                error: function (msg) {
+                    console.log("error:", msg)
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

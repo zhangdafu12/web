@@ -1,0 +1,10 @@
+.bord_r_l{
+    border-radius: 10px 10px 0 0;
+}
+.bord_r_r{
+    border-radius: 0 0 10px 10px;
+}
+.hover:hover{
+    background-color: #1890ff;
+    color: #fff;
+}

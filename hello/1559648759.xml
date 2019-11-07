@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='gb2312'?>
+<jj type='complexType'>
+<gha type='string'/>
+<dsa type='string'/>
+<ds type='string'/>
+<ds type='string'/>
+<ds type='string'/>
+<d type='complexType'>
+<ddsa type='decimal'/>
+</d>

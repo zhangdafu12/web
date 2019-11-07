@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> ZTREE DEMO - fuzzySearch</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ztree.exhide.js"></script>
+	<script type="text/javascript" src="../../js/fuzzysearch.js"></script>
+
+
+	<SCRIPT type="text/javascript">
+		// var setting = {
+		// 		check: {
+		// 			enable: true//checkbox是否异步
+		// 		},
+		// 		view: {
+		// 			nameIsHTML: true, //name 属性是否支持 HTML 脚本
+		// 			selectedMulti: false//是否允许同时选中多个节点。
+		// 		},
+		// 		edit: {
+		// 			enable: true,//  zTree 是否处于编辑状态
+		// 			editNameSelectAll: false//节点编辑名称 input 初次显示时,设置 txt 内容是否为全选状态
+		// 		},
+		// 		data: {
+		// 			simpleData: {
+		// 				enable: true
+		// 			}
+		// 		}
+		// };
+		var setting = {
+			check: {
+				enable: true//checkbox
+			},
+			view: {
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom,
+				addDiyDom: addDiyDom,
+				selectedMulti: false,
+				nameIsHTML: true //允许name支持html
+
+			},
+			edit: {
+				enable: true,
+				editNameSelectAll: false,
+				//是否全部添加删除按钮
+				showRemoveBtn:true,
+				showRenameBtn:true//根节点是否删除
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				beforeDrag: beforeDrag,//用户禁止拖动节点
+				beforeEditName: beforeEditName,//点击编辑时触发，用来判断该节点是否能编辑
+				beforeRemove: beforeRemove,//点击删除时触发，用来提示用户是否确定删除（可以根据返回值 true|false 确定是否可以删除）
+				beforeRename: beforeRename,//编辑结束时触发，用来验证输入的数据是否符合要求(也是根据返回值 true|false 确定是否可以编辑完
+				onRemove: onRemove,//(beforeRemove返回true之后可以进行onRemove)删除节点后触发，用户后台操作
+				onRename: onRename,//编辑后触发，用于操作后台
+			}
+		};
+
+		var zNodes =[
+			{ id:1, pId:0, name:"模糊搜索演示 1", t:"id=1", open:true},
+			{ id:11, pId:1, name:"[]\\^$.|?*+():关键字可以是js正则元字符", t:"id=11"},
+			{ id:12, pId:1, name:"{}<>'\"~`!@#%&-;:/,=:关键字可以是其他字符", t:"id=12"},
+			{ id:2, pId:0, name:"模糊搜索演示 2", t:"id=2", open:true},
+			{ id:21, pId:2, name:"大写ABDEFGHINQRT:关键字查找不区分大小写", t:"id=21"},
+			{ id:22, pId:2, name:"小写abdefghinqrt:关键字查找不区分大小写", t:"id=21"},
+			{ id:3, pId:0, name:"模糊搜索演示 3", t:"id=3", open:true },
+			{ id:31, pId:3, name:"空 格:关键字是空格", t:"id=31"}
+		];
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			fuzzySearch('treeDemo','#key',null,true); //初始化模糊搜索方法
+		});
+		//-->
+	</SCRIPT>
+</HEAD>
+
+<BODY>
+<input type="text" id="key" value="" class="empty" placeholder="请输入关键字"/><br/>
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+<!--	<div class="right">-->
+<!--		<ul class="info">-->
+<!--			<li class="title">-->
+<!--				<h2>1、fuzzySearch()方法使用说明</h2>-->
+<!--				<ul class="list">-->
+<!--				<li class="highlight_red">-->
+<!-- 					@param zTreeId ztree对象的id,不需要#-->
+<!--				</li>-->
+<!--				<li class="highlight_red">-->
+<!--					@param searchField 输入框选择器-->
+<!--				</li>-->
+<!--				<li class="highlight_red">-->
+<!--					@param isHighLight 是否高亮,默认高亮,传入false禁用-->
+<!--				</li>-->
+<!--				<li class="highlight_red">-->
+<!--					@param isExpand 是否展开,默认合拢,传入true展开-->
+<!--				</li>-->
+<!--				<li class="highlight_red">-->
+<!--					fuzzySearch ( zTreeId, searchField, isHighLight, isExpand )-->
+<!--				</li>-->
+<!--				<li><p>搜索试试看：<br/>-->
+<!--						关键字：-->
+<!--					</p>-->
+<!--				</li>-->
+<!--				</ul>-->
+<!--			</li>-->
+<!--			<li class="title"><h2>2、依赖的js</h2>-->
+<!--				<ul class="list">-->
+<!--					<li>ztree v3.5.19.1及以上,使用到getPath()方法</li>-->
+<!--					<li>ztree.exhide扩展,使用到hideNode()方法</li>-->
+<!--				</ul>-->
+<!--			</li>-->
+<!--		</ul>-->
+<!--	</div>-->
+</div>
+</BODY>
+</HTML>

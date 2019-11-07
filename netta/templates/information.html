@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+{% block content_block %}
+
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/btn.css">
+    <link rel="stylesheet" href="../static/css/icons.css">
+    <link rel="stylesheet" href="../static/css/information.css">
+    <script src="{{ url_for('static', filename='js/city.js') }}"></script>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <!-- 用户信息 -->
+            <div class="card user-info">
+                <div class="avatar">
+                    <img src="{{ url_for('static', filename= user.get("head_pic") if user.get("head_pic") else "head_pic/default.jpg") }}" height="80px" width="80px" class="img-circle center-block">
+                </div>
+                <div class="name text-center">
+                    {{ user.get('nick_name') }}
+                </div>
+                <div class="detail text-center">
+                    <span class="location">{{ user.get("province") if user.get("province") else "" }} {{ user.get("city") if user.get("city") else "" }} {{ user.get("country") if user.get("country") else "" }}</span>
+                    {% if user.get("sex") == "male" %}
+                    <div class="icon-male"></div>  <!--<div class="icon-female"></div>-->
+                    {% elif user.get("sex") == "female"%}
+                    <div class="icon-female"></div>
+                    {% else %}
+                    {% endif %}
+                </div>
+                <div class="read">
+                    <button class="btn beauty-btn center-block" onclick="javascrtpt:window.location.href='/'">开始阅读</button>
+                </div>
+            </div>
+
+            <!-- 菜单 -->
+            <div class="card menu">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="/manage/favourite">我的喜欢</a></li>
+                    <li class="list-group-item"><a href="/manage/comment">我的评论</a></li>
+                    <li class="list-group-item"><a href="/manage/record">我的记录</a></li>
+                    <li class="list-group-item"><a href="/manage/notice">消息通知</a></li>
+                    <li class="list-group-item activate"><a href="/manage/information">账号信息</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9 card">
+            <h1>基本信息</h1>
+            <form class="form-horizontal" id="information-form">
+                <!-- 头像 -->
+                <div class="form-group">
+                    <label for="inputAvatar" class="col-sm-2 control-label">当前头像</label>
+                    <label for="head-pic">
+                        <div class="col-md-10" style="width:98px;height:99px;background:rgba(0,0,0,1);opacity:0.59;padding: 0px;margin-left: 15px;line-height: 99px;">
+                            <img src="" id="upload-img" style="width: 100%;display: none">
+                            <span style="width:56px;height:13px;font-size:14px;font-weight:400;color:rgba(255,255,255,1);line-height:42px;margin-left: 20px" class="upload-span">上传证件</span>
+                            <input type="file" id="head-pic" style="display: none" name="headPic" accept="image/*">
+                        </div>
+                    </label>
+{#                    <div class="col-sm-4">#}
+{#                        <input type="file" id="inputAvatar">#}
+{#                    </div>#}
+                </div>
+                <!-- 昵称 -->
+                <div class="form-group">
+                    <label for="inputUsername" class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-4">
+                        <input type="email" class="form-control" id="inputUsername" name="nickName" placeholder="{{ user.get('nick_name') }}" required>
+                    </div>
+                </div>
+                <!-- 真实姓名 -->
+                <div class="form-group">
+                    <label for="trueName" class="col-sm-2 control-label">真实姓名</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="trueName" name="trueName" placeholder="{{ user.get('true_name') if user.get('true_name') else "" }}">
+                    </div>
+                </div>
+                <!-- 性别 -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-4">
+
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsRadiosinline" id="optionsMale" value="male"  {% if user.get('sex')=='male' %}checked{% endif %}> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsRadiosinline" id="optionsFemale" value="female" {% if user.get('sex')=='female' %}checked{% endif %}> 女
+                        </label>
+
+                    </div>
+                </div>
+                <!-- 生日 -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">生日</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" id="inputBirthday" value="" name="birthday" />
+                        <!--<div class="col-sm-4" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<select title="年份" class="form-control">-->
+                                <!--<option selected="selected">1998</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<select title="月份" class="form-control">-->
+                                <!--<option selected="selected">1</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<select title="日期" class="form-control">-->
+                                <!--<option selected="selected">30</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <!-- 居住地 -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">居住地</label>
+                    <div class="col-sm-6">
+                        <div class="col-sm-4" style="padding-left: 0; padding-right: 10px">
+                            <select title="省份" class="form-control" id="prov" name="prov" onchange="showCity(this)">
+                                <option selected="selected">=请选择省份=</option>
+{#                                <option selected="selected">江苏省</option>#}
+                            </select>
+                        </div>
+                        <div class="col-sm-3" style="padding-left: 0; padding-right: 10px">
+                            <select title="市" class="form-control" id="city" name="city" onchange="showCountry(this)">
+                                <option selected="selected">=请选择城市=</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3" style="padding-left: 0; padding-right: 10px">
+                            <select title="区" class="form-control" id="country" name="country" onchange="selecCountry(this)">
+                                <option selected="selected">=请选择县区=</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--&lt;!&ndash; 家乡 &ndash;&gt;-->
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-2 control-label">家乡</label>-->
+                    <!--<div class="col-sm-6">-->
+                        <!--<div class="col-sm-4" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<select title="省份" class="form-control">-->
+                                <!--<option selected="selected"></option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<select title="市" class="form-control">-->
+                                <!--<option selected="selected"></option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<select title="区" class="form-control">-->
+                                <!--<option selected="selected"></option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 绑定手机 &ndash;&gt;-->
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-2 control-label">绑定手机</label>-->
+                    <!--<div class="col-sm-4">-->
+                        <!--<div class="col-sm-6" style="padding-left: 0; padding-right: 10px">-->
+                            <!--<input class="form-control" type="text" placeholder="13958000000" readonly>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<a>修改</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+                <button type="button" class="col-sm-offset-2 btn beauty-btn btn-blue" onclick="update_info()">提交</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+function update_info() {
+
+        var fileM=document.getElementById("head-pic");
+        var fileObj = fileM.files[0];
+        var username = document.getElementById('inputUsername').value;
+        var true_name = document.getElementById('trueName').value;
+        var birthday = document.getElementById('inputBirthday').value;
+        var radio=document.getElementsByName("optionsRadiosinline");
+        var selectvalue=null;
+        for(var i=0;i<radio.length;i++){
+                    if(radio[i].checked==true) {
+                             selectvalue=radio[i].value;
+                             break;
+                   }
+            }
+        {#console.log(fileObj);#}
+        {#console.log(username);#}
+        {#console.log(true_name);#}
+        {#console.log(birthday);#}
+        {#console.log(selectvalue);#}
+        if(current.prov){
+        prov_value =  provice[current.prov]['name'];
+        }else{
+            prov_value='';
+        }
+        if(current.prov && current.city){
+            city_value = provice[current.prov]["city"][current.city].name;
+        }else{
+            city_value = '';
+        }
+
+         if(current.prov && current.city && current.country){
+            country_value = provice[current.prov]["city"][current.city].districtAndCounty[current.country];
+         }else{
+            country_value = '';
+         }
+
+         formData = new FormData();
+         formData.append('img', fileObj);
+         formData.append('username', username);
+         formData.append('true_name', true_name);
+         formData.append('birthday', birthday);
+         formData.append('sex', selectvalue);
+         formData.append('prov', prov_value);
+         formData.append('city', city_value);
+         formData.append('country', country_value);
+        $.ajax({
+         url:"/manage/update_info",
+        type:"post",
+         data:formData,
+         processData:false,
+         contentType:false,
+         success:function(){
+             window.location.reload(); // 刷新当前页面
+             {#console.log('success');#}
+         },
+         error:function(e){
+             alert("错误！！");
+         }
+     });
+
+
+    }
+
+
+document.getElementById('head-pic').onchange = function() {
+            var imgFile = this.files[0];
+            var fr = new FileReader();
+            fr.onload = function() {
+                var img = document.getElementById('upload-img');
+                img.src = fr.result;
+                img.style.display= 'inline-block';
+                // imgs[imgs.length-1].src = fr.result;
+                /*document.getElementById('image').getElementsByTagName('img')[0].src = fr.result;*/
+            };
+            fr.readAsDataURL(imgFile);
+        };
+
+
+var prov = document.getElementById('prov');
+var city = document.getElementById('city');
+var country = document.getElementById('country');
+
+
+/*用于保存当前所选的省市区*/
+var current = {
+    prov: '',
+    city: '',
+    country: ''
+};
+
+/*自动加载省份列表*/
+(function showProv() {
+    var len = provice.length;
+    for (var i = 0; i < len; i++) {
+        var provOpt = document.createElement('option');
+        provOpt.innerText = provice[i]['name'];
+        provOpt.value = i;
+        prov.appendChild(provOpt);
+    }
+})();
+
+/*根据所选的省份来显示城市列表*/
+function showCity(obj) {
+    var val = obj.options[obj.selectedIndex].value;
+    if (val != current.prov) {
+        current.prov = val;
+
+    }
+    //console.log(val);
+    if (val != null) {
+        city.length = 1;
+        country.length = 1;
+        var cityLen = provice[val]["city"].length;
+        for (var j = 0; j < cityLen; j++) {
+            var cityOpt = document.createElement('option');
+            cityOpt.innerText = provice[val]["city"][j].name;
+            cityOpt.value = j;
+            city.appendChild(cityOpt);
+        }
+    }
+}
+
+/*根据所选的城市来显示县区列表*/
+function showCountry(obj) {
+    var val = obj.options[obj.selectedIndex].value;
+    current.city = val;
+    if (val != null) {
+        country.length = 1; //清空之前的内容只留第一个默认选项
+
+        var countryLen = provice[current.prov]["city"][val].districtAndCounty.length;
+        if (countryLen == 0) {
+
+            return;
+        }
+        for (var n = 0; n < countryLen; n++) {
+            var countryOpt = document.createElement('option');
+            countryOpt.innerText = provice[current.prov]["city"][val].districtAndCounty[n];
+            countryOpt.value = n;
+            country.appendChild(countryOpt);
+        }
+    }
+}
+/*选择县区之后的处理函数*/
+function selecCountry(obj) {
+    current.country = obj.options[obj.selectedIndex].value;
+}
+</script>
+{% endblock %}

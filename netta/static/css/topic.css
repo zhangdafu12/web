@@ -1,0 +1,358 @@
+ .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            background-color: #ffffff;
+        }
+
+        .top-topic {
+            width: 100%;
+            /*height: 298px;*/
+        }
+
+        body {
+            background-color: #F8F8F8;
+        }
+
+        .top-topic-left {
+            display: inline-block;
+            width: 70%;
+            vertical-align: top;
+        }
+
+        .top-topic-right {
+            display: inline-block;
+            width: 25%;
+            height: 203px;
+            background: linear-gradient(0deg, rgb(16, 35, 69), rgb(17, 30, 102));
+            margin-top: 35px;
+            margin-bottom: 35px;
+        }
+
+        .topic-title {
+            display: inline-block;
+            margin-top: 38px;
+            margin-left: 38px;
+        }
+
+        .subscribe {
+
+            width: 83px;
+            height: 24px;
+            padding: 0 0;
+            margin-left: 16px;
+            margin-top: -17px;
+        }
+
+        .share-icon {
+            height: 22px;
+            width: 23px;
+            background-image: url("../img/share.png");
+            display: inline-block;
+        }
+
+        .share-word {
+            width: 27px;
+            height: 14px;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(180, 180, 180, 1);
+            position: relative;
+            top: -5px;
+            left: 5px;
+        }
+
+        .share {
+            margin-left: 15px;
+        }
+
+        .topic-content {
+            width: 90%;
+            margin-left: 5%;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+
+        }
+
+        .topic-footer {
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+
+        .label-icon {
+            height: 21px;
+            width: 27px;
+            background-image: url("../img/tab.png");
+            display: inline-block;
+            margin-left: 38px;
+        }
+
+        .label-content {
+            width: 265px;
+            height: 15px;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(130, 130, 130, 1);
+        }
+
+        .full-page-icon {
+            height: 19px;
+            width: 19px;
+            background-image: url("../img/full_screen.png");
+            display: inline-block;
+            float: right;
+            margin-right: 15px;
+            margin-top: 14px;
+        }
+
+        .word-1 {
+            width: 64px;
+            height: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(105, 138, 209, 1);
+            line-height: 48px;
+            text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.82);
+        }
+
+        .comment {
+            width: 77%;
+            height: 735px;
+            float: left;
+            margin-top: 20px;
+            padding: 35px;
+        }
+
+        .user {
+            width: 19%;
+            float: left;
+            margin-left: 4%;
+            margin-top: 20px;
+        }
+
+        .user-name {
+            width: 112px;
+            height: 25px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+            line-height: 42px;
+            display: block;
+            margin: 0px auto;
+        }
+
+        .head-pic {
+            width: 80px;
+            height: 80px;
+            display: block;
+            margin: 0px auto;
+            margin-top: 30px;
+            border-radius: 50%;
+        }
+
+        .center {
+            width: 4.1em;
+            height: 50px;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(180, 180, 180, 1);
+            line-height: 50px;
+            display: block;
+            margin: 0px auto;
+        }
+
+        .sex-icon {
+            height: 16px;
+            width: 14px;
+            background-image: url("../img/male.png");
+            display: inline-block;
+            position: relative;
+            top: 1.5px;
+        }
+
+        .location {
+            vertical-align: center;
+        }
+
+        .logo {
+            width: 94px;
+            height: 25px;
+            background-size: 94px 25px;
+            background-image: url("../img/logo.png");
+            display: inline-block;
+        }
+
+        .comment-logo {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-top: -16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            color: white;
+            width: 52px;
+            height: 28px;
+            background: linear-gradient(180deg, rgba(217, 0, 1, 1), rgba(255, 119, 120, 1));
+            border: 0px solid rgba(179, 178, 174, 1);
+            box-shadow: 0px 0px 7px 0px rgba(217, 0, 1, 0.15);
+            border-radius: 5px;
+            font-family: SourceHanSansCN-Medium;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .comment-num-block {
+            float: right;
+        }
+
+        .comment-num {
+            width: 13px;
+            height: 19px;
+            font-size: 30px;
+            font-family: STLiti;
+            font-weight: 400;
+            color: rgba(224, 0, 1, 1);
+        }
+
+        .comment-num-1 {
+            width: 48px;
+            height: 16px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(90, 90, 90, 1);
+        }
+
+        .comment-input-group{
+            overflow: hidden;
+            margin-top: 26px;
+        }
+        .head-pic-small {
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+            float: left;
+            margin-top: 2px;
+            margin-right: 10px;
+        }
+        .comment-input{
+            float: left;
+            width: 95%;
+        }
+
+        .comment-user-info{
+            margin-top: 2px;
+        }
+        .comment-user-name{
+            font-size:16px;
+            color: #333333;
+        }
+        .comment-user-intro{
+            font-size:14px;
+            color: #828282;
+        }
+        .comment-time{
+            font-size: 12px;
+            color: #B4B4B4;
+            float: right;
+        }
+        .comment-head-pic{
+            margin-top: -4px;
+        }
+        .comment-body{
+            margin-left: 37px;
+            margin-top: 12px;
+        }
+        .comment-content{
+            font-size:14px;
+            font-family:SourceHanSansCN-Regular;
+            font-weight:400;
+            color:rgba(51,51,51,1)
+        }
+        .comment-item-operate{
+            margin-top: 10px;
+        }
+        .red-font{
+            font-size:14px;
+            font-family:SourceHanSansCN-Regular;
+            font-weight:400;
+            color:rgba(233,71,72,1);
+        }
+        .read-reply{
+            margin-left: 5px;
+        }
+        .more-icon{
+            width: 11px;
+            height: 5px;
+            background-image: url("../img/down.png");
+            display: inline-block;
+            margin-left: -5px;
+            margin-bottom: 2px;
+        }
+        .agree-num{
+            font-size:14px;
+            font-family:SourceHanSansCN-Regular;
+            font-weight:400;
+            color:rgba(180,180,180,1);
+            margin-right: 10px;
+            position: relative;
+            top: -2px;
+        }
+
+        .agree-icon{
+            width: 18px;
+            height: 16px;
+            background-image: url("../img/like.png");
+            display: inline-block;
+        }
+        .agree-icon-active{
+            background-image: url("../img/like2.png");
+        }
+        .report-icon{
+            width: 20px;
+            height: 16px;
+            background-image: url("../img/jvbao.png");
+            display: inline-block;
+        }
+        .reply-item{
+            margin-top: 20px;
+        }
+        .reply-content{
+            margin-top: 10px;
+        }
+        .reply-input{
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+        .related-articles{
+            margin-top: 18px;
+            width: 77%;
+            padding: 10px 30px;
+        }
+        .related-articles-title{
+
+            font-size:16px;
+            font-family:SourceHanSansCN-Medium;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            border-left: #fc1704 2px solid;
+            padding-left: 5px;
+            margin-bottom: 4px;
+        }
+
+
+        #full-page-modal-iframe{
+            width: 100%;
+            height: 100%;
+        }
+        .modal-content{
+            width:1315px;
+            height:691px;
+        }
+        .modal-dialog {
+            width: 1315px;
+        }

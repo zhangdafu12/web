@@ -1,0 +1,13 @@
+.w1140 {
+    width: 1140px;
+    margin: 0 auto;
+    border: #333333;
+}
+
+.nav, .banner, .main_cont {
+    width: 100%;
+}
+
+.cb {
+    clear: both;
+}

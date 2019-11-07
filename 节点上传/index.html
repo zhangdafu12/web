@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点上传</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="./css/Normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/index.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="gaine">
+    <div class="nav">
+        <div class="left_nav">后台管理</div>
+        <div class="right_nav">
+            <div class="miniMenu">
+                <img class="nav_butt" src="images/buttom.png" alt="">
+            </div>
+            <div class="nav_seach">
+                <img src="images/search.png" alt="">
+                <img src="images/message.png" alt="">
+                <img src="images/boy.png" alt="">
+                <span>用户名</span>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="menu">
+            <ul class="menu_cont">
+                <img class="tag" src="./images/up.svg" alt="">
+                <div class="main_menu">节点管理</div>
+                <img class="hint" src="./images/up.svg" alt="">
+                <li class="junior_menu upload">节点上传</li>
+                <li class="junior_menu nodeList">节点列表</li>
+            </ul>
+        </div>
+        <div class="details">
+            <!--            节点上传-->
+            <div id="upload" class="details_cont">
+                <div class="cont_nav_tit">
+                    <div class="cont_nav">
+                        <ol class="breadcrumb">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">节点管理</a></li>
+                            <li class="active">节点上传</li>
+                        </ol>
+                    </div>
+                    <div class="cont_tit">
+                        <p>节点上传</p>
+                    </div>
+                </div>
+                <div class="cont_content">
+                    <div class="masking">
+                        <div class="masking_cont">
+                            <div class="upload_content">
+                                <label for="up">
+                                    上传节点
+                                </label>
+                                <input type="file" id="up">
+                                <div class="upLook">文件名</div>
+                                <label for="node_type">
+                                    节点类型
+                                </label>
+                                <input type="text" id="node_type">
+                                <label for="node_intro">
+                                    节点简介
+                                </label>
+                                <input type="text" id="node_intro">
+                                <label for="up">
+                                    硬件需求
+                                </label>
+                                <input type="text" id="node_hardware">
+                                <label for="node_software">
+                                    软件需求
+                                </label>
+                                <input type="text" id="node_software">
+                                <label for="node_system">
+                                    系统需求
+                                </label>
+                                <input type="text" id="node_system">
+
+                                <input type="button" value="确定" id="submit">
+
+                                <div class="upload_mask">
+                                    <img src="./images/up.svg" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--            节点列表-->
+            <div id="nodeList" style="display: none" class="details_cont">
+                <div class="cont_nav_tit">
+                    <div class="cont_nav">
+                        <ol class="breadcrumb">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">节点管理</a></li>
+                            <li class="active">节点列表</li>
+                        </ol>
+                    </div>
+                    <div class="cont_tit">
+                        <p>节点列表</p>
+                    </div>
+                </div>
+                <div class="cont_content">
+                    <div class="masking">
+                        <div class="masking_cont">
+                            <div class="table-responsive">
+                                <div class="handle">
+                                    <button type="button" class="handle-btn">
+                                        批量操作
+                                    </button>
+                                    <ul class="handle-cont" style="display: none">
+                                        <li class="hover">编辑</li>
+                                        <li class="hover">删除</li>
+                                        <li class="hover">启动</li>
+                                    </ul>
+                                </div>
+                                <div class="selected">
+                                    <img src="images/Group.png" alt="">
+                                    <text>已选择 <span class="checkNode">0</span> 项</text>
+                                    <button class="cleanCheck">清空</button>
+                                </div>
+                                <table class="table table-hover text_center">
+                                    <tbody>
+                                    <tr class="active">
+                                        <th><input type="checkbox" id="allTrue"></th>
+
+                                        <th class="active">节点类型</th>
+                                        <th class="active">节点简介</th>
+                                        <th class="active">硬件需求</th>
+                                        <th class="active">软件需求</th>
+                                        <th class="active">系统需求</th>
+                                        <th class="active">操作</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+
+                                        <td>Google搜索</td>
+                                        <td>市人口统计数据库</td>
+                                        <td>i5处理器</td>
+                                        <td>i5处理器</td>
+                                        <td>win7及以上</td>
+                                        <td>
+                                            <span class="amend">修改   </span>
+                                            <span class="delete">   删除</span>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+  $(function () {
+    $(".main_menu").click(function () {
+      $(this).siblings("li").toggle();
+    });
+
+    $(".upload").click(function () {
+      $("#upload").show();
+      $("#upload").siblings().hide();
+    });
+   $(".table tbody").on("click",".delete",function () {
+      $(this).parent().parent().remove()
+    });
+    $(".table tbody").on("click",".amend", function () {
+      $("#upload").show();
+      $("#upload").siblings().hide();
+      var nodeData=[];
+      $(this).parent().siblings().each(function (i,v) {
+        if ( $(v).text()) {
+          nodeData.push($(v).text())
+        }
+      });
+
+      $(".upload_content input:text").each(function (i,v) {
+        $(v).val(nodeData[i])
+      });
+    });
+
+    $(".nodeList").click(function () {
+      $("#nodeList").show();
+      $("#nodeList").siblings().hide();
+    });
+    $("#up").change(function () {
+      console.log($(this).val())
+      $(".upLook").text($(this).val())
+    });
+
+    $('.handle-btn').on('click', function (e) {
+      $('.handle-cont').toggle();
+    });
+
+    $("#allTrue").click(function (e) {
+      var checked = $(this).prop('checked');
+      if (checked) {
+        $(this).parent().parent().siblings().find("input").prop('checked', true);
+
+      } else {
+        $(this).parent().parent().siblings().find("input").prop('checked', false);
+      }
+    });
+
+    $(".cleanCheck").click(function () {
+      $(this).parent().next("table").find("input").prop('checked', false);
+    });
+
+    var checkNode = 0;
+    $("#nodeList").find("input").click(function () {
+      if ($(this).prop('checked')) {
+        if ($(this).prop('id') == 'allTrue') {
+          checkNode = $(this).parent().parent().siblings().find("input").length;
+          console.log(checkNode)
+          $(".checkNode").text(checkNode)
+        } else {
+          checkNode++;
+          $(".checkNode").text(checkNode)
+        }
+      } else {
+        if ($(this).prop('id') == 'allTrue') {
+          checkNode = 0;
+          $(".checkNode").text(checkNode)
+        } else {
+          checkNode--;
+          $(".checkNode").text(checkNode)
+        }
+      }
+    })
+  })
+</script>
+</html>

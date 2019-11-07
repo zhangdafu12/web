@@ -1,0 +1,64 @@
+.icon-male {
+    width: 14px;
+    height: 16px;
+    background: url("../img/male.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-female {
+    width: 14px;
+    height: 16px;
+    background: url("../img/female.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-delete {
+    width: 13px;
+    height: 14px;
+    background: url("../img/delete.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    /*vertical-align: middle;*/
+}
+
+.icon-view{
+    width: 20px;
+    height: 14px;
+    background: url("../img/view.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-comment{
+    width: 20px;
+    height: 14px;
+    background: url("../img/comment.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.icon-favour{
+    width: 20px;
+    height: 14px;
+    background: url("../img/favour.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-favour-gray{
+    width: 20px;
+    height: 14px;
+    background: url("../img/favour_gray.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+

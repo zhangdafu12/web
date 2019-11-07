@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+<!--    <script type='text/javascript' src='./js/浙江省.json'></script>-->
+    <script type='text/javascript' src='./js/guizhou.js'></script>
+</head>
+<link rel="stylesheet" type="text/css" href="./css/carplay.css" />
+
+<body>
+
+<div id="page">
+    <p class="left_bord">优抚对象分布情况</p>
+
+    <div id="map">
+
+    </div>
+    <p class="right_bord">优抚对象资金情况</p>
+    <div id="bar">
+
+    </div>
+    <p class="left_bot_bord">伤残军人情况<span class="more3_title">伤残性质</span></p>
+
+    <div id="more">
+    <div id="more1"></div>
+    <div id="more2"></div>
+    <div id="more3"></div>
+    </div>
+    <p class="right_bot_bord">优抚对象年龄/性别</p>
+    <div id="old">
+        <div id="old1"></div>
+        <div id="old2"></div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        //地图
+    //    $.get('js/浙江省.json', function (data) {//这里是json转js，如果是js文件就不需要这一步
+
+            // console.log(data);
+            // console.log(typeof data);
+            // echarts.registerMap('浙江', data);//设置地图
+
+            var myChart = echarts.init(document.getElementById('map'));//初始化
+            //设置
+            myChart.setOption({
+                // title: {
+                //     text: '浙江地图',
+                //     textStyle:{
+                //         color:"#fff",
+                //     },
+                //     left:"top",
+                //     top:-10,
+                // },
+                series: [{
+                    type: 'map',//类型必须是map
+                    map: '贵州',//注意这里的值需要和echarts.registerMap('henan',data);一致
+                    itemStyle: {
+                        normal: {label: {show: true}},
+                        emphasis: {label: {show: true}}
+                    },
+                    label: {
+                        normal: {
+                            textStyle: {
+                                fontSize: 15,
+                                fontWeight: 'bold',
+                                color: 'red'
+                            }
+                        }
+                    },
+
+                    data: [
+                        {
+                            name: '金华市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        },
+                        {
+                            name: '湖州市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        },
+                        {
+                            name: '舟山市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '嘉兴市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '杭州市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '绍兴市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '宁波市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '台州市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '温州市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }, {
+                            name: '丽水市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        },
+                        {
+                            name: '衢州市', value: 20057.34,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.name + "\n" + params.value;
+                                    },
+                                },
+                                textStyle: {
+                                    fontWeight: 'normal',
+                                    fontSize: 30
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#173152'     //地图颜色
+                                }
+                            }
+                        }
+                    ]
+
+                }]
+          });
+
+            myChart.on('click', function (params) {
+                alert(1);
+                console.log(params);//此处写点击事件内容
+            });//点击事件，此事件还可以用到柱状图等其他地图
+       // });
+        //右侧表格
+        // 基于准备好的dom，初始化echarts实例
+        var barChart = echarts.init(document.getElementById('bar'));
+        // 指定图表的配置项和数据
+        var barOption = {
+            grid: {
+
+                right: 60   //距离容器zuo边界30像素
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            color: ['#4472C5', '#ED7C30', '#80FF80', '#fff599', '#4472C5', '#800080'],
+            legend: {
+                data: ['现役军人', '当年退伍军人', '伤残军人', '三屈对象', '返乡军人', '60岁以上部分烈士子女'],
+                textStyle: {//图例文字的样式
+                    color: '#fff',
+                    fontSize: 16
+                },
+                top: 10
+            },
+
+
+            // toolbox: {
+            //         show : true,
+            //         orient: 'vertical',
+            //         x: 'right',
+            //         y: 'center',
+            //         feature : {
+            //             mark : {show: true},
+            //             dataView : {show: true, readOnly: false},
+            //             magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            //             restore : {show: true},
+            //             saveAsImage : {show: true}
+            //         }
+            // },
+            calculable: true,
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: "#008acd"
+                        }
+                    },
+
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    splitLine: {
+                        show: false
+                    },
+                    //  去掉背景的网格线
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: "#008acd"
+                        }
+                    },
+                }
+            ],
+            series: [
+
+                {
+                    name: '现役军人',
+                    type: 'bar',
+                    stack: '人数',
+                    barWidth: 20,//柱图宽度
+                    data: [120, 132, 101, 134, 90, 230, 210, 301, 334, 390, 330, 320],
+
+                },
+                {
+                    name: '当年退伍军人',
+                    type: 'bar',
+                    stack: '人数',
+                    data: [220, 182, 191, 234, 290, 330, 310, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: '伤残军人',
+                    type: 'bar',
+                    stack: '人数',
+                    data: [150, 232, 201, 154, 190, 330, 410, 301, 334, 390, 330, 320]
+                }, {
+                    name: '三屈对象',
+                    type: 'bar',
+                    stack: '人数',
+                    data: [150, 232, 201, 154, 190, 330, 410, 301, 334, 390, 330, 320]
+                }, {
+                    name: '返乡军人',
+                    type: 'bar',
+                    stack: '人数',
+                    data: [150, 232, 201, 154, 190, 330, 410, 301, 334, 390, 330, 320]
+                }, {
+                    name: '60岁以上部分烈士子女',
+                    type: 'bar',
+                    stack: '人数',
+                    data: [150, 232, 201, 154, 190, 330, 410, 301, 334, 390, 330, 320]
+                },
+
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        barChart.setOption(barOption);
+        // 基于准备好的dom，初始化echarts实例
+        var more1Chart = echarts.init(document.getElementById('more1'));
+        // 指定图表的配置项和数据
+        var labelTop = {//显示文字
+            normal : {
+                label : {
+                    show : true,
+                    position : 'center',
+                    formatter : '{b}',
+                    textStyle: {
+                        baseline : 'bottom',
+
+                    }
+                },
+                labelLine : {
+                    show : false
+                }
+            }
+        };
+        var labelFromatter = {//百分比
+            normal : {
+                label : {
+                    formatter : function (params){
+                        return 100 - params.value + '%'
+                    },
+                    labelLine : {
+                        show : false
+                    },
+                    textStyle: {
+                        baseline : 'top'
+
+                    }
+                }
+            },
+        };
+        var labelBottom = {//剩余部分
+            normal : {
+                color: '#fff',
+                label : {
+                    show : true,
+                    position : 'center'
+                },
+                labelLine : {
+                    show : false
+                }
+            },
+            emphasis: {
+                color: 'rgba(255,255,255,0)'
+            }
+        };
+        var radius = [50, 65];
+        var more1Option= {
+            tooltip: {
+                show: false //隐藏鼠标悬浮提示文字
+
+            },
+            color: ['#4472C5', '#ED7C30'],
+            legend: {
+                top: "25%",
+                left:"10%",
+                itemGap:120,
+                itemWidth:0,
+                textStyle: {
+                   color:"#fff"
+
+                },
+                data:[
+                    '在职人数','在乡人数'
+                ]
+            },
+            title : {
+                text: '伤残属别',
+                x: 'top',
+                textStyle: {
+                    color:"#fff"
+
+                },
+            },
+            series : [
+                {
+                    type : 'pie',
+                    center : ['25%', '50%'],
+                    radius : radius,
+                    x: '0%', // for funnel
+                    itemStyle : labelFromatter,
+
+
+                    data : [
+                        {name:'other', value:46, itemStyle : labelBottom},
+                        {name:'在职人数', value:54,itemStyle : labelTop}
+                    ]
+                },
+                {
+                    type : 'pie',
+                    center : ['70%', '50%'],
+                    radius : radius,
+                    x:'20%', // for funnel
+                    itemStyle : labelFromatter,
+                    data : [
+                        {name:'other', value:56, itemStyle : labelBottom},
+                        {name:'在乡人数', value:44,itemStyle : labelTop}
+                    ]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        more1Chart.setOption(more1Option);
+
+    // 基于准备好的dom，初始化echarts实例
+    var more2Chart = echarts.init(document.getElementById('more2'));
+    // 指定图表的配置项和数据
+    var myColor = ['#81E7ED'];
+    var dataLine = [50, 66, 33, 25,30,40,55,66];
+    let positionLeft = 0.4,
+        max = 100 + 2*positionLeft;
+    var more2Option = {
+        // backgroundColor: '#101E44',
+        title : {
+            text: '伤残等级',
+            x: 'top',
+            textStyle: {
+                color:"#fff"
+            },
+        },
+        grid: [
+            {
+                left: '15%',
+                top: '25%',
+                right: '5%',
+                bottom: '8%',
+                containLabel: true
+            },
+            {
+                left: '17%',
+                top: '25%',
+                right: '5%',
+                bottom: '8%',
+                containLabel: true
+            }
+        ],
+        xAxis: [{
+            max:max,
+            show: false
+        }],
+        yAxis: [{
+            axisTick: 'none',
+            axisLine: 'none',
+            offset: '27',
+            axisLabel: {
+                textStyle: {
+                    color: '#81E7ED',
+                    fontSize: '16'
+                }
+            },
+            data: ['三级', '四级', '五级', '六级','七级', '八级', '九级', '十级']
+        }, {
+            axisTick: 'none',
+            axisLine: 'none',
+            show: false,
+            axisLabel: {
+                textStyle: {
+                    color: '#ffffff',
+                    fontSize: '16'
+                }
+            },
+            data: [1, 1, 1, 1,1, 1, 1, 1]
+        }, {
+
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(0,0,0,0)'
+                }
+            },
+            data: []
+        }],
+        series: [
+
+            { //间距
+                type: 'bar',
+                barWidth: 15,
+                stack: 'b',
+                legendHoverLink: false,
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                },
+
+                data: [positionLeft,positionLeft,positionLeft,positionLeft,positionLeft,positionLeft,positionLeft,positionLeft]
+            },{
+                name: '条',
+                type: 'bar',
+                stack: 'b',
+                yAxisIndex: 0,
+                data: dataLine,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'right',
+                        distance: 10,
+                        formatter: function(param) {
+                            return param.value + '%'
+                        },
+                        textStyle: {
+                            color: '#ffffff',
+                            fontSize: '16'
+                        }
+                    }
+                },
+                barWidth: 10,
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var num = myColor.length;
+                            return myColor[params.dataIndex % num]
+                        }
+                    }
+                },
+                z: 2
+            }, {
+                name: '白框',
+                type: 'bar',
+                yAxisIndex: 1,
+                barGap: '-100%',
+                data: [99.8, 99.9, 99.9, 99.9,99.8, 99.9, 99.9, 99.9],
+                barWidth: 21,
+                itemStyle: {
+                    normal: {
+                        color: '#0e2147',
+                        barBorderRadius: 2
+                    }
+                },
+                z: 1
+            },
+            {
+                name: '外框',
+                type: 'bar',
+                yAxisIndex: 2,
+                barGap: '-100%',
+                data: [100, 100, 100, 100,100, 100, 100, 100],
+                barWidth: 23,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        distance: 10,
+                        formatter: function(data) {
+                            return dataLine[data.dataIndex] +"%"+"    "+dataLine[data.dataIndex]+"人";
+                        },
+                        textStyle: {
+                            color: '#ffffff',
+                            fontSize: '16'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var num = myColor.length
+                            return myColor[params.dataIndex % num]
+                        },
+                        barBorderRadius: 0
+                    }
+                },
+                z: 0
+            },
+            /*     {
+                    name: '白框',
+                    type: 'bar',
+                    yAxisIndex: 1,
+                    barGap: '-100%',
+                    data: [0, 0, 0, 0],
+                    barWidth: 20,
+                    itemStyle: {
+                        normal: {
+                            color: '#0e2147',
+                            barBorderRadius: 0
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: '外框',
+                    type: 'bar',
+                    yAxisIndex: 2,
+                    barGap: '-100%',
+                    data: [2, 3, 4, 5],
+                    barWidth: 22,
+                    itemStyle: {
+                        normal: {
+                            color: function(params) {
+                                var num = myColor.length
+                                return myColor[params.dataIndex % num]
+                            },
+                            barBorderRadius: 0
+                        }
+                    },
+                    z: 0
+                }*/
+
+        ]
+    }
+
+    // 使用刚指定的配置项和数据显示图表。
+    more2Chart.setOption(more2Option);
+
+
+
+        // 基于准备好的dom，初始化echarts实例
+        var more3Chart = echarts.init(document.getElementById('more3'));
+        // 指定图表的配置项和数据
+        var datas = [ {
+            'name': '因公',
+            'value': 1397
+        }, {
+            'name': '因战',
+            'value': 318
+        }, {
+            'name': '因病',
+            'value': 101
+        }];
+        var total_datas = 0;
+        for (var i = 0; i < datas.length; i++) {
+            total_datas += datas[i].value
+        }
+      var  more3Option = {
+            color: ['#31C5C0', '#1E9BD1', '#009D85'],
+            // backgroundColor: '#012A5C',
+            title: {
+                text: '总数',
+                subtext: total_datas,
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 20,
+                    align: 'center'
+                },
+                subtextStyle: {
+                    fontSize: 20,
+                    color: ['#ff9d19']
+                },
+                x: 'center',
+                y: 'center',
+            },
+            grid: {
+                bottom: 150,
+                left: 100,
+                right: '10%'
+            },
+            legend: {
+                bottom: "5%",
+                textStyle: {
+                    color: '#f2f2f2',
+                    fontSize: 15,
+
+                },
+                icon: 'roundRect',
+                data: total_datas,
+            },
+            tooltip: {
+                formatter: "{a}：<br/>{b}: {c}人"
+            },
+            series: [
+                // 主要展示层的
+                {
+                    radius: ['30%', '40%'],
+                    center: ['50%', '50%'],
+                    type: 'pie',
+                    label: {
+                        normal: {
+                            show: true,
+                            formatter: "{b}: {c}人",
+                            textStyle: {
+                                fontSize: 20,
+
+                            },
+                            position: 'outside'
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: true,
+                            length: 10,
+                            length2: 20
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    name: "信息统计",
+                    data: datas,
+
+                },
+                // 边框的设置
+                {
+                    radius: ['20%', '20%'],
+                    center: ['50%', '50%'],
+                    type: 'pie',
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    animation: false,
+                    tooltip: {
+                        show: false
+                    },
+                    data: [{
+                        value: 1,
+                        itemStyle: {
+                            color: "rgba(250,250,250,0.3)",
+                        },
+                    }],
+                }, {
+                    name: '外边框',
+                    type: 'pie',
+                    clockWise: false, //顺时加载
+                    hoverAnimation: false, //鼠标移入变大
+                    center: ['50%', '50%'],
+                    radius: ['40%', '40%'],
+                    label: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [{
+                        value: 9,
+                        name: '',
+                        itemStyle: {
+                            normal: {
+                                borderWidth: 2,
+                                borderColor: '#0b5263'
+                            }
+                        }
+                    }]
+                },
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        more3Chart.setOption(more3Option);
+
+
+        // 基于准备好的dom，初始化echarts实例
+        var old2Chart = echarts.init(document.getElementById('old2'));
+        // 指定图表的配置项和数据
+        var  old2Option = {
+            title: {
+                text: '人数',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 20,
+                    align: 'center'
+                },
+            },
+            color: ['#31C5C0', '#1E9BD1'],
+            legend: {
+                data:['男人', '女人'],
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 20,
+                    align: 'center'
+                },
+                top:30
+            },
+            xAxis: {
+                data: [],
+                type:'value',
+                show:false,
+                axisTick: {
+                    show: false
+                }
+            },
+            yAxis: {
+                type: 'category',
+                show:false,
+                axisTick: {
+                    show: false
+                }
+            },
+            series: [{
+                type: 'bar',
+                name:'男人',
+                data:[90],
+                stack: 'income',
+                barWidth: 10,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside',
+                        formatter: function(obj) {
+                            return obj.value + '%';
+                        }
+                    }
+                }
+            },{
+                type:'bar',
+                name:'女人',
+                data:[10],
+                stack: 'income',
+                barWidth: 30,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside',
+                        formatter: function(obj) {
+                            return obj.value + '%';
+                        }
+                    }
+                }
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        old2Chart.setOption(old2Option);
+
+
+
+        // 基于准备好的dom，初始化echarts实例
+        var old1Chart = echarts.init(document.getElementById('old1'));
+       // 指定图表的配置项和数据
+        var old1data = [25, 70, 5];
+        var titlename = ['60岁以下', '18-60岁', '18岁以下'];
+        var valdata = [250, 700, 50];
+        var myColor = ['#1089E7', '#F57474', '#56D0E3'];
+        var old1Option = {
+            title: {
+                text: '年龄',
+                x: 'center',
+                textStyle: {
+                    color: '#FFF'
+                },
+                left: '6%',
+                top: '10%'
+            },
+            //图标位置
+            grid: {
+                top: '20%',
+                left: '20%'
+            },
+            xAxis: {
+                show: false
+            },
+            yAxis: [{
+                show: true,
+                data: titlename,
+                inverse: true,
+
+                axisLine: {
+                    show: false,
+                    lineStyle:{
+                        color:"#fff"
+                    }
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    color: '#fff',
+                    rich: {
+                        lg: {
+                            backgroundColor: '#339911',
+                            color: '#fff',
+                            align: 'center',
+                            width: 15,
+                            height: 15
+                        },
+                    }
+                },
+
+
+            }, {
+                show: true,
+                inverse: true,
+                data: valdata,
+                axisLabel: {
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff',
+                    },
+                },
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+
+            }],
+            series: [{
+                name: '条',
+                type: 'bar',
+                yAxisIndex: 0,
+                data: old1data,
+                barWidth: 10,
+                itemStyle: {
+                    normal: {
+                        // barBorderRadius: 20,
+                        color: function(params) {
+                            var num = myColor.length;
+                            return myColor[params.dataIndex % num]
+                        },
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside',
+                        formatter: '{c}%'
+                    }
+                },
+            }, {
+                name: '框',
+                type: 'bar',
+                yAxisIndex: 1,
+                barGap: '-100%',
+                data: [100, 100, 100],
+                barWidth: 15,
+                itemStyle: {
+                    normal: {
+                        color: 'none',
+                        borderColor: '#00c1de',
+                        borderWidth: 3,
+
+                    }
+                }
+            }, ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        old1Chart.setOption(old1Option);
+
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container"></div>
+<!-- 使用相对协议，同时支持http和https -->
+<script src='//vm.gtimg.cn/tencentvideo/txp/js/txplayer.js'></script>
+<script>
+  var player = new Txplayer({
+    containerId: 'container',
+    vid: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+    width: '600',
+    height: '400',
+    autoplay: true
+  });
+</script>
+</body>
+</html>

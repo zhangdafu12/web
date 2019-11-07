@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='gb2312'?>
+<账户 type='complexType'>
+<账户名 type='string'/>
+<账户余额 type='complexType'>
+<增加量 type='decimal'/>
+<减少量 type='decimal'/>
+</账户余额>
+</账户>

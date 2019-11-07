@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content_block %}
+
+    {#<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">#}
+    {#<link rel="stylesheet" type="text/css" href="../static/css/btn.css">#}
+
+    <style>
+        .node_table table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #5a5a5a;
+        }
+
+        .node_table tr {
+            width: 100%;
+            height: 50px;
+            font-size: 14px;
+            padding-left: 37px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        tr th:first-of-type,
+        tr td:first-of-type {
+            width: 380px;
+            padding-left: 50px;
+
+        }
+
+        a {
+            color: #1a73eb
+        }
+
+    </style>
+    <body>
+    <div class="container">
+        <div class="node_table">
+            <table>
+                <tr>
+                    <th>搜索关键词</th>
+                    <th>搜索时间</th>
+                    <th>状态</th>
+                </tr>
+                {% for search in searches %}
+                    <tr>
+                        <td style="display: none">{{ search.id }}</td>
+                        <td><a href="{{ search.search_href }}" data-toggle="modal" data-target="#">{{ search.keyword }}</a></td>
+                        <td>{{ search.search_time }}</td>
+                        <td>{{ search.status }}</td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+    </div>
+
+    </body>
+    
+    
+    
+{% endblock %}
+
+{% block js %}
+
+{#    <script>#}
+{#    // 使用#}
+{#    $(function () {#}
+{#        let form = new FormData();#}
+{#        form.append("record_id", "2");#}
+{#        form.append("status", "1");#}
+{#        $("").click(#}
+{#            $.ajax({#}
+{#                url: "/manage/record",#}
+{#                data: form,#}
+{#                type: "POST",#}
+{#                success: function (data) {#}
+{#                    console.log(data);#}
+{#                }#}
+{#            })#}
+{#        )#}
+{#    })#}
+{#    #}
+{#    </script>#}
+    
+{% endblock %}

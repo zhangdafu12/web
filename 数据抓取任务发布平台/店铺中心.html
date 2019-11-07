@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content .head {
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
+            background-color: #00135E;
+            margin-bottom: 32px;
+        }
+
+        .content .head .head-cont {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .content .head .head-cont .head-left {
+            font-size: 25px;
+        }
+
+        .content .head .head-cont .head-right {
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .content .head .head-cont .head-right .phone {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 36px;
+        }
+
+        .content .head .head-cont .head-right .phone img {
+            width: 12px;
+            height: 16px;
+            margin: 27px 3px 27px 0;
+        }
+
+        .content .head .head-cont .head-right .nickname {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 42px;
+        }
+
+        .content .head .head-cont .head-right .nickname img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin: 23px 0 23px 3px;
+        }
+
+        .content .boxes {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content .boxes .left_side {
+            width: 190px;
+            height: 533px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+        }
+
+        .content .boxes .left_side .side-name {
+            font-size: 25px;
+            font-weight: 600;
+            text-align: center;
+            margin: 20px 0 26px 0;
+        }
+
+        .content .boxes .left_side ul li {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+            font-size: 16px;
+        }
+
+
+        .content .boxes .left_side ul li img:nth-child(2) {
+            display: none;
+        }
+
+        .content .boxes .left_side ul li:first-child .now {
+            display: none;
+        }
+
+        .content .boxes .left_side ul li:first-child>img:nth-child(2) {
+            display: block;
+        }
+
+        .content .boxes .left_side ul li:first-child>div {
+            color: #427CFF;
+        }
+
+        /* .content .boxes .left_side ul li:hover>img:nth-child(2) {
+            display: block;
+        } */
+
+        .content .boxes .left_side ul li img {
+            margin-right: 5px;
+        }
+
+        /* *********************任务发布************************ */
+        .store {
+            width: 83px;
+            border-bottom: 2px solid #41bfe7;
+            text-align: center;
+            color: #41bfe7;
+            padding-bottom: 6px;
+        }
+
+        .task {
+            width: 990px;
+            height: 727px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            padding: 17px 22px 0 22px;
+            border-radius: 5px;
+        }
+
+        .task .type {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #E2E2E2;
+            outline: none;
+            color: #E5E5E5;
+            margin-top: 24px;
+            border-radius: 5px;
+            text-indent: 12px;
+        }
+
+        .task .data,
+        .task .issuer,
+        .task .offer {
+            width: 300px;
+            text-indent: 12px;
+        }
+
+        .task .deadline {
+            width: 224px;
+            text-indent: 12px;
+
+        }
+
+        .task .commit {
+            width: 176px;
+            background-color: #0080ff;
+            color: #ffffff;
+        }
+
+        /* ************************任务列表*********************** */
+        .task_list {
+            width: 990px;
+            height: 719px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 0 22px;
+        }
+
+        /* 个人接单 ********************************************/
+        .order {
+            width: 990px;
+            height: 384px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 0 22px;
+        }
+
+        .tab_cont {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #E2E2E2;
+        }
+
+        .tab_cont input {
+            width: 272px;
+            height: 32px;
+            text-indent: 12px;
+            margin: 0;
+        }
+
+        .tab_cont .tab {
+            display: flex;
+            justify-content: flex-start;
+            height: 32px;
+            border: 1px solid #E2E2E2;
+            border-radius: 5px;
+            line-height: 32px;
+            overflow: hidden;
+
+        }
+
+        .tab_cont .tab li.active {
+            background-color: #0080FF;
+            color: #ffffff;
+        }
+
+        .tab_cont .tab li {
+            padding: 0 16px;
+            text-align: center;
+            color: #CACACA;
+            font-size: 14px;
+            border-right: 1px solid #E2E2E2;
+        }
+        .tab_cont .tab li:last-child{
+            border-right:0;
+        }
+
+        /* .order-cont .tab li:nth-child(2) {
+            border-left: 1px solid #E2E2E2;
+            border-right: 1px solid #E2E2E2;
+        } */
+
+        .products .main {
+            display: none;
+        }
+
+        .products .main.selected {
+            display: block;
+        }
+
+        .main_cont {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #E2E2E2;
+        }
+
+        .main_cont:last-child {
+            border-bottom: 0;
+        }
+
+        .main_cont img {
+            margin-right: 20px;
+        }
+
+        .main_cont .cont_introduce {
+            margin-right: 132px;
+        }
+
+        .main_cont .cont_introduce p {
+            font-size: 12px;
+            color: #636363;
+            margin-top: 6px;
+        }
+
+        .cont_introduce p span {
+            margin-right: 24px;
+        }
+
+        .main_cont .cont_introduce p:first-child {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 0;
+            color: #343434;
+        }
+
+
+        .main_cont .cont_finish {
+            margin: 16px 157px 0 0;
+            font-size: 14px;
+            color: #636363;
+        }
+
+        .main_cont .cont_finish .gray {
+            width: 73px;
+            height: 9px;
+            background-color: #CECCCC;
+            margin-top: 8px;
+        }
+
+        .cont_finish .gray .blue1 {
+            width: 60px;
+            height: 9px;
+            background-color: #0080FF;
+        }
+
+        .cont_finish .gray .blue2 {
+            width: 53px;
+            height: 9px;
+            background-color: #0080FF;
+        }
+
+        .main_cont .cont_piay {
+            margin: 20px 20px 0 0;
+            font-size: 14px;
+            color: #2994FF;
+
+        }
+        .main_cont .cont_piay p{
+            white-space:nowrap;
+            color: #888888;
+            text-align: center;
+        }
+
+
+
+
+
+
+
+
+        /* ***************************模版列表************************ */
+        .personal {
+            width: 990px;
+            height: 775px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+        }
+
+        .personal-cont {
+            height: 700px;
+            margin: 30px 167px 0 37px;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+            font-family: PingFang SC;
+            position: relative;
+        }
+
+        .personal-cont p {
+            font-weight: 600;
+        }
+
+        .personal-cont .left {
+            width: 380px;
+
+        }
+
+        .personal-cont .right {
+            width: 252px;
+        }
+
+        input {
+            /* text-indent: 12px; */
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #E2E2E2;
+            font-size: 16px;
+            line-height: 40px;
+            margin-top: 24px;
+            outline: none;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #E5E5E5;
+            font-size: 16px;
+        }
+
+        .personal-cont .name,
+        .personal-cont .birthday,
+        .personal-cont .region,
+        .personal-cont .alipay {
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .personal-cont .sex {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #E2E2E2;
+            outline: none;
+            color: #E5E5E5;
+            margin: 24px 0 0 0;
+            font-size: 16px;
+            border-radius: 5px;
+            text-indent: 12px;
+        }
+
+        .personal-cont .annex {
+            margin: 0;
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .personal-cont .right .upload-head {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .personal-cont .right .upload-head .upload {
+            width: 104px;
+            height: 104px;
+            border-radius: 4px;
+            margin-top: 20px;
+            border: 1px dashed #DFDFDF;
+            background-color: #EDEDED;
+            position: relative;
+        }
+
+        .personal-cont .right .upload-head .upload .photo {
+            font-size: 14px;
+            color: #808080;
+            text-align: center;
+            margin-top: 62px;
+        }
+
+        .personal-cont .right .upload-head .upload .across {
+            width: 24px;
+            height: 2px;
+            background-color: #9A9A9A;
+            position: absolute;
+            left: calc(50% - 12px);
+            top: 36px;
+        }
+
+        .personal-cont .right .upload-head .upload .vertical {
+            width: 2px;
+            height: 24px;
+            background-color: #9A9A9A;
+            position: absolute;
+            left: calc(50% - 1px);
+            top: 25px;
+        }
+
+        .personal-cont .right .upload-head .upload-box .support {
+            color: #B4B4B4;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .personal-cont .right .upload-head .upload-end {
+            width: 104px;
+            height: 104px;
+            border-radius: 4px;
+            margin-top: 20px;
+            /* border: 1px dashed #DFDFDF; */
+            margin-left: 44px;
+        }
+
+        .personal-cont .right .upload-head .upload-end img {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            border: 1px solid #DFDFDF;
+        }
+
+        .personal .button {
+            text-align: center;
+            margin-top: 24px;
+            position: absolute;
+            left: calc(50% - 88px);
+            bottom: 100px;
+        }
+
+        .personal .button input {
+            width: 176px;
+            height: 40px;
+            border: 0;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        .personal .button .cancel {
+            background-color: #F08E8E;
+            margin-right: 14px;
+        }
+
+        .personal .button .refer {
+            background-color: #41bfe7;
+        }
+
+        #pic {
+            width: 104px;
+            height: 104px;
+            position: absolute;
+            opacity: 0;
+            margin-top: 0px;
+            top: 41px;
+            right: 147px;
+            z-index: 999;
+        }
+
+
+        /*************************修改密码********************************* */
+        .alter-password {
+            width: 990px;
+            height: 474px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            padding: 17px 22px 0 22px;
+        }
+
+        .alter-password .confirm-password {
+            width: 378px;
+            text-indent: 12px;
+        }
+
+        .alter-password .password {
+            width: 300px;
+            text-indent: 12px;
+        }
+
+        .alter-password .input {
+            margin-left: 38px;
+        }
+
+        .alter-password .input .phone {
+            width: 378px;
+            height: 40px;
+            margin: 30px 10px 0 0;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #E2E2E2;
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .alter-password .input .phone select {
+            width: 72px;
+            height: 42px;
+            color: #E5E5E5;
+            border: 1px solid #E2E2E2;
+            position: relative;
+            bottom: 2px;
+            border-left: 0;
+            outline: none;
+            text-indent: 12px;
+        }
+
+        .alter-password .input .phone .cell {
+            width: 300px;
+            margin: 0;
+            border-radius: 0;
+            border: 0;
+            text-indent: 12px;
+        }
+
+        .alter-password .input .verify-code {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .alter-password .input .verify-code .verify {
+            width: 270px;
+            margin-top: 0;
+            text-indent: 12px;
+        }
+
+        .alter-password .input .verify-code .code {
+            color: #41bfe7;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 40px;
+            margin-left: 24px;
+        }
+
+        .alter-password .commit {
+            width: 176px;
+
+            background-color: #41bfe7;
+            margin: 24px 0 0 140px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+
+
+
+
+        
+        /*000000000000000000000000000000000*/
+
+        .comment {
+            width: 400px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .comment .isSuccess {
+            width: 72px;
+            height: 72px;
+        }
+
+        .comment p {
+            color: #cccccc;
+            line-height: 40px;
+            font-size: 12px;
+        }
+
+        .comment:first-of-type {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .task_pay_ok p span {
+            font-size: 16px;
+            cursor: pointer;
+            color: #00adef;
+            margin-left: 4px;
+        }
+
+        .task_mate p span {
+            color: red;
+            font-size: 24px;
+        }
+
+        .task_pay {
+            width: 400px;
+
+        }
+
+        .task_pay > div {
+            float: left;
+            margin-left: 46px;
+            margin-top: 20px;
+
+        }
+
+        .task_pay .pay_ma {
+            width: 115px;
+            height: 115px;
+            vertical-align: middle;
+            padding-top: 10px;
+        }
+
+        .task_pay .pay_class img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 6px;
+
+
+        }
+
+        .task_pay .pay_ma_bord {
+            width: 135px;
+            height: 125px;
+            background-color: #ffffff;
+            box-shadow: 1px 1px 1px 1px #888888;
+            margin-bottom: 15px;
+        }
+
+        .task_field button {
+            width: 176px;
+            height: 40px;
+            background-color: #0080ff;
+            color: #ffffff;
+            font-size: 14px;
+            margin-top: 40px;
+            border: 0px;
+            border-radius: 4px;
+        }
+
+        /*1111111111111*/
+        .node {
+            width: 990px;
+            height: 727px;
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+            padding: 17px 22px 0 22px;
+            overflow-y: auto;
+        }
+
+        .node::-webkit-scrollbar {
+            width: 0px;
+        }
+        .node_table{
+            margin-top: 20px;
+        }
+         .node_table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+         .node_table tr {
+            width: 100%;
+            height: 54px;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+         .node_table tr .node_price_sett {
+            color: #00adef;
+            cursor: pointer;
+        }
+
+         .node_table th {
+            background-color: #fafafa;
+            font-weight: normal;
+        }
+
+         .node_table td {
+            border-top: solid 1px #bbbbbb;
+            text-align: center;
+            position: relative;
+             background-color: #ffffff;
+
+        }
+
+         .node_table td ul {
+            width: 105px;
+            height: 115px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 4px 0px #cccccc;
+            position: absolute;
+            right: -23px;
+            top: 50px;
+            z-index: 100;
+        }
+
+         .node_table td li {
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+        }
+
+         .node_table td input {
+            width: 21px;
+            height: 16px;
+            border: solid 1px #cccccc;
+        }
+    /*    222222222222222222222*/
+        .coverage{
+            width: 1130px;
+            height: 424px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -212px;
+            margin-left: -565px;
+            z-index: 500;
+            background-color: #ffffff;
+            overflow-y: auto;
+            padding-top: 16px;
+        }
+
+        .coverage::-webkit-scrollbar {
+            width: 6px;
+            background-color: #cccccc;
+        }
+        .mask{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0px;
+            z-index: 300;
+            background-color: rgba(0,0,0,0.6);
+        }
+    .out_box{
+        height: 10px;
+        width: 100px;
+        background-color: #cccccc;
+
+        position: relative;
+        top: 16px;
+        left: 10px;
+
+    }
+        .in_box{
+            height: 10px;
+            width: 90%;
+            background-color: #0080FF;
+
+        }
+        .node_table .tab_cont_1{
+
+
+
+        }
+        .blue_dot{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #0080FF;
+            margin-right: 4px;
+        }
+        .red_dot{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: red;
+            margin-right: 4px;
+        }
+    </style>
+
+<body>
+    <div class="content">
+        <div class="head">
+            <div class="head-cont">
+                <div class="head-left">复联数据实时看板</div>
+                <div class="head-right">
+                    <div class="help">帮助</div>
+                    <div class="phone">
+                        <img src="./images/手机.svg" alt="">
+                        <p>手机APP</p>
+                    </div>
+                    <div class="nickname">
+                        <p>曼****m</p>
+                        <img src="./images/img11.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="left_side">
+                <div class="side-name">店铺中心</div>
+                <ul class="sidebar">
+                    <li class="mainMenu" id="task">
+                        <img class="now" src="./images/任务发布.svg" alt="">
+                        <img src="./images/任务发布选中.svg" alt="">
+                        <div class="mainMenu_cilk">任务发布</div>
+                    </li>
+                    <li class="mainMenu" id="task_list">
+                        <img class="now" src="./images/任务列表.svg" alt="">
+                        <img src="./images/任务列表选中.svg" alt="">
+                        <div class="mainMenu_cilk">任务列表</div>
+                    </li>
+                    <li class="mainMenu" id="order">
+                        <img class="now" src="./images/我的接单.svg" alt="">
+                        <img src="./images/我的接单选中.svg" alt="">
+                        <div class="mainMenu_cilk">我的接单</div>
+                    </li>
+                    <li class="mainMenu" id="personal">
+                        <img class="now" src="./images/个人资料.svg" alt="">
+                        <img src="./images/个人资料选中.svg" alt="">
+                        <div class="mainMenu_cilk">个人资料</div>
+                    </li>
+                    <li class="mainMenu" id="alter-password">
+                        <img class="now" src="./images/修改密码.svg" alt="">
+                        <img src="./images/修改密码选中.svg" alt="">
+                        <div class="mainMenu_cilk">修改密码</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_content">
+                <!-- 任务发布 -->
+            <div class="task" style="display: none">
+                    <div class="tem-box">
+                        <div class="store">任务发布</div>
+                    </div>
+                    <div class="input">
+                        <form id="task_input" action="">
+                            <select name="" class="type">
+                                <option value="">任务类型</option>
+                                <option value="one">类型一</option>
+                                <option value="two">类型二</option>
+                            </select><br>
+                            <input type="text" placeholder="提交数据源url" class="data"><br>
+                            <input type="text" placeholder="任务截止期限" class="deadline"><br>
+                            <input type="text" placeholder="发布人" class="issuer"><br>
+                            <input type="text" placeholder="报价" class="offer"><br>
+                        </form>
+                        <input type="submit" value="提交" class="commit" id="task_submit">
+                        <!--                        提交成功支付-->
+                        <div class="task_mate comment" style="display: none">
+                            <img class="isSuccess" src="./images/succeed.svg" alt="">
+                            <p>任务已匹配成功</p>
+                            <p>节点数:3256个，预计完成时间:72小时</p>
+                            <p>支付佣金 : <span>580元</span></p>
+                            <div class="task_pay">
+                                <div>
+                                    <div class="pay_ma_bord">
+                                        <img class="pay_ma" src="./images/ma.png" alt="">
+                                    </div>
+    
+                                    <div class="pay_class"><img src="./images/微信.svg" alt=""> <span>微信支付</span></div>
+    
+                                </div>
+                                <div>
+                                    <div class="pay_ma_bord">
+                                        <img class="pay_ma" src="./images/ma.png" alt="">
+                                    </div>
+                                    <div class="pay_class"><img src="./images/支付宝.svg" alt=""> <span>支付宝</span></div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <!--                支付成功-->
+                        <div class="task_pay_ok comment" style="display: none">
+                            <img class="isSuccess" src="./images/succeed.svg" alt="">
+                            <p>任务已发布</p>
+                            <p>请等待接单 <span>我的任务></span></p>
+                        </div>
+                        <!--     匹配失败-->
+                        <div class="task_field comment" style="display: none">
+                            <img class="isSuccess" src="./images/defeat.svg" alt="">
+                            <p>任务不可行</p>
+    
+                            <p>请核对并修改信息后，再重新提交。</p>
+                            <button class="task_back">请返回修改</button>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+                <!--我的节点-->
+                <div class="node">
+                    <div class="tem-box">
+                        <div class="store">我的节点</div>
+                    </div>
+                    <div class="node_table">
+                        <table>
+                            <tr>
+                                <th>节点名</th>
+                                <th>节点IP</th>
+                                <th>节点类型</th>
+                                <th>工作时间</th>
+                                <th>完成任务数</th>
+                                <th>失败任务数</th>
+                                <th>价格</th>
+                                <th>总收益</th>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                            <tr>
+                                <td>XXX节点</td>
+                                <td>198.168.1.1:***</td>
+                                <td>google搜索</td>
+                                <td>2018/08/02 17:35:25</td>
+                                <td>256</td>
+                                <td>2</td>
+                                <td><span>每秒0.2元</span> <span class="node_price_sett">设置</span>
+                                    <ul class="node_price" style="display: none;">
+                                        <li><span>每秒</span> <input type="text"><span>元</span></li>
+                                        <li><span>每次</span> <input type="text"><span>元</span></li>
+                                        <li><span>每小时</span> <input type="text"><span>元</span></li>
+                                    </ul>
+                                </td>
+                                <td>+100元</td>
+                            </tr>
+                        </table>
+    
+                    </div>
+                </div>
+                <!-- 任务列表 -->
+                <div class="task_list" style="display: none">
+                    <div class="task-cont tab_cont">
+                        <ul class="tab">
+                            <li class="tab-item active">全部</li>
+                            <li class="tab-item">进行中</li>
+                            <li class="tab-item">匹配中</li>
+                            <li class="tab-item">待接单</li>
+                            <li class="tab-item">退款</li>
+                            <li class="tab-item">已完成</li>
+                        </ul>
+                        <input type="text" placeholder="请输入">
+                    </div>
+                    <div class="products">
+                        <div class="main selected">
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p><span>数据类型：数据抓取</span><span>佣金：500元</span></p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成90%</p>
+                                    <div class="gray">
+                                        <div class="blue blue1"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <span class="detail_but">明细</span>
+                                </div>
+                            </div>
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p>数据类型：数据抓取</p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成80%</p>
+                                    <div class="gray">
+                                        <div class="blue blue2"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <p >匹配失败</p>
+                                    <p >退款中</p>
+                                </div>
+                            </div>
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p>数据类型：数据抓取</p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成80%</p>
+                                    <div class="gray">
+                                        <div class="blue blue2"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <p >匹配中</p>
+
+                                </div>
+                            </div>
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p>数据类型：数据抓取</p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成0%</p>
+                                    <div class="gray">
+                                        <div class="blue blue3"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <span class="detail_but">明细</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main">
+                            <span>进行中</span>
+                        </div>
+                        <div class="main">
+                            <span>已完成</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 我的接单 -->
+                <div class="order">
+                    <div class="order-cont tab_cont">
+                        <ul class="tab">
+                            <li class="tab-item active">全部</li>
+                            <li class="tab-item">进行中</li>
+                            <li class="tab-item">已完成</li>
+                        </ul>
+                        <input type="text" placeholder="请输入">
+                    </div>
+                    <div class="products">
+                        <div class="main selected">
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p><span>数据类型：数据抓取</span><span>佣金：500元</span></p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成90%</p>
+                                    <div class="gray">
+                                        <div class="blue blue1"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <span class="my_detail">明细</span>
+                                </div>
+                            </div>
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p>数据类型：数据抓取</p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成80%</p>
+                                    <div class="gray">
+                                        <div class="blue blue2"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <span class="my_detail">明细</span>
+                                </div>
+                            </div>
+                            <div class="main_cont">
+                                <img src="./images/logo.png" alt="">
+                                <div class="cont_introduce">
+                                    <p>提交数据源url：https://www.iconfont.cn/search/index...</p>
+                                    <p>数据类型：数据抓取</p>
+                                    <p><span>发布时间：2018/08/06 17:35:25</span><span>剩余时间：17:35:25</span></p>
+                                </div>
+                                <div class="cont_finish">
+                                    <p>已完成0%</p>
+                                    <div class="gray">
+                                        <div class="blue blue3"></div>
+                                    </div>
+                                </div>
+                                <div class="cont_piay">
+                                    <span class="my_detail">明细</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main">
+                            <span>进行中</span>
+                        </div>
+                        <div class="main">
+                            <span>已完成</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 个人资料 -->
+                <div class="personal" style="display: none">
+                    <div class="tem-box">
+                        <div class="store">个人资料</div>
+                    </div>
+                    <div class="personal-cont">
+                        <div class="left">
+                            <p>基本资料</p>
+                            <form action="">
+                                <input type="text" placeholder="阿星" class="name"><br>
+                                <select name="" class="sex">
+                                    <option value="man">男</option>
+                                    <option value="woman">女</option>
+                                </select><br>
+                                <input type="text" placeholder="1997-02-03" class="birthday"><br>
+                                <input type="text" placeholder="苏州" class="region"><br>
+                                <input type="text" placeholder="支付宝账号：70782687@qq.com" class="alipay"><br>
+                                <input type="file" name="pic" id="pic" accept="image/*" /><br>
+                                <div class="button">
+                                    <input type="submit" value="取 消" class="cancel">
+                                    <input type="submit" value="提 交" class="refer">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="right">
+                            <p>店铺头像</p>
+                            <div class="upload-head">
+                                <div class="upload-box">
+                                    <div class="upload">
+                                        <div class="across"></div>
+                                        <div class="vertical"></div>
+                                        <div class="photo">上传照片</div>
+                                    </div>
+                                    <div class="support">只支持.jpg 格式</div>
+                                </div>
+
+                                <div class="upload-end"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <section></section>
+                    <!-- <div class="button">
+                            <button>取 消</button>
+                            <button>提 交</button>
+                        </div> -->
+
+                </div>
+                <!-- 修改密码 -->
+                <div class="alter-password" style="display: none">
+                    <div class="tem-box">
+                        <div class="store">修改密码</div>
+                    </div>
+                    <div class="input">
+                        <form action="">
+                            <div class="phone">
+                                <select name="" id="">
+                                    <option value="">+86</option>
+                                    <option value="">+11</option>
+                                </select>
+                                <input type="text" placeholder="11 位⼿机号" class="cell"><br>
+                            </div>
+                            <div class="verify-code">
+                                <input type="text" placeholder="输⼊验证码" class="verify"><br>
+                                <div class="code">获取验证码</div>
+                            </div>
+                            <input type="text" placeholder="6 - 16 位密码，区分⼤⼩写" class="password"><br>
+                            <input type="text" placeholder="确认密码" class="confirm-password"><br>
+                            <input type="submit" value="提交" class="commit">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mask" style="display: none"></div>
+    <div class="coverage coverMy" style="display: none">
+        <div class="tem-box">
+            <div class="store">明细</div>
+        </div>
+        <div class="node_table">
+            <table>
+                <tr>
+                    <th>节点名</th>
+                    <th>节点IP</th>
+                    <th>节点类型</th>
+                    <th>工作时间</th>
+                    <th>完成任务数</th>
+                    <th>失败任务数</th>
+                    <th>时单价</th>
+                    <th>总收益</th>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+                <tr>
+                    <td>XXX节点</td>
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td>2018/08/02 17:35:25</td>
+                    <td>256</td>
+                    <td>2</td>
+                    <td>
+                        28元
+                    </td>
+                    <td>+100元</td>
+                </tr>
+
+            </table>
+
+
+    </div>
+    </div>
+    <div class="coverage coverList" style="display: none">
+        <div class="tem-box">
+            <div class="store">节点列表</div>
+        </div>
+        <div class="node_table">
+            <table>
+                <tr>
+
+                    <th>节点</th>
+                    <th>节点类型</th>
+
+                    <th>执行结果</th>
+                    <th>预期完成时间</th>
+                    <th>进度</th>
+
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="blue_dot"></span><span>成功</span></td>
+                    <td>5h</td>
+                   <td class="tab_cont_1">
+
+
+                       <div class="out_box">
+                           <div class="in_box"></div>
+                       </div>
+                           <span>90%</span>
+                   </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="red_dot"></span><span>重新招募</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="blue_dot"></span><span>成功</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="red_dot"></span><span>重新招募</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="blue_dot"></span><span>成功</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="red_dot"></span><span>重新招募</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="blue_dot"></span><span>成功</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>198.168.1.1:***</td>
+                    <td>google搜索</td>
+                    <td><span class="red_dot"></span><span>重新招募</span></td>
+                    <td>5h</td>
+                    <td class="tab_cont_1">
+
+
+                        <div class="out_box">
+                            <div class="in_box"></div>
+                        </div>
+                        <span>90%</span>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+</body>
+<script>
+    // 任务发布
+    $('#task').click(function () {
+        $(".task").siblings().css("display", "none");
+        $(".task").css("display", "block");
+        $('#task img:eq(0)').css("display", "none");
+        $('#task img:eq(1)').css("display", "block");
+        $('#task div').css("color", "#427CFF");
+        $('#task').siblings().children("img").hide();
+        $('#task').siblings().children(".now").show();
+        $('#task').siblings().children().css("color", "#000");
+    });
+      //    任务发表
+      $("#task_submit").click(function () {
+        $(this).hide();
+        $("#task_input").css("display", "none");
+        $(".task_field").css("display", "block");
+    });
+    $(".task_back").click(function () {
+        $("#task_submit").show();
+        $("#task_input").show();
+        $(".task_field").hide();
+    });
+
+    //节点
+    $(".node_price li span").click(function () {
+        var parent = $(this).parent();
+        var a = parent.children().eq(0).text();
+        var b = parent.children().eq(1).val();
+        var c = parent.children().eq(2).text();
+        parent.siblings().children().eq(1).val("");
+        if (!b) {
+            alert("请填数值!!");
+            return
+        }
+        var text = a + b + c;
+        parent.parent().parent().children("span").eq(0).text(text)
+    });
+    $(".node_price_sett").click(function () {
+        $(this).next("ul").toggle();
+        $(this).parent().parent().siblings().find("ul").hide();
+    })
+
+    // 任务列表
+    $('#task_list').click(function () {
+        $(".task_list").siblings().css("display", "none");
+        $(".task_list").css("display", "block");
+        $('#task_list img:eq(0)').css("display", "none");
+        $('#task_list img:eq(1)').css("display", "block");
+        $('#task_list div').css("color", "#427CFF");
+        $('#task_list').siblings().children("img").hide();
+        $('#task_list').siblings().children(".now").show();
+        $('#task_list').siblings().children().css("color", "#000");
+    });
+    $(function () {
+        $(".task_list .tab-item").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".task_list .main").eq($(this).index()).show().siblings().hide();
+        })
+    });
+
+    //蒙层
+    $(".mask").click(function () {
+       $(this).hide();
+       $(".coverage").hide();
+    });
+    //任务列表明细
+    $(".detail_but").click(function () {
+        $(".mask").show();
+        $(".coverList").show();
+    });
+    //我的接单明细
+
+    $(".my_detail").click(function () {
+        $(".mask").show();
+        $(".coverMy").show();
+    });
+    // 我的接单
+    $('#order').click(function () {
+        $(".order").siblings().css("display", "none");
+        $(".order").css("display", "block");
+        $('#order img:eq(0)').css("display", "none");
+        $('#order img:eq(1)').css("display", "block");
+        $('#order div').css("color", "#427CFF");
+        $('#order').siblings().children("img").hide();
+        $('#order').siblings().children(".now").show();
+        $('#order').siblings().children().css("color", "#000");
+    });
+    $(function () {
+        $(".order .tab-item").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".order .main").eq($(this).index()).show().siblings().hide();
+        })
+    })
+    // 修改密码 
+    $('#alter-password').click(function () {
+        $(".alter-password").siblings().css("display", "none");
+        $(".alter-password").css("display", "block");
+        $('#alter-password img:eq(0)').css("display", "none");
+        $('#alter-password img:eq(1)').css("display", "block");
+        $('#alter-password div').css("color", "#427CFF");
+        $('#alter-password').siblings().children("img").hide();
+        $('#alter-password').siblings().children(".now").show();
+        $('#alter-password').siblings().children().css("color", "#000");
+    });
+
+    // 个人资料
+    $('#personal').click(function () {
+        $(".personal").siblings().css("display", "none");
+        $(".personal").css("display", "block");
+        $('#personal img:eq(0)').css("display", "none");
+        $('#personal img:eq(1)').css("display", "block");
+        $('#personal div').css("color", "#427CFF");
+        $('#personal').siblings().children("img").hide();
+        $('#personal').siblings().children(".now").show();
+        $('#personal').siblings().children().css("color", "#000");
+    });
+    // 上传店铺照
+    var pic = document.getElementById("pic");
+    console.log(pic);
+    pic.onchange = function (e) {
+
+        var img = document.createElement("img")
+        //获取用户上传的文件对象
+        var theFile = pic.files[0];
+        //实例化一个文件读取器
+        var fileReader = new FileReader();
+        //将用户上传的文件对象作为参数，传入文件读取器的方法readAsDataURL
+        fileReader.readAsDataURL(theFile);
+        //文件读取器方法执行完毕后调用函数
+        fileReader.onload = function () {
+            //文件读取器的result属性即fileReader.result，就是上传文件的dataURL
+            img.src = fileReader.result;
+        };
+
+        var upload_end = document.getElementsByClassName("upload-end");
+        upload_end[0].innerHTML = "";
+        upload_end[0].appendChild(img);
+
+    }
+    // ****************************************************
+    $(".type").change(function () {
+        if ($(".type").val() == "always") {
+            $('.always').css("display", "block");
+            $('.annex').css("display", "none");
+        }
+        if ($(".type").val() == "annex") {
+            $('.annex').css("display", "block");
+            $('.always').css("display", "none");
+        }
+    })
+    // 8*8*****************************************************
+    $(".lump .span1 input.radio").on("change", function () {
+        if ($(this).val()) {
+            $(this).next().attr({ src: "./images/check-circle.svg" })
+            $(this).parent().siblings().find("img").attr({ src: "./images/check-circle-o.svg" })
+        } else {
+            $(this).next().attr({ src: "./images/check-circle-o.svg" })
+            $(this).parent().siblings().find("img").attr({ src: "./images/check-circle.svg" })
+        }
+    });
+
+</script>
+
+</html>

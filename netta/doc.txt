@@ -1,0 +1,196 @@
+1, 搜索结果页面，如果登录： 已经喜欢的显示红色标记， 不是喜欢的显示灰色标记
+                        撤销或者添加喜欢改变心形颜色和喜欢数量
+               如果未登录： 全部喜欢心形标记显示灰色
+                          想加入喜欢时，跳转登录页面
+
+
+
+
+
+qe: js文件能使用render_template 传过来的参数么，
+     如何获取重定向之前的url
+
+
+
+用户 评论 新闻 三者模型
+
+新闻 >>>> 评论
+    一对多
+
+用户 >>>> 评论   用户可以在对多个新闻发表评论，也可以在一个新闻发表多个评论，都属于一对多关系
+    一对多
+
+1， 回复  >>>> 评论
+2， 回复  >>>> 回复
+
+
+
+回复表：表结构 要添加点赞和举报
+
+-- 详细新闻页
+ 1， 当从新闻标题页面进行跳转的时候
+        a_,要发表评论的评论框
+            I, 登录状态发表评论  post_comment
+            II, 未登录状态发表评论： 在前端页面加入判断，检测到未登录，直接跳转到模态框
+
+        a, 新闻的详细内容
+        b, 新闻下面的评论内容
+        c, 评论下面的回复内容
+
+
+ 2, 当用户已经登录时，直接可以发表评论
+    如果未登录，可以查看评论， 点击发表评论时，跳转到登录页面
+
+ 3, 发表回复
+    1， 点击回复检查用户是否登录，未登录时候弹出模态框，使用户进行登录
+    2， 用户处于登录状态下，点击回复，出现文本框，输入内容，（判断被回复对象是回复还是评论）， 如果是回复就依据回复对象获取回复信息
+            I，点击评论下面的回复的时候，此时传过去的是comment_id, 发表回复之后ajax 动态加载到reply_list元素中
+            II, 主要判定点击的是评论的id还是回复的id,
+                    a, 如果是评论id 此时传过去的是评论id和评论内容，后台需要将回复存到数据库， 字段reply_type：comment, reply_id: comment_id
+                        回复的内容， 评论id 回复的id: "",
+
+
+ 4, 展示回复
+    1，在详情页下面只展示评论和评论下面的对该评论的回复条数
+           a,先将全部内容进行展示
+           b, 随后按逐条进行展示
+    2，点击“查看回复”时，展开回复内容
+
+
+5， 删除回复以及评论
+     I, 当登录的用户和回复的用户或者评论Id一致的时候，显示删除按钮，删除时只改变按钮的值，不执行前端操作
+     II, 用户删除一条评论时，评论下面的回复也要连带删除，
+     III, 当用户删除条回复时，回复下面的回复也要删除，先将后台关联数据删除，前端页面仅删除条目显示删除
+
+6， 点赞与取消点赞
+
+    I， 用户登录后，方可点赞
+    II， 当用户登录后，不能点赞自己发表的评论和回复
+    III, 一个用户对一个评论只能赞一次（需要设计一张评论和回复与用户对应的点赞表），表结构*（用户id、评论或者回复id、评论类型（comment, reply））
+
+
+7， 显示查看数、评论数、收藏数
+    查看数需要记录每次点击该条新闻的
+
+
+
+
+--- 个人信息页
+1， 我的喜欢页面：
+    I，点击喜欢按钮，可以撤销喜欢，或者添加喜欢
+2, 我的评论页面
+    I, 显示当前用户评论的新闻简介，时间、删除
+    II, 删除某一条评论，删除评论要获取新闻id（更新新闻表中的评论数）、评论id(删除该条评论) 注：此处不包括回复内容
+3,消息通知页面：
+    1， 消息通知类别
+           I,  公告：Announcement
+           II, 提醒：remind
+                a, 资源订阅提醒【我关注的资源有更新、评论等事件时通知我】
+                b, 资源发布提醒【我发布的资源有评论、收藏等事件时通知我】
+
+
+
+
+
+                c, 系统提醒【平台会根据一些算法、规则对等可能会对你的资源做一些事情，这时会你会收到系统通知】
+           III, 私信：Mailbox
+
+          当别的用户对其他用户评论的时候，或者回复的时候，将信息加入到数据库中，然后当用户刷新前端的时候，读取数据库的内容，然后将消息推送给用户
+
+
+
+    2，删除消息
+
+
+
+
+
+
+
+
+
+
+
+层次关系数据库的设计，下面的图书门类是一种典型的层次化关系
+
+从设计数据库的角度来看，让每条门类的parentID指向它的父门类即可
+注意把根门类All books 的parentID设置为NUll，一定要把根门类的情况考虑进去
+
+
+Computer books
+    Database
+        Object-oriented database
+        Relation database
+        SQL
+    Programming
+        Perl
+        Php
+Literature and fiction
+
+All books  根门类
+
+
+数据库结构：
+
+1	Computerbooks	11
+2	Database	1
+3	Programming	1
+4	Object-oriented database	2
+5	Relation database	2
+6	SQL	2
+8	Perl	3
+9	Php	3
+10	Literature and fiction	11
+11	All books
+
+层次化关系的遇到的难题：
+    I, 无法只用一条简单的SELECT查询就把某个给定门类的父门类或者子门类全都查出来，必须通过客户端程序执行多次查询才能构造出这些层次
+    或者也可以利用MySql提供的一些存储过程（stored procedure）来管理这种层次化关系。这些难题几乎都与sql语言不允许递归查询有关。
+        1，把属于某个门类的图书全部查询出来是一项相当复杂的任务
+        例如：SELECT * from chembridge WHERE parentID in (SELECT id from chembridge WHERE parentID in (SELECT id from chembridge WHERE id=1));
+        上述语句查询是id = 1下面的最深层次的门类，而且想要查到最深层次的门类，需向下多查询一条。
+        2，把完整的数据表还原成层次关系形式（树状结构）也是很困难，也是必须执行多个查询
+        3，不可能把一个子门类和多个父门类关联起来
+        例如：把SQL同时放在Programming和Database这两个父门类下是非常合理的，但是无法实现的
+        4，可能留下循环引用隐患，当数据录入错误，数据库系统就会陷入无限循环。
+
+    II, 从数据表创建层次关系树
+        可以在在向数据表中增加2个数据列 hierNr（层次关系树的第几行）, hierIndent(数据记录显示时候的缩进量)
+
+        生成树状结构: SELECT CONCAT(SPACE(HierIndent*4), categories) as category, HierNr, HierIndent FROM chembridge ORDER BY HierNr;
+
+        All books
+            Computerbooks
+                Database
+                    Object-oriented database
+                    Relation database
+                    SQL
+                Programming
+                    Perl
+                    Php
+            Literature and fiction
+
+        hierNr和HierIndent的值究竟是怎么来的？
+            例如：在computer books 的门类下面插入一个operating systems
+
+            （1）首先找到这条记录的上一个记录：
+            SELECT * FROM chembridge WHERE parentID=1 AND categories > "Operating Systems" ORDER BY categories LIMIT 1;
+            categories > "Operating Systems" 是依据首字母进行的比较
+            （2） 然后将所有的 大于>查询到的HierNr值都加上1
+            UPDATE chembridge SET HierNr = HierNr + 1;
+            对数据库进行的更新
+            （3）然后插入数据库
+            INSERT  INTO chembridge(.., .., .., ..,) VALUES("Operating Systems" 1, 7, 2);
+            前面是字段，后面是要插入的值
+
+
+
+
+
+
+
+
+
+
+
+

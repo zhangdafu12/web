@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 65 65">
+  <g id="组_19" data-name="组 19" transform="translate(-593 -223.28)">
+    <g id="Group_21" data-name="Group 21" transform="translate(593 223.28)">
+      <circle id="Oval_2" data-name="Oval 2" cx="32.5" cy="32.5" r="32.5" fill="#ffbf00"/>
+    </g>
+    <g id="Group_170" data-name="Group 170" transform="translate(613 245)">
+      <rect id="Rectangle_48_Copy" data-name="Rectangle 48 Copy" width="24" height="24" fill="none"/>
+      <g id="filter" transform="translate(3 2.25)">
+        <path id="Shape" d="M10.743,19.5a.843.843,0,0,1-.607-.257L7.2,16.2a.848.848,0,0,1-.237-.586V9.478L.567,3.307A1.938,1.938,0,0,1,1.94,0h14.1a1.937,1.937,0,0,1,1.369,3.309L11.587,9.438v9.216a.84.84,0,0,1-.527.782A.867.867,0,0,1,10.743,19.5ZM1.94,1.688a.25.25,0,0,0-.178.427L8.409,8.531a.848.848,0,0,1,.247.6v6.15L9.9,16.636V9.089a.839.839,0,0,1,.247-.6l6.07-6.377a.249.249,0,0,0-.175-.427Z" transform="translate(0.005 0.014)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+body {
+    background-color: #F8F8F8;
+}
+
+.card {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.15);
+}
+
+.full {
+    padding: 0;
+}
+
+.hr {
+    margin-top: 12px;
+!important;
+}
+
+.user-info {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.user-info .avatar {
+    padding-top: 30px;
+}
+
+.user-info .name {
+    margin-top: 30px;
+    font-size: 16px;
+    color: rgba(51, 51, 51, 1);
+}
+
+.user-info .detail {
+    margin-top: 7px;
+}
+
+.user-info .location {
+    font-size: 12px;
+    color: rgba(180, 180, 180, 1);
+}
+
+.user-info .read {
+    margin: 20px 0 30px;
+}
+
+.menu {
+    width: 80%;
+    margin: 20px auto 0;
+}
+
+.list-group-item {
+    border: none;
+    height: 25%;
+    line-height: 250%;
+}
+
+.list-group-item.activate {
+    border-left: red solid 2px;
+
+}
+.list-group-item > a{
+    color: black;
+    text-decoration:none
+}
+.list-group-item:hover{
+    border-left: red solid 2px;
+}

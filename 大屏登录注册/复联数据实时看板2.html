@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复联数据实时看板</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<style>
+    h1,
+    p {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #359CC6;
+    }
+
+    input {
+        padding: 0;
+    }
+
+    .container {
+        width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 120px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .container .text {
+        color: #C0C0C0;
+        font-size: 14px;
+    }
+
+    .container .content {
+        margin-top: 38px;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        font-family: PingFang SC;
+    }
+
+    .container .content .title {
+        font-weight: 600;
+        margin-bottom: 22px;
+    }
+
+    .container .content .left {
+        width: 380px;
+
+    }
+
+    .container .content .right {
+        width: 420px;
+    }
+
+    .container .content input {
+        text-indent: 12px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #E2E2E2;
+        font-size: 16px;
+        line-height: 40px;
+        margin-bottom: 24px;
+        outline: none;
+    }
+
+    .container input::-webkit-input-placeholder {
+        color: #E5E5E5;
+        font-size: 16px;
+    }
+
+    .container .content .name,
+    .container .content .describe {
+        width: 378px;
+    }
+
+    .container .content .price {
+        width: 300px;
+    }
+
+    .container .content .menu {
+        display: flex;
+        justify-content: space-between;
+        /* margin-top: 24px; */
+    }
+
+    .container .content .menu span {
+        border-radius: 4px;
+        border: solid 1px #d9d9d9;
+        font-size: 12px;
+        color: #B4B4B4;
+        padding: 3px 8px;
+    }
+
+    .container .content .add {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 6px 0px #d9d9d9;
+        margin: 0 auto;
+        margin-top: 27px;
+        position: relative;
+    }
+
+    .container .content .add .across {
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        top: calc(50% - 1px);
+        left: calc(50% - 9px);
+        background-color: #41bfe7;
+    }
+
+    .container .content .add .vertical {
+        position: absolute;
+        height: 18px;
+        width: 2px;
+        top: calc(50% - 9px);
+        left: calc(50% - 1px);
+        background-color: #41bfe7;
+    }
+
+    .content .right .box {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 24px;
+    }
+
+    .content .right .box .box-cont {
+        width: 378px;
+        height: 38px;
+        line-height: 38px;
+        border: 1px solid #87D3EB;
+        border-radius: 5px;
+
+        display: flex;
+        justify-content: flex-start;
+        background-color: #D1E9F1;
+    }
+
+    /* .content .right .box:last-child{
+        margin-bottom:10px;
+    } */
+    .content .right .visible {
+        height: 256px;
+        overflow: auto;
+    }
+
+    .content .right .visible::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .content .right .visible::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: #B5B5B5;
+    }
+
+    .content .right .box .box-cont p {
+        width: 80px;
+        color: #5CC6E8;
+    }
+
+    .content .right .box .box-cont p:first-child {
+        width: 95px;
+        margin-left: 12px;
+    }
+
+    .content .right .box img {
+        margin-left: 8px;
+    }
+
+    .container button {
+        width: 176px;
+        height: 40px;
+        border-radius: 5px;
+        border: 0;
+        background-color: #41bfe7;
+        margin-top: 44px;
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    .menu span.active {
+        background-color: #00adef;
+
+    }
+
+    .container .content .menu span.active {
+        color: #ffffff;
+    }
+</style>
+
+<body>
+<div class="container">
+    <h1>复联数据实时看板</h1>
+    <div class="text">是东半球最具影响⼒的数据实时看板</div>
+    <div class="content">
+        <div class="left">
+            <p class="title">添加菜品</p>
+            <input type="text" placeholder="菜品名称" class="name"><br>
+            <input type="text" placeholder="单价/元" class="price"><br>
+            <input type="text" placeholder="描述" class="describe"><br>
+            <div class="menu">
+                <span>川菜</span>
+                <span>粤菜</span>
+                <span>湘菜</span>
+                <span>鲁菜</span>
+                <span>淮扬菜</span>
+                <span>东北菜</span>
+                <span>其他</span>
+            </div>
+            <div class="add">
+                <div class="across"></div>
+                <div class="vertical"></div>
+            </div>
+        </div>
+        <div class="right">
+            <p class="title">已添加菜品</p>
+            <div class="visible">
+
+                <div class="box">
+                    <div class="box-cont">
+                        <p>宫保鸡丁</p>
+                        <p>￥39元</p>
+                        <p>川菜</p>
+                    </div>
+                    <img src="./images/删除.svg" alt="">
+                </div>
+                <div class="box">
+                    <div class="box-cont">
+                        <p>小炒肉</p>
+                        <p>￥35元</p>
+                        <p>川菜</p>
+                    </div>
+                    <img src="./images/删除.svg" alt="">
+                </div>
+                <div class="box">
+                    <div class="box-cont">
+                        <p>干锅虾</p>
+                        <p>￥48元</p>
+                        <p>东北菜</p>
+                    </div>
+                    <img src="./images/删除.svg" alt="">
+                </div>
+                <div class="box">
+                    <div class="box-cont">
+                        <p>铁板鱿鱼</p>
+                        <p>￥32元</p>
+                        <p>粤菜</p>
+                    </div>
+                    <img src="./images/删除.svg" alt="">
+                </div>
+                <div class="box">
+                    <div class="box-cont">
+                        <p>铁板鱿鱼</p>
+                        <p>￥32元</p>
+                        <p>粤菜</p>
+                    </div>
+                    <img src="./images/删除.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button>保存</button>
+</div>
+</body>
+<script>
+    $(function () {
+        var datas=[];
+
+        $(".menu span").click(function () {
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        });
+
+        $(".add").click(function () {
+            var name = $(".name").val();
+            var price = $(".price").val();
+            var description= $(".describe").val();
+            var less = $(".menu span.active").text();
+
+            console.log(less);
+            if (name && price && less) {
+                var box_cont;
+                console.log(name, price, less);
+                box_cont = "";
+                box_cont = '<div class="box">' +
+                    '<div class="box-cont">' +
+                    '<p>' + name + '</p>' +
+                    '<p>' + price + '</p>' +
+                    "<p>" + less + '</p>' +
+                    '<p style="display:none">' + description + '</p>' +
+                    '</div>' +
+                    '<img src="./images/删除.svg" alt="">' +
+                    ' </div>';
+                $(".visible").append(box_cont);
+                $(".visible .box img").click(function () {
+                    $(this).parent().remove()
+                });
+              // var data ="name"+":"+name+","+"price"+":"+price+","+"description"+":"+description+","+"class"+":"+less;
+
+
+
+
+            } else {
+                alert("菜名,价格,菜系,不能为空!")
+
+            }
+
+        });
+
+        $("button").click(function () {
+            var lists="";
+            var list="";
+
+             for (let i=0;i<$(".visible").children().children(".box-cont").length;++i){
+            $(".visible").children().children(".box-cont").eq(i).children();
+
+            for (let j=0;j<$(".visible").children().children(".box-cont").eq(i).children().length;++j){
+            $(".visible").children().children(".box-cont").eq(i).children().eq(j).text();
+                if (j<$(".visible").children().children(".box-cont").eq(i).children().length-1){
+                    list+=$(".visible").children().children(".box-cont").eq(i).children().eq(j).text()+","
+                } else {
+                    list+=$(".visible").children().children(".box-cont").eq(i).children().eq(j).text()
+                }
+    }
+                 lists+=list;
+
+                 list="";
+}
+            console.log(lists)
+            // $.post("test.php", { lists:lists});
+        });
+
+        $(".visible .box img").click(function () {
+            $(this).parent().remove()
+        });
+    })
+
+
+</script>
+</html>

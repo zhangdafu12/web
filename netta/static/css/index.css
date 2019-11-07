@@ -1,0 +1,239 @@
+.watch-icon{
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+    margin-right: 2px;
+}
+.comment-icon{
+    margin-left: 5px;
+    margin-right: 2px;
+    margin-top:-2px;
+}
+.like-icon{
+    margin-left: 5px;
+    margin-right: 2px;
+}
+.num-bar{
+    position: absolute;
+    bottom: 0px;
+    margin-left: 11px;
+    margin-bottom: 5px;
+    font-size:12px;
+    font-family:SourceHanSansCN-Regular;
+    font-weight:400;
+    color:rgba(173,173,173,1);
+}
+.item-title{
+    margin-left: 15px;
+    padding-top:17px;
+    font-size:16px;
+    font-family:SourceHanSansCN-Regular;
+    font-weight:400;
+    color:rgba(0,0,0,1);
+}
+.item-bottom{
+    position: relative;
+    width:23.1%;
+    height:310px;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(220,220,220,1);
+    box-shadow:0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+    margin-right: 2.6%;
+}
+.littlenews>img{
+    width:100%;
+    height:100%;
+}
+.hot-topic-block{
+    line-height:48px;
+    padding-top: 10px;
+    padding-left: 16px
+}
+.hot-topic{
+    font-size:16px;
+    font-family:SourceHanSansCN-Regular;
+    font-weight:400;
+    color:rgba(180,180,180,1);
+
+}
+
+
+.num-bar-2{
+    font-size:12px;
+    font-family:SourceHanSansCN-Regular;
+    font-weight:400;
+    color:rgba(173,173,173,1);
+    margin-left: 120px;
+    margin-top: -10px
+}
+.news-from{
+    width:56px;
+    height:21px;
+    border: 1px solid rgba(225,0,0,1);
+    font-size:12px;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    color:rgba(225,0,0,1);
+    line-height:21px;text-align: center;
+}
+.news-content{
+    width: 70%;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 5px;
+}
+
+.organization-news-right{
+    float: left;
+    width: 100%;
+    border-top: 2px solid red;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+.organization-news-right-head{
+    padding-bottom: 5px;
+}
+.news-title{
+    display: inline-block;
+    width: 60%;
+}
+.news-more{
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+}
+.news-logo{
+    background-image: url("../img/news.png");
+    width: 32px;
+    height: 18px;
+    float: left;
+    margin: 0 5px 0 0;
+}
+.video-logo {
+    background-image: url("../img/video.png");
+     width: 23px;
+    height: 17px;
+}
+.actual-time{
+    background-image: url("../img/shishi.png");
+     width: 24px;
+    height: 24px;
+}
+.news-title>span{
+    font-size:18px;
+    font-weight:500;
+}
+.news-pic{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+}
+.news-pic > img{
+    width:100%;
+    height:100%;
+}
+.news-content{
+    width: 70%;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 5px;
+}
+.news-content>span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.news-more >a{
+    color: black;
+    text-decoration: none;
+}
+.bigpic{
+    width:100%;
+    height:401px;
+    background-image: url("../img/5ca05dec88519.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+.bignews{
+    height:310px;
+    margin-right: 2.6%;
+    width:48.8%;
+}
+.bignews>a>img{
+    width:100%;
+    height:100%;
+}
+.titlewordbackground{
+    width:100%;
+    height:46px;
+    background:rgba(0,0,0,1);
+    opacity:0.63;
+    margin-top: -46px;
+
+}
+.titleword{
+    height:18px;
+    font-size:18px;
+    font-family:SourceHanSansCN-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    text-align: center;
+    position: relative;
+    bottom: 33px;
+}
+.littlenews{
+    width:100%;
+    height:180px;
+
+}
+.bottomleft{
+    width:60%;
+    height:auto;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+    margin-top: 15px;
+    float:left;
+    margin-bottom: 100px;
+
+}
+.buttomright{
+    float: left;
+    width: 35%;
+    margin-left: 5%
+}
+.video-item{
+    width:50%;
+    padding:10px;
+    float: left;
+}
+.video-pic{
+    width: 100%;
+    height: 85px;
+    background-image: url("../img/organization-demo.jpg") ;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+.video-pic > img{
+    width:100%;
+    height:100%;
+}
+.video-content{
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+
+}
+.video-content>span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}

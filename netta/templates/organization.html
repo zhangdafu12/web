@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% block content_block %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/btn.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/organization.css') }}">
+<div class="container">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked beauty-nav">
+            <li><a href="#">热点</a></li>
+            <li><a href="#">人物</a></li>
+            <li class="active"><a href="#">机构</a></li>
+            <li><a href="#">上海</a></li>
+            <li><a href="#">事件</a></li>
+
+        </ul>
+
+    </div>
+    <div class="col-md-10">
+        <div class="organization-info">
+            <div class="organization-info-left">
+                <div class="organization-pic">
+                    <img src="{{ url_for('static', filename=result_obj.img) }}">
+                </div>
+            </div>
+            <div class="organization-info-right">
+
+                    <div class="top-topic-left">
+                        <div class="topic-head">
+                            <h1 class="topic-title">{{ result_obj.name }}</h1>
+                            {% if result_obj.title %}
+                                <h2 class="topic-title">{{ result_obj.title }}</h2>
+                            {% endif %}
+
+                            <button class="btn beauty-btn subscribe">订阅该标签</button>
+                            <a class="share" href="#">
+                                <div class="share-icon"></div>
+                                <span class="share-word">分享</span>
+                            </a>
+                        </div>
+                        <div class="topic-content">
+                            {{ result_obj.content }}
+                        </div>
+                        <div class="topic-footer">
+                            <div class="label-icon"></div>
+                            <span class="label-content">{{ result_obj.label }}</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+
+        </div>
+        <div style="clear: both"></div>
+        <div class="organization-news-box">
+            <div class="organization-news-left">
+                <ul id="organization-info-tab" class="nav nav-tabs beauty-nav-tab">
+                    <li class="active">
+                        <a href="#source" data-toggle="tab">
+                            信息溯源
+                        </a>
+                    </li>
+                    <li><a href="#analysis" data-toggle="tab">全网分析</a></li>
+
+                </ul>
+                <div id="organization-info-content" class="tab-content">
+                    <div class="tab-pane fade in active" id="source">
+                        <div class="source-box">
+                            <span class="word-1" style="float: left;margin-left: 16px">事件追溯</span>
+                            <div class="full-page-icon"></div>
+                            <span class="word-1" style="float: right;margin-right: 8px">全屏查看</span>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="analysis">
+                        <div class="analysis-box">
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="organization-news-right">
+                <div class="organization-news-right-head">
+                    <div class="news-title"><div class="news-logo"></div><span>最近新闻</span></div>
+                    <div class="news-more"><a href="#"><span>查看更多</span></a></div>
+                </div>
+                <div class="news-list">
+                    <div class="news-item">
+                        <div class="news-pic">
+
+                        </div>
+                        <div class="news-content">
+                            <span>腾讯科技（深圳）有限公司成立于1998年11月，是目前中国最大的互联网综合服务提供商之一，也是中国服务用户最多的互联网企业之一。成立十年多以来，腾讯一直秉承一切以用户价值为依归的经营理念，始终处于稳健、高速发展的状态。2004年6月16日，腾讯公司在香港联交所主板公开上市（股票代号700）。</span>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-pic">
+
+                        </div>
+                        <div class="news-content">
+                            <span>腾讯科技（深圳）有限公司成立于1998年11月，是目前中国最大的互联网综合服务提供商之一，也是中国服务用户最多的互联网企业之一。成立十年多以来，腾讯一直秉承一切以用户价值为依归的经营理念，始终处于稳健、高速发展的状态。2004年6月16日，腾讯公司在香港联交所主板公开上市（股票代号700）。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="organization-detail">
+            <div class="detail-title">互联网现有信息</div>
+            <ul id="detail-tab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#business" data-toggle="tab">
+                        工商信息
+                    </a>
+                </li>
+                <li><a href="#danger" data-toggle="tab">信息风险</a></li>
+
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="business">
+                    <div class="business-table">
+                        <div class="business-info-item">
+                            <label>统一社会信用代码:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>组织机构代码:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>注册号:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>经营状态:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>公司类型:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>成立日期:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>法定代表人:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>营业期限:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>注册资本:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item">
+                            <label>发照日期:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item business-info-item-big">
+                            <label>登记机关:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div class="business-info-item business-info-item-big">
+                            <label>经营范围:</label>
+                            <span>aaaaa</span>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="danger">
+                    <p>aaaaa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

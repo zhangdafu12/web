@@ -1,0 +1,234 @@
+@import url(https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css);
+
+#container[data-v-f42ccd28], body[data-v-f42ccd28], html[data-v-f42ccd28] {
+    width: 100%;
+    height: 100vh
+}
+
+#container[data-v-f42ccd28] {
+    width: 100%
+}
+
+.body[data-v-f42ccd28] {
+    height: 100vh
+}
+
+.input-card[data-v-f42ccd28] {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    height: 300px
+}
+
+.radio[data-v-f42ccd28] {
+    margin: 3px 0
+}
+
+.download[data-v-f42ccd28] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    background-color: #e9ecef;
+    color: #495057;
+    text-align: center;
+    cursor: pointer
+}
+
+.download[data-v-f42ccd28]:active {
+    background-color: rgba(233, 236, 239, .6)
+}
+
+[data-v-5a20cd89] {
+    font-size: 14px
+}
+
+.body[data-v-5a20cd89] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%
+}
+
+.echarts[data-v-5a20cd89], .map[data-v-5a20cd89] {
+    width: 0;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.echarts[data-v-5a20cd89] {
+    background: url(../img/bg_bigdata.c130918a.png) no-repeat;
+    background-size: 100% 100%
+}
+
+#map[data-v-5a20cd89] {
+    width: 100%;
+    height: 100vh
+}
+
+.dialog[data-v-5a20cd89] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .3);
+    z-index: 999
+}
+
+.dialog-content[data-v-5a20cd89], .dialog[data-v-5a20cd89] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.dialog-content[data-v-5a20cd89] {
+    position: relative;
+    width: 600px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background: #17c1fb;
+    padding: 30px;
+    border-radius: 10px;
+    color: #fff
+}
+
+.dialog-title[data-v-5a20cd89] {
+    font-size: 24px;
+    margin-bottom: 15px
+}
+
+.dialog-close[data-v-5a20cd89] {
+    font-size: 26px;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    cursor: pointer
+}
+
+.dialog-img[data-v-5a20cd89] {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.dialog-img img[data-v-5a20cd89] {
+    width: 250px;
+    height: 350px
+}
+
+.dialog-bottom[data-v-5a20cd89] {
+    width: 100%;
+    margin-top: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.dialog-btn[data-v-5a20cd89] {
+    position: relative;
+    padding: 10px 20px;
+    background: #1c71fb;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer
+}
+
+.dialog-cancel[data-v-5a20cd89]:hover:before {
+    position: absolute;
+    left: -170px;
+    bottom: -90px;
+    content: url(../img/aojiao.10e74a00.gif)
+}
+
+.dialog-confirm[data-v-5a20cd89]:hover:before {
+    position: absolute;
+    right: -190px;
+    bottom: -90px;
+    content: url(../img/love.1cf20e29.jpg)
+}
+
+.tips[data-v-5a20cd89] {
+    position: fixed;
+    bottom: 30%;
+    left: 40%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+    background: rgba(0, 0, 0, .8);
+    z-index: 999
+}
+
+.github-corner:hover .octo-arm[data-v-5a20cd89] {
+    -webkit-animation: octocat-wave-data-v-5a20cd89 .56s ease-in-out;
+    animation: octocat-wave-data-v-5a20cd89 .56s ease-in-out
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm[data-v-5a20cd89] {
+        -webkit-animation: none;
+        animation: none
+    }
+
+    .github-corner .octo-arm[data-v-5a20cd89] {
+        -webkit-animation: octocat-wave-data-v-5a20cd89 .56s ease-in-out;
+        animation: octocat-wave-data-v-5a20cd89 .56s ease-in-out
+    }
+}
+
+@-webkit-keyframes octocat-wave-data-v-5a20cd89 {
+    0%, to {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+    20%, 60% {
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+}
+
+@keyframes octocat-wave-data-v-5a20cd89 {
+    0%, to {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+    20%, 60% {
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+}

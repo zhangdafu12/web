@@ -1,0 +1,839 @@
+{% extends 'base.html' %}
+
+
+{% block content_block %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/like.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/news-detail.css') }}">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/d3.v3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/create_image.js') }}"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <div class="left-box {% if recommand %}card{% endif %}">
+{% if recommand %}
+        <div class="title">新闻推荐</div>
+       {% for item in recommand %}
+            <div style="line-height:48px;    margin: 10px 0 10px 0;height: 48px">
+                <a href="{{ url_for(".news_detail", news_id=item[0]) }}">
+
+                {% if item[8] %}
+                <img class="recommand-img" src="{{ url_for('static', filename=item[8]) }}" />
+                {% endif %}
+
+                <div class="recommand-title">
+                    {{ item[1] }}
+                </div>
+                </a>
+            </div>
+            <div style="clear: both"></div>
+        {% endfor %}
+{% endif %}
+    </div>
+
+    <div class="mid-box">
+        <div style="overflow: hidden">
+            <div class="card comment">
+                <div class="news-detail-box">
+                    <div class="news-title">
+                        {{ news_obj.title }}
+                    </div>
+                    {% if  news_obj.news_time %}
+                    <span class="news-time">{{ news_obj.news_time }}</span>
+                    {% endif %}
+                    <div class="news-source"><span style="display: inline-block;line-height: 25px;height: 25px;vertical-align:top">来源：</span>{% if  news_obj.author %}{{ news_obj.author }}{% else %}<a href="{{ news_obj.url }}" class="url">{{ news_obj.url }}</a>{% endif %}</div>
+                    <a href="#">
+                        <div class="news-like"></div>
+                    </a>
+                    {% if  news_obj.watch_num and news_obj.comment_num and news_obj.like_num%}
+                    <div class="counter">
+                        <span class="icon-view"></span>
+                        <span class="number">{{ news_obj.watch_num }}</span>
+                        <span class="icon-comment"></span>
+                        <span class="number">{{ news_obj.comment_num }}</span>
+                        <span class="icon-favour-gray"></span>
+                        <span class="number">{{ news_obj.like_num }}</span>
+                    </div>
+                {% endif %}
+                    <div class="new-detail">
+                        <div class="box" id="box-1">
+                    <div class="ascend">事情追溯</div>
+                    <button onclick="requestFullScreen(document.getElementById('box-1'))" class="show full-btn">全屏显示</button>
+                    <button onclick="exitFull()" class="exit-btn hidden">退出全屏</button>
+                    <div class="one-cont" id="one-cont">
+                        <ul class="tabs">
+                            <li onclick="create_image()">全部</li>
+                            {% for peo in people_list %}
+                                <li onclick="create_image('{{ peo }}')">{{ peo }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div style="clear: both"></div>
+                        <div id="one">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box" id="box-2" style="overflow: hidden">
+                    <iframe src="/source_show/{{ id }}&relation1" style="width: 100%;height: 100%"></iframe>
+                    <button onclick="requestFullScreen(document.getElementById('box-2'))" class="show full-btn">全屏显示</button>
+                    <button onclick="exitFull()" class="exit-btn hidden">退出全屏</button>
+                </div>
+
+                <div class="box" id="box-3" style="overflow: hidden">
+                    <iframe src="/source_show/{{id }}&relation2" style="width: 100%;height: 100%"></iframe>
+                    <button onclick="requestFullScreen(document.getElementById('box-3'))" class="show full-btn">全屏显示</button>
+                    <button onclick="exitFull()" class="exit-btn hidden">退出全屏</button>
+                </div>
+                         <div class="box" style="height: 800px;">
+                   <iframe src="{{ news_obj.url }}" style="width: 100%;min-height: 800px;"></iframe>
+                </div>
+                        <p class="news-end">- THE END -</p>
+                        <div style="float: right">
+
+                            <div class="report-icon-big"></div>
+                            <span style="font-size:14px;
+font-family:SourceHanSansCN-Regular;
+font-weight:400;
+color:rgba(180,180,180,1);">举报</span>
+                            <div class="share-icon"></div>
+                            <span style="font-size:14px;
+font-family:SourceHanSansCN-Regular;
+font-weight:400;
+color:rgba(180,180,180,1);">分享</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{ super() }}
+                <div class="comment-head">
+                    <div class="logo"></div>
+                    <div class="comment-logo">评论</div>
+                    <div class="comment-num-block">
+                        <span class="comment-num">{{ comment_item|length }}</span>
+                        <span class="comment-num-1">条评论</span>
+                    </div>
+                </div>
+
+
+                <div class="comment-input-group">
+                    <div class="input-group comment-input">
+                        <input type="text" class="form-control" id="comment_form">
+                        <span class="input-group-btn">
+                        <button class="btn beauty-btn" type="button" id="edit_comment">发表评论</button>
+                    </span>
+                    </div>
+                </div>
+
+
+                <div class="comment-list">
+                    {% for item in comment_item %}
+                        <hr/>
+                        <input type="hidden" name="" class="hidden_id" value={{ item.comment.id }}>
+                        <div class="comment-item">
+                            <div class="comment-user-info">
+                                <img class="head-pic head-pic-small comment-head-pic"
+                                     src="{{ url_for('static', filename=item.comment_user.head_pic) }}">
+                                <span class="comment-user-name">{{ item.comment_user.nick_name }}</span>
+                                {% if item.comment_user.description %}
+                                    <span class="comment-user-intro">({{ item.comment_user.description }})</span>
+                                {% else %}
+                                    <span class="comment-user-intro"></span>
+                                {% endif %}
+                                <span class="comment-time">{{ moment(item.comment.timestamp).fromNow(refresh=True) }}</span>
+
+                            </div>
+                            <div class="comment-body">
+
+                                <div class="comment-content">{{ item.comment.body }}</div>
+
+                                <div class="comment-item-operate">
+                                    <div id="edit_reply">
+                                        <a href="javascript:void(0)" class="reply_btn"><span class="red-font">回复</span></a>
+
+
+                                        <!-- 正在写的内容 ######################################################-->
+                                        {% if user %}
+                                            {% if item.comment_user.user_id == user.user_id %}
+                                                <a href="javascript:void(0)" class="delete_btn"><span class="red-font">删除</span></a>
+                                            {% endif %}
+                                        {% endif %}
+
+
+                                        {% if item.reply_length != 0 %}
+                                            <span class="red-font read-reply">查看回复（{{ item.reply_length }}条回复）</span>
+                                            <div class="more-icon"></div>
+                                        {% endif %}
+
+                                    </div>
+
+
+                                    <div style="float: right">
+                                        <a href="javascript:void(0)" class="agree">
+                                            <div class="agree-icon"></div>
+                                        </a>
+                                        <span class="agree-num">{{ item.comment.agree_num }}</span>
+                                        <div class="report-icon"></div>
+                                    </div>
+                                </div>
+
+                                <div class="reply-list">
+                                    <!-- 用于标识是回复还是评论的隐藏标签 -->
+                                    <input type="hidden" name="" id="hidden_reply">
+
+                                    {% for reply in item.get("comment_reply_list") %}
+                                        <hr/>
+                                        <div class="reply-item">
+                                            <!-- 用于标识回复id的隐藏标签 -->
+                                            <input type="hidden" name="" id="rep_id" value={{ reply[2].id }}>
+                                            <div class="comment-user-info">
+                                                <img src="{{ url_for('static', filename=reply[0].head_pic) }}"
+                                                     class="head-pic head-pic-small comment-head-pic">
+                                                <span class="comment-user-name">{{ reply[0].nick_name }}</span>
+                                                {% if reply[0].description %}
+                                                    <span class="comment-user-intro">({{ reply[0].description }})</span>
+                                                {% else %}
+                                                    <span class="comment-user-intro"></span>
+                                                {% endif %}
+                                                <span class="red-font"><a href="javascript:;"
+                                                                          class="reply_btn">回复</a></span>
+
+
+                                                <span class="comment-user-name">{{ reply[1].nick_name }}</span>
+                                                {% if reply[1].description %}
+                                                    <span class="comment-user-intro">({{ reply[1].description }})</span>
+                                                {% else %}
+                                                    <span class="comment-user-intro"></span>
+                                                {% endif %}
+                                                <span class="comment-time">{{ moment(reply[2].timestamp).fromNow(refresh=True) }}</span>
+                                            </div>
+                                            <div class="comment-content reply-content">
+                                                {{ reply[2].body }}
+                                            </div>
+                                            <div class="comment-item-operate">
+                                                <div id="edit_reply">
+
+
+                                                    <a href="javascript:void(0)" class="reply_btn"><span
+                                                            class="red-font">回复</span></a>
+
+
+                                                    <!-- 删除回复 -->
+
+                                                    {% if user %}
+                                                        {% if reply[0].user_id == user.user_id %}
+                                                            <a href="javascript:void(0)" class="delete_btn"><span
+                                                                    class="red-font">删除</span></a>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                                <div style="float: right">
+                                                    <a href="javascript:void(0)" class="agree">
+                                                        <div class="agree-icon"></div>
+                                                    </a>
+                                                    <span class="agree-num">{{ reply[3] }}</span>
+                                                    <div class="report-icon"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if more_news %}
+                <div class="more_news">
+                    <div class="title title2">更多新闻</div>
+                </div>
+                <div class="news-box">
+                    {% for item in more_news %}
+                        <div style="line-height:48px;    margin: 10px 0 10px 0;height: 48px">
+                            <a href="{{ url_for(".news_detail", news_id=item[0]) }}">
+
+                            {% if item[8] %}
+                            <img class="recommand-img" src="{{ url_for('static', filename=item[8]) }}" />
+                            {% endif %}
+                            <div class="recommand-title">
+                                {{ item[1] }}
+                            </div>
+                            </a>
+                        </div>
+
+                        <div style="clear: both"></div>
+                        <hr/>
+                    {% endfor %}
+                </div>
+ {% endif %}
+            </div>
+            <div class="original-source card">
+{#                <div class="original-source-title">原始出处：央视新闻网</div>#}
+                <div class="originality">
+                    <div>原创度</div>
+                    <div id="originality-percent"
+                         style="font-size:30px;font-family:STLiti;font-weight:400;color:rgba(224,0,1,1);">90%
+                    </div>
+
+                </div>
+                <a href="#edit_comment"><button class="btn beauty-btn btn-comment">评论</button></a>
+            </div>
+        </div>
+    </div>
+    {% if detail %}
+    <div class="right-box card">
+        <div>
+            <iframe id="iframe" src="{{ url_for(".source", id= news_obj.news_id|safe ) }}" >
+
+            </iframe>
+            <button onclick="showFull();">
+                全屏
+            </button>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if  words%}
+    <div class="right-box card">
+        <div class="title">
+            相关关注
+        </div>
+        <div class="words-box">
+        {% for i in words %}
+            <div>{{ i }}</div>
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+
+
+{% block js %}
+    <script>
+    {#var relation1 = {{ relation|safe }};#}
+    {#var relation2 = {{ relation2|safe }};#}
+    {# create_img('image-1', relation1);#}
+    {# create_img('image-2',relation2 )#}
+    let bth = document.querySelectorAll('.full-btn');
+    let bth1 = document.querySelectorAll('.exit-btn');
+    function requestFullScreen(element) {
+        for (let index = 0; index < bth.length; index++) {
+            bth[index].classList.remove("show");
+            bth[index].classList.add("hidden");
+        }
+        for (let index = 0; index < bth1.length; index++) {
+            bth1[index].classList.add("show");
+            bth1[index].classList.remove("hidden");
+        }
+
+        element.style.backgroundColor = '#fff';
+        document.getElementById("one-cont").style.height = '100%';
+        // 判断各种浏览器，找到正确的方法
+        var requestMethod = element.requestFullScreen || //W3C
+            element.webkitRequestFullScreen || //Chrome等
+            element.mozRequestFullScreen || //FireFox
+            element.msRequestFullScreen; //IE11
+        if (requestMethod) {
+            requestMethod.call(element);
+        } else if (typeof window.ActiveXObject !== "undefined") {//for Internet Explorer
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+
+    }
+
+
+    function exitFull() {
+        document.getElementById("one-cont").style.height = '350px';
+        for (let index = 0; index < bth.length; index++) {
+            bth[index].classList.add("show");
+            bth[index].classList.remove("hidden");
+        }
+        for (let index1 = 0; index1 < bth1.length; index1++) {
+            bth1[index1].classList.remove("show");
+            bth1[index1].classList.add("hidden");
+        }
+        // 判断各种浏览器，找到正确的方法
+        var exitMethod = document.exitFullscreen || //W3C
+            document.mozCancelFullScreen || //Chrome等
+            document.webkitExitFullscreen || //FireFox
+            document.webkitExitFullscreen; //IE11
+        if (exitMethod) {
+            exitMethod.call(document);
+        } else if (typeof window.ActiveXObject !== "undefined") {//for Internet Explorer
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+    }
+
+
+    // var li = document.querySelectorAll('.tabs li');
+
+    // for (var k = 0; k < li.length; k++) {
+    //     console.log(li[k].innerText)
+    //     var li_index = li[k].innerText
+    //     li[k].onclick =  function(){create_image(li_index)}
+    // }
+
+
+
+
+
+
+    // $('.imgs:last-child').css('display','none');
+    {#console.log($('.imgs:last-child'));#}
+    var one = $("#one");
+    // var list1 = [['111', ['./static/images/1.png'],['aaa']],['555', ['./static/images/1.png'],[]], ['222', ['./static/images/1.png', "./static/images/1.png"],[]], ['333', ["./static/images/1.png","./static/images/1.png", "./static/images/1.png"],[]], ['4444', ["./static/images/1.png","./static/images/1.png", "./static/images/1.png", "./static/images/1.png"],[]]];
+    var list1 = {{ final_maj_event|safe }};
+     // var list =  [['【导语】',[URL,url]], '据香港媒体报道，随后陈冠希通过经纪公司回应', '“香港媒体现在过得很好，谢谢关心”，疑似低调默认', '陈冠希默认恋情新女友曝光系离婚超模', '陈冠希热吻认恋情，因为“艳照门”低调做人多年的陈冠希，最近出现的越来越频繁，除了即将出演内地著名导演娄烨新片《风中有朵雨做的云》，恋情动向也日趋明朗', '据香港媒体报导，陈冠希日前和一群朋友聚会，先是被拍到在路边放松地抽烟、抓裤档，接着又和一位白衣女子亲密打闹，霸气勾住对方的腰拉到身边，说话时还伸手拍女方屁股，公开打情骂俏', '聚会结束后，陈冠希把女子送回酒店，又在路边大方接吻，对于新恋情似乎毫不避讳，事后也向港媒默认', '“聚会现在好开心，多谢关心', '秦舒培是09春夏纽约时装周杀出的一匹黑马，从此成为海报网编编最为关注的中国超模之一', '她当时并未证实和陈冠希的绯闻，不过如今被拍到接吻亲密照，恋情终于坐实', '恋情秦舒培个人资料', '恋情中文名', '恋情秦舒培', '恋情英文名', '恋情ShuPeiQin',  '恋情狮子座', '恋情出生地', '恋情中国上海', '恋情现居地', '恋情美国纽约',  '恋情177cm', '恋情81cm',  '恋情87cm',  '恋情60cm', '恋情39EU', '恋情签约经纪公司', '恋情NEXT、华谊时尚(中国)', '恋情最欣赏的超模偶像', 'ChristyTurlington，希望可以和她一样优雅', '秦舒培是什么咖位的名模?和赵磊有什么纠葛?和陈冠希又是何时搭上的?现在开扒', '陈冠希又恋爱了，这次的对象是人妻名模秦舒培', '据港媒报道，陈冠希已经默认了这次的恋情', '而现年26岁的秦舒培4年前就嫁给了自己的老板赵磊，至于离没离婚，两人也是各执一词', '1234>末页余下全文共4页', '相关推荐陈冠希新女友秦舒培陈冠希新女友是谁秦舒培个人资料', '恋情1990年8月10日', '2009年底香奈儿(CHANEL)巴黎-上海高级手工坊大秀上，秦舒培第3位出场，受到“老佛爷”KarlLagerfeld垂青，更令她成为笑傲国际T台的中国超模新势力', '事实上，该名女子是25岁的大陆名模秦舒培，曾在纽约、巴黎等各大国际秀场走秀，2012年嫁给华谊兄弟总经理赵磊，但2015年被曝光一张坐陈冠希大腿的亲密照，传出已经跟老公离婚', '女方的身份随后也被证实，正是2015年因为“坐大腿”照而和陈冠希传过绯闻的25岁超模秦舒培', '两人被拍到在街头亲吻，陈冠希还轻拍女方臀部，2015年两人就被传出同游美国，还有坐大腿的亲密合照在网络流传，如今这桩绯闻再添铁证', '2016年5月30日，据台湾媒体报道，陈冠希和一群朋友外出聚餐时，与一名长发长腿的女性互动亲密，在大街上便毫不避讳地对其摸臀揽腰，甜蜜热吻']
+    var list = [];
+    create_image();
+    function deal_list(name) {
+        list = [];
+        {#console.log(name);#}
+        if(name){
+            for(let j = 0; j < list1.length; j++){
+                if(list1[j][2].includes(name)){
+                    list.push(list1[j])
+                }
+            }
+        }else{
+            list = list1
+        }
+    }
+
+    function create_image(name) {
+        {#console.log(name);#}
+        deal_list(name);
+        {#console.log(list);#}
+        // var one = $("#one");
+        one.empty();
+
+        for (let i = 0; i < list.length; i++) {
+            var listHtml='';
+            listHtml+="<div class='one1'>"+'<div class="div">' +
+                '<div class="div1">'+list[i][0]+'</div>' +
+                ' <canvas id="myCanvas' +i+
+                '" width="200" height="'+list[i][1].length*80 +'"></canvas>'+ '<div  class="div2">'
+            for (let j = 0; j < list[i][1].length; j++) {
+                listHtml+='<img src="'+list[i][1][j]+'" />'
+            }
+            listHtml+='</div></div></div>';
+            one.append(listHtml);
+            var imgLength=list[i][1].length;
+            var idCanvas="myCanvas"+i;
+            canvas(idCanvas,imgLength);
+
+        }
+    }
+
+    function canvas(id, length) {
+        var canvas = document.getElementById(id);
+        var context = canvas.getContext("2d");
+        if (length == 1) {
+            context.moveTo(0, 40);
+            context.lineTo(200, 40);
+        } else if (length == 2) {
+            context.moveTo(0, 80);
+            context.lineTo(200, 40);
+            context.moveTo(0, 80);
+            context.lineTo(200, 120);
+        } else if (length == 3) {
+            context.moveTo(0, 120);
+            context.lineTo(200, 60);
+            context.moveTo(0, 120);
+            context.lineTo(200, 120);
+            context.moveTo(0, 120);
+            context.lineTo(200, 200);
+        } else {
+            context.moveTo(0, 160);
+            context.lineTo(200, 40);
+            context.moveTo(0, 160);
+            context.lineTo(200, 120);
+            context.moveTo(0, 160);
+            context.lineTo(200, 200);
+            context.moveTo(0, 160);
+            context.lineTo(200, 280);
+        }
+        context.strokeStyle = "#000";
+        context.stroke();
+    };
+
+    </script>
+    <!-- 存放登录的user_id -->
+    <script>
+
+{#        {% if user %}#}
+{#            user_id = {{ user.user_id|safe }}#}
+{#                {% else %}#}
+{#                user_id = "";#}
+{#        {% endif %}#}
+
+{#    {% if news_obj %}#}
+{#            news_id = {{ news_obj.news_id|safe }}#}
+{#                {% else %}#}
+{#                news_id = "";#}
+{#        {% endif %}#}
+    </script>
+
+    <!-- 发表评论 -->
+    <script>
+        function showFull(){
+               var full=document.getElementById("iframe");
+               launchIntoFullscreen(full);
+            }
+
+function delFull() {
+                exitFullscreen();
+            }
+            function launchIntoFullscreen(element) {
+                if(element.requestFullscreen){
+                    element.requestFullscreen();
+                }
+                else if(element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                }
+                else if(element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                }
+                else if(element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+
+            function exitFullscreen() {
+                if(document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if(document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if(document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+
+
+        $(function () {
+            $("#edit_comment").click(function post_(e) {
+                var _this = this;
+                {#console.log(this);#}
+                {#console.log(_this);#}
+                if (!user_id) {
+                    $('#login-modal').modal('show');
+                }
+                else {
+                    var comment = $("#comment_form").val();
+
+                    if ($.trim(comment) === "") {
+                        alert("发表的内容为空,作为NaN返回，之后可以重写该方法是标签消失，获取焦点后，标签重新返回");
+                        return NaN
+                    }
+                    else {
+                        var formdata = new FormData;
+                        formdata.append("comment", comment);
+                        formdata.append("news_id", news_id);
+                        formdata.append("user_id", user_id);
+                        $.ajax({
+                            type: 'POST',
+                            url: "/post_comment",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                var comment_id = data.comment_id;
+                                var pmu_head_pic = "/static/" + data.pmu_head_pic;
+                                var comment_body = data.comment_body;
+                                var agree_num = data.agree_num;
+                                var description = data.description;
+                                var nickname = data.nickname;
+                                var time_ = data.timestamp;
+
+                                //补零函数，可以将小于0的时间刻度，加上0以符合要求
+                                function p(s) {
+                                    return s < 10 ? "0" + s : s;
+                                }
+
+                                var d = new Date(time_);
+                                var format_tiem = String(d.getFullYear()) + "-" + String(p(d.getMonth() + 1)) + "-" + String(p(d.getDate())) + "T" + String(p(d.getHours())) + ":" + String(p(d.getMinutes())) + ":" + String(p(d.getSeconds()));
+                                //时间格式: "2019-12-06T12:23:12"，这是moment.js的时间格式
+                                var timestamp = moment(format_tiem).fromNow();
+
+                                {#console.log(timestamp);#}
+                                var total_num = parseInt($(_this).parents(".comment-input-group").prev().find(".comment-num").html()) + parseInt(1);
+                                {#console.log($(_this).parents(".comment-input-group").prev().find(".comment-num"));#}
+                                {#console.log($(_this).parents(".comment-input-group").prev());#}
+                                {#console.log(total_num);#}
+                                $(_this).parents(".comment-input-group").prev().find(".comment-num").html(total_num);
+                                $(_this).parent().prev().val("");
+                                {#$(_this).parents(".comment-input-group").next().prepend('<hr/><input type="hidden" name="field_id" class="hidden_id" value='+ comment_id +'><div class="comment-item"><div class="comment-user-info"><img class="head-pic head-pic-small comment-head-pic" src='  + pmu_head_pic +  '><span class="comment-user-name">' + nickname +  '</span><span class="comment-user-intro">' + description + '</span><span class="comment-time">' + timestamp + '</span> </div><div class="comment-body"><div class="comment-content">' + comment_body + '</div><div class="comment-item-operate"><div id="edit_reply"><a href="javascript:void(0)" class="reply_btn"><span class="red-font">回复</span></a><span class="red-font read-reply">查看回复（1条回复）</span><div class="more-icon"></div></div><div style="float: right"><div class="agree-icon"></div> <span class="agree-num">' + agree_num + '</span><div class="report-icon"></div> </div></div></div></div>');#}
+                                $(_this).parents(".comment-input-group").next().prepend('<hr/><input type="hidden" name="field_id" class="hidden_id" value=' + comment_id + '><div class="comment-item"><div class="comment-user-info"><img class="head-pic head-pic-small comment-head-pic" src=' + pmu_head_pic + '><span class="comment-user-name">' + nickname + '</span><span class="comment-user-intro">' + description + '</span><span class="comment-time">' + timestamp + '</span> </div><div class="comment-body"><div class="comment-content">' + comment_body + '</div><div class="comment-item-operate"><div id="edit_reply"><a href="javascript:void(0)" class="reply_btn"><span class="red-font">回复</span></a><a href="javascript:void(0)" class="delete_btn"><span class="red-font">  删除</span></a></div><div style="float: right"><a href="javascript:void(0)" class="agree"><div class="agree-icon"></div></a><span class="agree-num">' + agree_num + '</span><div class="report-icon"></div> </div></div></div></div>');
+                                // 此处需不需要绑定回复的点击时间，有待商榷
+
+                            }
+                        });
+                    }
+                }
+
+            })
+        });
+    </script>
+
+    <!-- 添加回复 -->
+    <script>
+        $(function () {
+            //页面加载完毕后开始执行的事件
+            $(document).on("click", ".reply_btn", function () {
+                var val = $(this).children().html();
+                {#console.log(val);#}
+                if (!user_id) {
+                    $('#login-modal').modal('show');
+                }
+                else {
+                    if (val === "回复") {
+                        $(this).parent().append("<div class='reply_textarea'><textarea  placehoder='回复' name='' cols='60' rows='1'></textarea><br/><a href='javascript:void(0)' class='submit'><input rows='1' type='submit' value='发表' /></a></div>");
+                        $(".submit").on("click", submit_);
+                        $(this).children().html("取消回复");
+                    }
+                    else if (val === "取消回复") {
+                        {#console.log(this);#}
+                        $(this).siblings(".reply_textarea").remove();
+                        $(this).children().html("回复");
+                    }
+                }
+
+
+            });
+        });
+
+
+        //页面加载完毕后开始执行的事件
+        function submit_(e) {
+            var _this = this;
+            var to_nick_name = $(this).parents(".comment-body").prev().children(".comment-user-name").val();   // 被回复人的昵称，在可以在网页中获取
+            {#console.log(to_nick_name);#}
+
+            var val_ = $(this).siblings(":first").val();    // 回复内容
+            {#console.log($(this).siblings(":first"));#}
+            {#console.log(val_);#}
+            if (!val_) {
+                alert("输入内容不能为空");
+                return NaN
+            }
+            else {
+                var comment_id = $(this).parents(".comment-item").prev(".hidden_id").val();  // 回复的评论id
+
+
+                // 判断点击的是哪种类型的id: 1, comment_id 2, reply_id
+                var reply_list_label = $(this).parents(".reply-list").children("#hidden_reply");
+                {#console.log("+++++++++++++++++++++");#}
+                {#console.log(reply_list_label);#}
+
+                // 判断能否获取hidden_reply标签，如果能够获取，则是在回复下面点击的回复
+                if (reply_list_label.length === 0) {
+                    alert("+++++++++++++, 这是在评论下面的点击的回复");
+
+
+                    var formdata = new FormData();
+                    formdata.append("comment_id", comment_id);
+                    formdata.append("reply_body", val_);
+                    formdata.append("reply_id", "");
+                    formdata.append("user_id", user_id);
+                    formdata.append("news_id", news_id);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/post_reply",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        dataType: false,
+                        success: function (data) {
+                            {#console.log(data);#}
+                            var nick_name = data.nickname;
+                            var head_pic = "/static/" + data.head_pic;
+                            var decri = data.description;
+                            var to_decri = data.to_description;
+                            var to_nickname = data.to_nickname;
+                            var rep_id = data.id;
+                            {#alert("进入；；；；；；；；；；；");#}
+                            {#console.log($(_this).parents);#}
+
+                            $(_this).parents(".comment-item-operate").next().prepend('<hr/><div class="reply-item"><input type="hidden" name="" id="rep_id" value=' + rep_id + '><div class="comment-user-info"><img src=' + head_pic + ' class="head-pic head-pic-small comment-head-pic"><span class="comment-user-name">' + nick_name + '<span class="comment-user-intro">' + decri + '</span></span><span > 回复 </span><span class="comment-user-name">' + to_nickname + '<span class="comment-user-intro">' + to_decri + '</span></span></div><div class="comment-content reply-content">' + val_ + '</div><div class="comment-item-operate"><div id="edit_reply"><a href="javascript:void(0)" class="reply_btn"><span class="red-font">回复</span></a><a href="javascript:void(0)" class="delete_btn"><span class="red-font">  删除</span></a></div><div style="float: right"><a href="javascript:void(0)" class="agree"><div class="agree-icon"></div></a><span class="agree-num">0</span><div class="report-icon"></div></div></div></div>');
+
+                            {#console.log("--------------------------------");#}
+                            {#console.log($(_this));#}
+                            $(_this).parents(".reply_textarea").siblings(".reply_btn").find("span").html("回复");
+                            $(_this).parents(".reply_textarea").remove();
+                        }
+                    })
+                } else {
+                    // 回复下面回复的内容,传往后台的数据必须包含回复的是哪条内容的id
+                    alert("这是在回复的下面点击的回复+++++++++++++");
+                    var reply_id = $(_this).parents(".reply-item").children(":first").val();
+                    var reply_formdata = new FormData();
+                    reply_formdata.append("comment_id", comment_id);
+                    reply_formdata.append("reply_body", val_);
+                    reply_formdata.append("reply_id", reply_id);
+                    reply_formdata.append("user_id", user_id);
+                    reply_formdata.append("news_id", news_id);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/post_reply",
+                        data: reply_formdata,
+                        processData: false,
+                        contentType: false,
+                        dataType: false,
+                        success: function (data) {
+                            {#alert("+++++++++++++++++++++++++++++++");#}
+                            {#console.log(data);#}
+                            var nick_name = data.nickname;
+                            var head_pic = "/static/" + data.head_pic;
+                            var decri = data.description;
+                            var to_decri = data.to_description;
+                            var to_nickname = data.to_nickname;
+                            var rep_id = data.id;
+                            {#alert("进入；；；；；；；；；；；");#}
+                            {#console.log($(_this).parents);#}
+
+                            $(_this).parents(".reply-item").after('<hr/><div class="reply-item"><input type="hidden" name="" id="rep_id" value=' + rep_id + '><div class="comment-user-info"><img src=' + head_pic + ' class="head-pic head-pic-small comment-head-pic"><span class="comment-user-name">' + nick_name + '<span class="comment-user-intro">' + decri + '</span></span><span > 回复 </span><span class="comment-user-name">' + to_nickname + '<span class="comment-user-intro">' + to_decri + '</span></span></div><div class="comment-content reply-content">' + val_ + '</div><div class="comment-item-operate"><div id="edit_reply"><a href="javascript:void(0)" class="reply_btn"><span class="red-font">回复</span></a><a href="javascript:void(0)" class="delete_btn"><span class="red-font">  删除</span></a></div><div style="float: right"><a href="javascript:void(0)" class="agree"><div class="agree-icon"></div></a><span class="agree-num">0</span><div class="report-icon"></div></div></div></div>');
+
+                            {#console.log("--------------------------------");#}
+                            {#console.log($(_this));#}
+                            $(_this).parents(".reply_textarea").siblings(".reply_btn").find("span").html("回复");
+                            $(_this).parents(".reply_textarea").remove();
+                        }
+                    })
+                }
+
+
+            }
+        }
+    </script>
+
+    <!-- 删除回复和评论 -->
+    <script>
+        $(function () {
+            $(document).on("click", ".delete_btn", function (e) {
+                    var _this = this;
+                    $(this).prev().remove();
+
+
+                    // 判断点击的是哪种类型的id: 1, comment_id 2, reply_id
+                    var reply_list_label = $(this).parents(".reply-list").children("#hidden_reply");
+                    {#console.log(reply_list_label);#}
+
+                    //长度为0的时候，是评论的Id，否则是回复的Id
+                    if (reply_list_label.length === 0) {
+                        var delete_comment_id = $(this).parents(".comment-item").prev().val();
+                        var delete_type = "comment";
+                        var formdata = new FormData;
+                        formdata.append("delete_comment_id", delete_comment_id);
+                        formdata.append("delete_type", delete_type);
+                        formdata.append("news_id", news_id);
+                        $.ajax({
+                            type: 'POST',
+                            url: "/delete_comment",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            success: function () {
+                                $(_this).find("span").html("评论已删除");
+                            }
+                        })
+                    } else {
+
+                        var delete_reply_id = $(this).parents(".reply-item").children(":first").val();
+                        {#alert("+++++++++++++++++++++++++++++++++++++");#}
+                        {#console.log(delete_reply_id);#}
+                        var delete_type_ = "reply";
+                        var formdata_ = new FormData;
+                        formdata_.append("delete_reply_id", delete_reply_id);
+                        formdata_.append("delete_type", delete_type_);
+                        $.ajax({
+                            type: 'POST',
+                            url: "/delete_comment",
+                            data: formdata_,
+                            processData: false,
+                            contentType: false,
+                            success: function () {
+                                $(_this).find("span").html("回复已删除");
+                            }
+                        })
+
+                    }
+
+
+                }
+            )
+        })
+
+    </script>
+
+
+    <!-- 点赞 -->
+    <script>
+        $(function () {
+            $(document).on("click", ".agree", function () {
+                var this_ = this;
+                // 判断是回复还是评论点赞的
+                var reply_list_label = $(this).parents(".reply-list").children("#hidden_reply");
+                {#console.log(reply_list_label);#}
+                if (reply_list_label.length === 0) {
+                    var like_id = $(this).parents(".comment-item").prev().val();
+                    var like_form = new FormData;
+                    var like_type = "comment";
+                    like_form.append("like_id", like_id);
+                    like_form.append("like_type", like_type);
+                    like_form.append("news_id", news_id);
+                    {#console.log("_______________________________________________________________________________");#}
+                    {#console.log(like_form);#}
+                    $.ajax({
+                        type: 'POST',
+                        url: "/give_like",
+                        data: like_form,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            var num = data.agree;
+                            $(this_).next().html(num);
+                        }
+                    })
+                } else {
+                    var like_rep_id = $(this).parents(".reply-item").children(":first").val();
+                    {#console.log(like_rep_id);#}
+                    var like_rep_form = new FormData;
+                    var like_rep_type = "reply";
+                    like_rep_form.append("like_rep_id", like_rep_id);
+                    like_rep_form.append("like_rep_type", like_rep_type);
+                    like_rep_form.append("news_id", news_id);
+                    $.ajax({
+                        type: 'POST',
+                        url: "/give_like",
+                        data: like_rep_form,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            var num = data.agree;
+                            $(this_).next().html(num);
+                        }
+                    })
+
+
+                }
+
+
+            })
+        })
+
+    </script>
+
+
+{% endblock %}

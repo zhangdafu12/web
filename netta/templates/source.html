@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        .left{
+            {#float: left;#}
+            width: 100%;
+            height: 100%;
+            background: rgba(237,251,255,1);
+        }
+        .right{
+            float: left;
+            width: 18%;
+            height: 614px;
+            margin-left: 2%;
+        }
+    </style>
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="/static/js/create_image.js"></script>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden">
+
+<div class="left" id="divid">
+
+</div>
+{#        <div class="col-md-4 right">#}
+{#            {{ content }}#}
+{#        </div>#}
+</body>
+<script>
+    var data = {{relation|tojson}};
+    {#console.log(data);#}
+    create_img('divid', data);
+</script>
+</html>

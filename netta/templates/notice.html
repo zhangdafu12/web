@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% block content_block %}
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/btn.css">
+    <link rel="stylesheet" href="../static/css/icons.css">
+    <link rel="stylesheet" href="../static/css/notice.css">
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <!-- 用户信息 -->
+                <div class="card user-info">
+                    <div class="avatar">
+                        <img src="{{ url_for('static', filename= user.get("head_pic") if user.get("head_pic") else "head_pic/default.jpg") }}"
+                             height="80px" width="80px" class="img-circle center-block">
+                    </div>
+                    <div class="name text-center">
+                        {{ user.get("nick_name") }}
+                    </div>
+                    <div class="detail text-center">
+                        <span class="location">{{ user.get("province") if user.get("province") else "" }} {{ user.get("city") if user.get("city") else "" }} {{ user.get("country") if user.get("country") else "" }}</span>
+                        {% if user.get("sex") == "male" %}
+                            <div class="icon-male"></div>  <!--<div class="icon-female"></div>-->
+                        {% elif user.get("sex") == "female" %}
+                            <div class="icon-female"></div>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="read">
+                        <button class="btn beauty-btn center-block" onclick="javascrtpt:window.location.href='/'">开始阅读
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 菜单 -->
+                <div class="card menu">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="/manage/favourite">我的喜欢</a></li>
+                        <li class="list-group-item"><a href="/manage/comment">我的评论</a></li>
+                        <li class="list-group-item activate"><a href="/manage/notice">消息通知</a></li>
+                        <li class="list-group-item"><a href="/manage/information">账号信息</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9 card">
+                <!-- 通知列表 -->
+                <div class="notice-list">
+                    <div class="row">
+                        <div class="col-xs-8"><h1>消息通知</h1></div>
+                        <div class="col-xs-4 operates">
+                            <a class="operate" href="javascript:void(0)" id="all_read">全部标记已读</a>
+                            <span></span>
+                            <a class="operate" href="javascript:void(0)" id="all_delete">全部删除</a>
+                        </div>
+                    </div>
+                    <hr class="hr">  <!-- 仅标题下的水平线需要class="hr" -->
+                    {% for notice in notices %}
+                        {% if notice.kind =='comment' %}
+                            <!-- 回复通知 -->
+                            <div class="notice">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-12 message">
+                                        用户<span class="user-name">{{ notice.from_user_name }}</span>回复了你的评论 <a
+                                            class="btn-detail"
+                                            href="{{ url_for(".news_detail", news_id=notice.news_id) }}">点击查看</a>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6 time">
+                                        {{ notice.time }}
+                                    </div>
+                                    <div class="col-md-3 col-xs-6 operates">
+                                        <a class="operate read" href="#">标记已读</a>
+                                        <span></span>
+                                        <a class="operate delete" href="#">删除</a>
+                                    </div>
+                                </div>
+                                <a href="{{ url_for(".news_detail", news_id=notice.news_id) }}">
+                                    <div class="comment">{{ notice.content }}</div>
+                                </a>
+                            </div><!-- 回复通知 -->
+                        {% elif notice.kind =='like' %}
+                            <!-- 点赞通知 -->
+                            <div class="notice notice-delete">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-12 message">
+                                        用户<span class="user-name">{{ notice.user2_name }}</span>点赞了你的评论 <a
+                                            class="btn-detail" href="{{ notice.news_url }}">点击查看</a>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6 time">
+                                        {{ notice.time }}
+                                    </div>
+                                    <div class="col-md-3 col-xs-6 operates">
+                                        <a class="operate read" href="#">标记已读</a>
+                                        <span></span>
+                                        <a class="operate delete" href="#">删除</a>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    {{ notice.content }}
+                                </div>
+                            </div><!-- 点赞通知 -->
+                        {% elif notice.kind =='illegal' %}
+                            <!-- 删除通知 -->
+                            <div class="notice notice-delete">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-12 message">
+                                        您的评论涉嫌违规已被管理员删除
+                                    </div>
+                                    <div class="col-md-4 col-xs-6 time">
+                                        {{ notice.time }}
+                                    </div>
+                                    <div class="col-md-3 col-xs-6 operates">
+                                        <a class="operate read" href="#" >标记已读</a>
+                                        <span></span>
+                                        <a class="operate delete" href="#">删除</a>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    {{ notice.content }}
+                                </div>
+                            </div><!-- 删除通知 -->
+                        {% endif %}
+                    {% endfor %}
+
+
+                </div><!-- 通知列表 -->
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        $(function () {
+            $(document).on("click", "#all_delete", function () {
+                var this_ = this;
+                var formdata = new FormData();
+                formdata.append("formdata", "all_delete");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/manage/notice",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    dataType: false,
+                    success: function () {
+                        $(this_).parents(".row").next().nextAll().remove();
+                        $(this_).html("已删除");
+                    }
+                })
+            })
+        });   // 推送消息全部删除
+        $(function () {
+            $(document).on("click", "#all_read", function () {
+                var this_ = this;
+                var formdata = new FormData();
+                formdata.append("formdata", "all_read");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/manage/notice",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    dataType: false,
+                    success: function () {
+                        {#console.log($(this_).parents(".notice-list").children("hr").nextAll("div").children(".row").find(".operate.read"));#}
+                        $(this_).parents(".notice-list").children("hr").nextAll("div").find(".operate.read").html("已读");
+                        $(this_).html("全部已读");
+                    }
+                })
+            })
+        })    // 推送消息全部设为已读
+
+    </script>
+
+
+{% endblock %}

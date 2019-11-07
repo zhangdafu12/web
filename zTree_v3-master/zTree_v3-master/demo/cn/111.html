@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE> ZTREE DEMO - beforeEditName / beforeRemove / onRemove / beforeRename / onRename</TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../css/demo.css" type="text/css">
+    <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.exhide.js"></script>
+    <script type="text/javascript" src="../js/fuzzysearch.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.exedit.js"></script>
+
+    <SCRIPT type="text/javascript">
+        <!--
+        var setting = {
+
+            view: {
+                addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            edit: {
+                enable: true,
+                editNameSelectAll: true,
+                showRemoveBtn: showRemoveBtn,
+                showRenameBtn: showRenameBtn
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeDrag: beforeDrag,
+                beforeEditName: beforeEditName,
+                beforeRemove: beforeRemove,
+                beforeRename: beforeRename,
+                onRemove: onRemove,
+                onRename: onRename
+            }
+        };
+
+        var zNodes =[{'id': 1, 'pId': 0, 'name': '中华人民共和国财政部 1', 'open': true}, {'id': 11, 'pId': 1, 'name': '主题分类 1-1'}, {'id': 111, 'pId': 11, 'name': '机构设置 1-11-1'}, {'id': 112, 'pId': 11, 'name': '法规规划 1-11-2'}, {'id': 113, 'pId': 11, 'name': '行政审批 1-11-3'}, {'id': 114, 'pId': 11, 'name': '财政数据 1-11-4'}, {'id': 115, 'pId': 11, 'name': '业务流程 1-11-5'}, {'id': 116, 'pId': 11, 'name': '人事管理 1-11-6'}, {'id': 117, 'pId': 11, 'name': '政府采购 1-11-7'}, {'id': 118, 'pId': 11, 'name': '其他信息 1-11-8'}, {'id': 12, 'pId': 1, 'name': '体裁分类 1-2'}, {'id': 121, 'pId': 12, 'name': '命令 1-12-1'}, {'id': 122, 'pId': 12, 'name': '公告 1-12-2'}, {'id': 123, 'pId': 12, 'name': '通知 1-12-3'}, {'id': 124, 'pId': 12, 'name': '报告 1-12-4'}, {'id': 125, 'pId': 12, 'name': '批复 1-12-5'}, {'id': 126, 'pId': 12, 'name': '意见 1-12-6'}, {'id': 127, 'pId': 12, 'name': '函 1-12-7'}, {'id': 128, 'pId': 12, 'name': '公示 1-12-8'}, {'id': 129, 'pId': 12, 'name': '其他 1-12-9'}, {'id': 13, 'pId': 1, 'name': '机构分类 1-3'}, {'id': 131, 'pId': 13, 'name': '办公厅 1-13-1'}, {'id': 132, 'pId': 13, 'name': '政策研究室 1-13-2'}, {'id': 133, 'pId': 13, 'name': '综合司 1-13-3'}, {'id': 134, 'pId': 13, 'name': '条法司 1-13-4'}, {'id': 135, 'pId': 13, 'name': '税政司 1-13-5'}, {'id': 136, 'pId': 13, 'name': '关税司 1-13-6'}, {'id': 137, 'pId': 13, 'name': '预算司 1-13-7'}, {'id': 138, 'pId': 13, 'name': '国库司 1-13-8'}, {'id': 139, 'pId': 13, 'name': '国防司 1-13-9'}, {'id': 140, 'pId': 13, 'name': '行政政法司 1-13-10'}, {'id': 141, 'pId': 13, 'name': '科教司 1-13-11'}, {'id': 142, 'pId': 13, 'name': '文化司 1-13-12'}, {'id': 143, 'pId': 13, 'name': '经济建设司 1-13-13'}, {'id': 144, 'pId': 13, 'name': '农业司 1-13-14'}, {'id': 145, 'pId': 13, 'name': '社会保障司 1-13-15'}, {'id': 146, 'pId': 13, 'name': '资产管理司 1-13-16'}, {'id': 147, 'pId': 13, 'name': '金融司 1-13-17'}, {'id': 148, 'pId': 13, 'name': '国际经济关系司 1-13-18'}, {'id': 149, 'pId': 13, 'name': '国际财金合作司 1-13-19'}, {'id': 150, 'pId': 13, 'name': '会计司 1-13-20'}, {'id': 151, 'pId': 13, 'name': '监督检查局 1-13-21'}, {'id': 152, 'pId': 13, 'name': '国家农业综合开发办公室 1-13-22'}, {'id': 153, 'pId': 13, 'name': '人事教育司 1-13-23'}, {'id': 154, 'pId': 13, 'name': '机关党委 1-13-24'}, {'id': 155, 'pId': 13, 'name': '离退休干部局 1-13-25'}, {'id': 156, 'pId': 13, 'name': '财政部巡视工作领导小组办公室 1-13-26'}, {'id': 157, 'pId': 13, 'name': '中央纪委驻财政部办公室 1-13-27'}, {'id': 2, 'pId': 0, 'name': '黑龙江省政府信息公开 2', 'open': true}, {'id': 21, 'pId': 2, 'name': '政府文件 2-1'}, {'id': 211, 'pId': 21, 'name': '省政府文件 2-21-1'}, {'id': 212, 'pId': 21, 'name': '省政府办公厅文件 2-21-2'}, {'id': 213, 'pId': 21, 'name': '省直部门文件 2-21-3'}, {'id': 22, 'pId': 2, 'name': '主题分类 2-2'}, {'id': 221, 'pId': 22, 'name': '科技、教育 2-22-1'}, {'id': 222, 'pId': 22, 'name': '综合政务 2-22-2'}, {'id': 223, 'pId': 22, 'name': '国民经济管理、国有资产监管 2-22-3'}, {'id': 224, 'pId': 22, 'name': '财政、金融、审计 2-22-4'}, {'id': 225, 'pId': 22, 'name': '国土资源、能源 2-22-5'}, {'id': 226, 'pId': 22, 'name': '农业、林业、水利 2-22-6'}, {'id': 227, 'pId': 22, 'name': '工业、交通 2-22-7'}, {'id': 228, 'pId': 22, 'name': '商贸、海关、旅游 2-22-8'}, {'id': 229, 'pId': 22, 'name': '市场监管、安全生产监管 2-22-9'}, {'id': 230, 'pId': 22, 'name': '城乡建设、环境保护 2-22-10'}, {'id': 231, 'pId': 22, 'name': '文化、广电、新闻出版 2-22-11'}, {'id': 232, 'pId': 22, 'name': '卫生、体育 2-22-12'}, {'id': 233, 'pId': 22, 'name': '人口与计划生育、妇女儿童工作 2-22-13'}, {'id': 234, 'pId': 22, 'name': '劳动、人事、监察 2-22-14'}, {'id': 235, 'pId': 22, 'name': '公安、安全、司法 2-22-15'}, {'id': 236, 'pId': 22, 'name': '民政、扶贫 2-22-16'}, {'id': 237, 'pId': 22, 'name': '民族、宗教 2-22-17'}, {'id': 238, 'pId': 22, 'name': '对外事务 2-22-18'}, {'id': 239, 'pId': 22, 'name': '港澳台侨工作 2-22-19'}, {'id': 240, 'pId': 22, 'name': '国防 2-22-20'}, {'id': 241, 'pId': 22, 'name': '其他 2-22-21'}, {'id': 23, 'pId': 2, 'name': '省直单位分类 2-3'}, {'id': 231, 'pId': 23, 'name': '省政府办公厅 2-23-1'}, {'id': 232, 'pId': 23, 'name': '省发展和改革委员会 2-23-2'}, {'id': 233, 'pId': 23, 'name': '省工业和信息化委员会 2-23-3'}, {'id': 234, 'pId': 23, 'name': '省教育厅 2-23-4'}, {'id': 235, 'pId': 23, 'name': '省科技厅 2-23-5'}, {'id': 236, 'pId': 23, 'name': '省民族事务委员会 2-23-6'}, {'id': 237, 'pId': 23, 'name': '省公安厅 2-23-7'}, {'id': 238, 'pId': 23, 'name': '省外事办公室 2-23-8'}, {'id': 239, 'pId': 23, 'name': '省民政厅 2-23-9'}, {'id': 240, 'pId': 23, 'name': '省司法厅 2-23-10'}, {'id': 241, 'pId': 23, 'name': '省财政厅 2-23-11'}, {'id': 242, 'pId': 23, 'name': '省人力资源和社会保障厅 2-23-12'}, {'id': 243, 'pId': 23, 'name': '省国土资源厅 2-23-13'}, {'id': 244, 'pId': 23, 'name': '省环境保护厅 2-23-14'}, {'id': 245, 'pId': 23, 'name': '省住房和城乡建设厅 2-23-15'}, {'id': 246, 'pId': 23, 'name': '省交通运输厅 2-23-16'}, {'id': 247, 'pId': 23, 'name': '省农业委员会 2-23-17'}, {'id': 248, 'pId': 23, 'name': '省水利厅 2-23-18'}, {'id': 249, 'pId': 23, 'name': '省林业厅 2-23-19'}, {'id': 250, 'pId': 23, 'name': '省商务厅 2-23-20'}, {'id': 251, 'pId': 23, 'name': '省文化厅 2-23-21'}, {'id': 252, 'pId': 23, 'name': '省卫生和计划生育委员会 2-23-22'}, {'id': 253, 'pId': 23, 'name': '省审计厅 2-23-23'}, {'id': 254, 'pId': 23, 'name': '省旅游发展委员会 2-23-24'}, {'id': 255, 'pId': 23, 'name': '省国有资产监督管理委员会 2-23-25'}, {'id': 256, 'pId': 23, 'name': '省税务局 2-23-26'}, {'id': 257, 'pId': 23, 'name': '省新闻出版广电局 2-23-27'}, {'id': 258, 'pId': 23, 'name': '省体育局 2-23-28'}, {'id': 259, 'pId': 23, 'name': '省统计局 2-23-29'}, {'id': 260, 'pId': 23, 'name': '省工商行政管理局 2-23-30'}, {'id': 261, 'pId': 23, 'name': '省质量技术监督局 2-23-31'}, {'id': 262, 'pId': 23, 'name': '省机关事务管理局 2-23-32'}, {'id': 263, 'pId': 23, 'name': '省粮食局 2-23-33'}, {'id': 264, 'pId': 23, 'name': '省法制办公室 2-23-34'}, {'id': 265, 'pId': 23, 'name': '省政府研究室 2-23-35'}, {'id': 266, 'pId': 23, 'name': '省安全生产监督管理局 2-23-36'}, {'id': 267, 'pId': 23, 'name': '省食品药品监督管理局 2-23-37'}, {'id': 268, 'pId': 23, 'name': '省畜牧兽医局 2-23-38'}, {'id': 269, 'pId': 23, 'name': '省人民防空办公室 2-23-39'}, {'id': 270, 'pId': 23, 'name': '省农垦总局 2-23-40'}, {'id': 271, 'pId': 23, 'name': '省物价局 2-23-41'}, {'id': 272, 'pId': 23, 'name': '省监狱管理局 2-23-42'}, {'id': 273, 'pId': 23, 'name': '省煤炭生产安全管理局 2-23-43'}, {'id': 274, 'pId': 23, 'name': '省知识产权局 2-23-44'}, {'id': 275, 'pId': 23, 'name': '省金融办公室 2-23-45'}, {'id': 276, 'pId': 23, 'name': '省森工总局 2-23-46'}, {'id': 277, 'pId': 23, 'name': '省供销社 2-23-47'}, {'id': 278, 'pId': 23, 'name': '省扶贫开发办公室 2-23-48'}, {'id': 279, 'pId': 23, 'name': '省信访局 2-23-49'}, {'id': 280, 'pId': 23, 'name': '省接待办公室 2-23-50'}, {'id': 281, 'pId': 23, 'name': '省退役军人事务厅 2-23-51'}, {'id': 24, 'pId': 2, 'name': '体裁分类 2-4'}, {'id': 241, 'pId': 24, 'name': '机构职能 2-24-1'}, {'id': 242, 'pId': 24, 'name': '行政权力 2-24-2'}, {'id': 2411, 'pId': 242, 'name': '行政许可 非行政许可审批 行政确认 2-24-242-1'}, {'id': 2412, 'pId': 242, 'name': '行政处罚 2-24-242-2'}, {'id': 2413, 'pId': 242, 'name': '行政强制 2-24-242-3'}, {'id': 2414, 'pId': 242, 'name': '行政征收征用 2-24-242-4'}, {'id': 2415, 'pId': 242, 'name': '行政裁决 2-24-242-5'}, {'id': 2416, 'pId': 242, 'name': '行政奖励 行政给付 2-24-242-6'}, {'id': 2417, 'pId': 242, 'name': '其他行政权力 2-24-242-7'}, {'id': 243, 'pId': 24, 'name': '法律法规 2-24-3'}, {'id': 244, 'pId': 24, 'name': '部门文件 2-24-4'}, {'id': 245, 'pId': 24, 'name': '重点工作 2-24-5'}, {'id': 246, 'pId': 24, 'name': '其他信息 2-24-6'}, {'id': 3, 'pId': 0, 'name': '贵州政务服务网 3', 'open': true}, {'id': 31, 'pId': 3, 'name': '按主题 3-1'}, {'id': 311, 'pId': 31, 'name': '教育 3-31-1'}, {'id': 312, 'pId': 31, 'name': '文化体育 3-31-2'}, {'id': 313, 'pId': 31, 'name': '兵役 3-31-3'}, {'id': 314, 'pId': 31, 'name': '纳税 3-31-4'}, {'id': 315, 'pId': 31, 'name': '社保 3-31-5'}, {'id': 316, 'pId': 31, 'name': '交通 3-31-6'}, {'id': 317, 'pId': 31, 'name': '其他 3-31-7'}, {'id': 318, 'pId': 31, 'name': '知识产权 3-31-8'}, {'id': 319, 'pId': 31, 'name': '户籍 3-31-9'}, {'id': 320, 'pId': 31, 'name': '社会救助 3-31-10'}, {'id': 321, 'pId': 31, 'name': '生育收养 3-31-11'}, {'id': 322, 'pId': 31, 'name': '就业 3-31-12'}, {'id': 323, 'pId': 31, 'name': '住房 3-31-13'}, {'id': 324, 'pId': 31, 'name': '职业资格 3-31-14'}, {'id': 325, 'pId': 31, 'name': '医疗 3-31-15'}, {'id': 326, 'pId': 31, 'name': '民族宗教 3-31-16'}, {'id': 327, 'pId': 31, 'name': '消费维权 3-31-17'}, {'id': 328, 'pId': 31, 'name': '死亡殡葬 3-31-18'}, {'id': 329, 'pId': 31, 'name': '婚姻 3-31-19'}, {'id': 330, 'pId': 31, 'name': '出入境 3-31-20'}, {'id': 331, 'pId': 31, 'name': '司法行政 3-31-21'}, {'id': 4, 'pId': 0, 'name': '七台河 4', 'open': true}, {'id': 41, 'pId': 4, 'name': '部门信息公开目录 4-1'}, {'id': 411, 'pId': 41, 'name': '市政府工作部门 4-41-1'}, {'id': 4101, 'pId': 411, 'name': '市政府办公室 4-41-411-1'}, {'id': 4102, 'pId': 411, 'name': '市发展和改革委员会 4-41-411-2'}, {'id': 4103, 'pId': 411, 'name': '市工业和信息化局 4-41-411-3'}, {'id': 4104, 'pId': 411, 'name': '市教育局 4-41-411-4'}, {'id': 4105, 'pId': 411, 'name': '市科学技术局 4-41-411-5'}, {'id': 4106, 'pId': 411, 'name': '市公安局 4-41-411-6'}, {'id': 4107, 'pId': 411, 'name': '市民政局 4-41-411-7'}, {'id': 4108, 'pId': 411, 'name': '市司法局 4-41-411-8'}, {'id': 4109, 'pId': 411, 'name': '市财政局 4-41-411-9'}, {'id': 4110, 'pId': 411, 'name': '市人力资源和社会保障局 4-41-411-10'}, {'id': 4111, 'pId': 411, 'name': '市自然资源局 4-41-411-11'}, {'id': 4112, 'pId': 411, 'name': '市生态环境局 4-41-411-12'}, {'id': 4113, 'pId': 411, 'name': '市住房和城乡建设局 4-41-411-13'}, {'id': 4114, 'pId': 411, 'name': '市城市管理综合执法局 4-41-411-14'}, {'id': 4115, 'pId': 411, 'name': '市交通运输局 4-41-411-15'}, {'id': 4116, 'pId': 411, 'name': '市农业农村局 4-41-411-16'}, {'id': 4117, 'pId': 411, 'name': '市水务局 4-41-411-17'}, {'id': 4118, 'pId': 411, 'name': '市林业和草原局 4-41-411-18'}, {'id': 4119, 'pId': 411, 'name': '市商务局 4-41-411-19'}, {'id': 4120, 'pId': 411, 'name': '市文化广电和旅游局 4-41-411-20'}, {'id': 4121, 'pId': 411, 'name': '市卫生健康委员会 4-41-411-21'}, {'id': 4122, 'pId': 411, 'name': '市审计局 4-41-411-22'}, {'id': 4123, 'pId': 411, 'name': '市体育局 4-41-411-23'}, {'id': 4124, 'pId': 411, 'name': '市统计局 4-41-411-24'}, {'id': 4125, 'pId': 411, 'name': '市应急管理局 4-41-411-25'}, {'id': 4126, 'pId': 411, 'name': '市煤炭生产安全管理局 4-41-411-26'}, {'id': 4127, 'pId': 411, 'name': '市市场监督管理局 4-41-411-27'}, {'id': 412, 'pId': 41, 'name': '国家、省政府垂直管理部门 4-41-2'}, {'id': 4111, 'pId': 412, 'name': '气象局 4-41-412-1'}, {'id': 4112, 'pId': 412, 'name': '税务局 4-41-412-2'}, {'id': 4113, 'pId': 412, 'name': '人民银行 4-41-412-3'}, {'id': 4114, 'pId': 412, 'name': '银保监局 4-41-412-4'}, {'id': 4115, 'pId': 412, 'name': '无线电管理处 4-41-412-5'}, {'id': 42, 'pId': 4, 'name': '区县信息公开目录 4-2'}, {'id': 421, 'pId': 42, 'name': '勃利县 4-42-1'}, {'id': 422, 'pId': 42, 'name': '新兴区 4-42-2'}, {'id': 423, 'pId': 42, 'name': '桃山区 4-42-3'}, {'id': 424, 'pId': 42, 'name': '茄子河区 4-42-4'}, {'id': 43, 'pId': 4, 'name': '主题分类 4-3'}, {'id': 431, 'pId': 43, 'name': '科技、教育 4-43-1'}, {'id': 432, 'pId': 43, 'name': '综合政务 4-43-2'}, {'id': 433, 'pId': 43, 'name': '国民经济管理、国有资产监管 4-43-3'}, {'id': 434, 'pId': 43, 'name': '财政、金融、审计 4-43-4'}, {'id': 435, 'pId': 43, 'name': '国土资源、能源 4-43-5'}, {'id': 436, 'pId': 43, 'name': '农业、林业、水利 4-43-6'}, {'id': 437, 'pId': 43, 'name': '工业、交通 4-43-7'}, {'id': 438, 'pId': 43, 'name': '商贸、海关、旅游 4-43-8'}, {'id': 439, 'pId': 43, 'name': '市场监管、安全生产监管 4-43-9'}, {'id': 440, 'pId': 43, 'name': '城乡建设、环境保护 4-43-10'}, {'id': 441, 'pId': 43, 'name': '文化、广电、新闻出版 4-43-11'}, {'id': 442, 'pId': 43, 'name': '卫生、体育 4-43-12'}, {'id': 443, 'pId': 43, 'name': '人口与计划生育、妇女儿童工作 4-43-13'}, {'id': 444, 'pId': 43, 'name': '劳动、人事、监察 4-43-14'}, {'id': 445, 'pId': 43, 'name': '公安、安全、司法 4-43-15'}, {'id': 446, 'pId': 43, 'name': '民政、扶贫 4-43-16'}, {'id': 447, 'pId': 43, 'name': '民族、宗教 4-43-17'}, {'id': 448, 'pId': 43, 'name': '对外事务 4-43-18'}, {'id': 449, 'pId': 43, 'name': '港澳台侨工作 4-43-19'}, {'id': 450, 'pId': 43, 'name': '国防 4-43-20'}, {'id': 451, 'pId': 43, 'name': '其他 4-43-21'}, {'id': 44, 'pId': 4, 'name': '体裁分类 4-4'}, {'id': 441, 'pId': 44, 'name': '机构职能 4-44-1'}, {'id': 442, 'pId': 44, 'name': '行政权力 4-44-2'}, {'id': 443, 'pId': 44, 'name': '法律法规 4-44-3'}, {'id': 444, 'pId': 44, 'name': '部门文件 4-44-4'}, {'id': 445, 'pId': 44, 'name': '重点工作 4-44-5'}, {'id': 446, 'pId': 44, 'name': '其他信息 4-44-6'}, {'id': 45, 'pId': 4, 'name': '公共企事业办事公开 4-5'}, {'id': 451, 'pId': 45, 'name': '七台河市卫生监督局行政执法人员基本信息对外公布情况表\t2017-11-07 4-45-1'}, {'id': 452, 'pId': 45, 'name': '2017年七台河市卫生监督局关于公共场所量化分级评定结果的公示\t2017-11-07 4-45-2'}, {'id': 453, 'pId': 45, 'name': '七台河市卫生监督局\t2017-11-03 4-45-3'}, {'id': 454, 'pId': 45, 'name': '关于新增住房公积金房屋装修贷款业务的通知\t2017-01-16 4-45-4'}, {'id': 455, 'pId': 45, 'name': '新兴供水处\t2012-12-06 4-45-5'}, {'id': 456, 'pId': 45, 'name': '茄子河供水处\t2012-12-06 4-45-6'}, {'id': 457, 'pId': 45, 'name': '中国工商银行七台河分行\t2012-06-09 4-45-7'}, {'id': 458, 'pId': 45, 'name': '中国邮政储蓄银行七台河市分行\t2012-06-05 4-45-8'}, {'id': 459, 'pId': 45, 'name': '七台河市火车站\t2012-06-05 4-45-9'}, {'id': 460, 'pId': 45, 'name': '中国石油七台河销售分公司\t2012-06-01 4-45-10'}, {'id': 461, 'pId': 45, 'name': '大唐七台河发电有限责任公司\t2012-05-23 4-45-11'}, {'id': 462, 'pId': 45, 'name': '七台河矿业（精煤）集团煤气总公司\t2012-05-22 4-45-12'}, {'id': 463, 'pId': 45, 'name': '中国建设银行股份有限公司七台河分行\t2012-05-21 4-45-13'}, {'id': 464, 'pId': 45, 'name': '中国农业发展银行七台河市分行\t2012-05-21 4-45-14'}, {'id': 465, 'pId': 45, 'name': '江海证券七台河营业部\t2012-05-17 4-45-15'}, {'id': 466, 'pId': 45, 'name': '中国移动七台河分公司\t2012-04-26 4-45-16'}, {'id': 467, 'pId': 45, 'name': '中国联合网络通信有限公司七台河市分公司\t2012-04-26 4-45-17'}, {'id': 468, 'pId': 45, 'name': '铁通七台河分公司\t2012-04-26 4-45-18'}, {'id': 469, 'pId': 45, 'name': '中国电信七台河分公司\t2012-04-26 4-45-19'}, {'id': 470, 'pId': 45, 'name': '太平人寿保险有限公司七台河中心支公司\t2012-04-26 4-45-20'}, {'id': 5, 'pId': 0, 'name': '深圳市 5', 'open': true}, {'id': 51, 'pId': 5, 'name': '市政府工作部门 5-1'}, {'id': 511, 'pId': 51, 'name': '深圳市人民政府办公厅 5-51-1'}, {'id': 512, 'pId': 51, 'name': '深圳市发展和改革委员会 5-51-2'}, {'id': 513, 'pId': 51, 'name': '深圳市教育局 5-51-3'}, {'id': 514, 'pId': 51, 'name': '深圳市科技创新委员会 5-51-4'}, {'id': 515, 'pId': 51, 'name': '深圳市工业和信息化局 5-51-5'}, {'id': 516, 'pId': 51, 'name': '深圳市公安局 5-51-6'}, {'id': 517, 'pId': 51, 'name': '深圳市民政局 5-51-7'}, {'id': 518, 'pId': 51, 'name': '深圳市司法局 5-51-8'}, {'id': 519, 'pId': 51, 'name': '深圳市财政局 5-51-9'}, {'id': 520, 'pId': 51, 'name': '深圳市人力资源和社会保障局 5-51-10'}, {'id': 521, 'pId': 51, 'name': '深圳市规划和自然资源局 5-51-11'}, {'id': 522, 'pId': 51, 'name': '深圳市生态环境局 5-51-12'}, {'id': 523, 'pId': 51, 'name': '深圳市住房和建设局 5-51-13'}, {'id': 524, 'pId': 51, 'name': '深圳市交通运输局 5-51-14'}, {'id': 525, 'pId': 51, 'name': '深圳市水务局 5-51-15'}, {'id': 526, 'pId': 51, 'name': '深圳市商务局 5-51-16'}, {'id': 527, 'pId': 51, 'name': '深圳市文化广电旅游体育局 5-51-17'}, {'id': 528, 'pId': 51, 'name': '深圳市卫生健康委员会 5-51-18'}, {'id': 529, 'pId': 51, 'name': '深圳市退役军人事务局 5-51-19'}, {'id': 530, 'pId': 51, 'name': '深圳市应急管理局 5-51-20'}, {'id': 531, 'pId': 51, 'name': '深圳市审计局 5-51-21'}, {'id': 532, 'pId': 51, 'name': '深圳市人民政府国有资产监督管理委员会 5-51-22'}, {'id': 533, 'pId': 51, 'name': '深圳市市场监督管理局 5-51-23'}, {'id': 534, 'pId': 51, 'name': '深圳市统计局 5-51-24'}, {'id': 535, 'pId': 51, 'name': '深圳市医疗保障局 5-51-25'}, {'id': 536, 'pId': 51, 'name': '深圳市地方金融监督管理局 5-51-26'}, {'id': 537, 'pId': 51, 'name': '深圳市城市管理和综合执法局 5-51-27'}, {'id': 538, 'pId': 51, 'name': '深圳市人民政府口岸办公室 5-51-28'}, {'id': 539, 'pId': 51, 'name': '深圳市扶贫协作和合作交流办公室 5-51-29'}, {'id': 540, 'pId': 51, 'name': '深圳市信访局 5-51-30'}, {'id': 541, 'pId': 51, 'name': '深圳市政务服务数据管理局 5-51-31'}, {'id': 542, 'pId': 51, 'name': '深圳市中小企业服务局 5-51-32'}, {'id': 543, 'pId': 51, 'name': '深圳市社会组织管理局 5-51-33'}, {'id': 544, 'pId': 51, 'name': '深圳市城市更新和土地整备局 5-51-34'}, {'id': 52, 'pId': 5, 'name': '市管单位及其他 5-2'}, {'id': 521, 'pId': 52, 'name': '深圳市公安局交通警察局 5-52-1'}, {'id': 522, 'pId': 52, 'name': '深圳市社会保险基金管理局 5-52-2'}, {'id': 523, 'pId': 52, 'name': '深圳市前海深港现代服务业合作区管理局 5-52-3'}, {'id': 524, 'pId': 52, 'name': '深圳市人民政府发展研究中心 5-52-4'}, {'id': 525, 'pId': 52, 'name': '深圳市机关事务管理局 5-52-5'}, {'id': 526, 'pId': 52, 'name': '深圳市建筑工务署 5-52-6'}, {'id': 527, 'pId': 52, 'name': '深圳市政府采购中心 5-52-7'}, {'id': 528, 'pId': 52, 'name': '深圳市住房公积金管理中心 5-52-8'}, {'id': 529, 'pId': 52, 'name': '深圳市气象局（台） 5-52-9'}, {'id': 53, 'pId': 5, 'name': '区政府（管委会） 5-3'}, {'id': 531, 'pId': 53, 'name': '深圳市福田区人民政府 5-53-1'}, {'id': 532, 'pId': 53, 'name': '深圳市罗湖区人民政府 5-53-2'}, {'id': 533, 'pId': 53, 'name': '深圳市盐田区人民政府 5-53-3'}, {'id': 534, 'pId': 53, 'name': '深圳市南山区人民政府 5-53-4'}, {'id': 535, 'pId': 53, 'name': '深圳市宝安区人民政府 5-53-5'}, {'id': 536, 'pId': 53, 'name': '深圳市龙岗区人民政府 5-53-6'}, {'id': 537, 'pId': 53, 'name': '深圳市龙华区人民政府 5-53-7'}, {'id': 538, 'pId': 53, 'name': '深圳市坪山区人民政府 5-53-8'}, {'id': 539, 'pId': 53, 'name': '深圳市光明区人民政府 5-53-9'}, {'id': 540, 'pId': 53, 'name': '深圳市大鹏新区管理委员会 5-53-10'}];
+        var log, className = "dark";
+        function beforeDrag(treeId, treeNodes) {
+            return false;
+        }
+        function beforeEditName(treeId, treeNode) {
+            className = (className === "dark" ? "":"dark");
+            showLog("[ "+getTime()+" beforeEditName ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.selectNode(treeNode);
+            setTimeout(function() {
+                if (confirm("进入节点的编辑状态吗？")) {
+                    setTimeout(function() {
+                        zTree.editName(treeNode);
+                    }, 0);
+                }
+            }, 0);
+            return false;
+        }
+        function beforeRemove(treeId, treeNode) {
+            className = (className === "dark" ? "":"dark");
+            showLog("[ "+getTime()+" beforeRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.selectNode(treeNode);
+            return confirm("确认删除节点吗？");
+        }
+        function onRemove(e, treeId, treeNode) {
+            showLog("[ "+getTime()+" onRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+        }
+        function beforeRename(treeId, treeNode, newName, isCancel) {
+            className = (className === "dark" ? "":"dark");
+            showLog((isCancel ? "<span style='color:red'>":"") + "[ "+getTime()+" beforeRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>":""));
+            if (newName.length == 0) {
+                setTimeout(function() {
+                    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                    zTree.cancelEditName();
+                    alert("节点名称不能为空.");
+                }, 0);
+                return false;
+            }
+            return true;
+        }
+        function onRename(e, treeId, treeNode, isCancel) {
+            showLog((isCancel ? "<span style='color:red'>":"") + "[ "+getTime()+" onRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>":""));
+        }
+        function showRemoveBtn(treeId, treeNode) {
+            return !treeNode.isFirstNode;
+        }
+        function showRenameBtn(treeId, treeNode) {
+            return !treeNode.isLastNode;
+        }
+        function showLog(str) {
+            if (!log) log = $("#log");
+            log.append("<li class='"+className+"'>"+str+"</li>");
+            if(log.children("li").length > 8) {
+                log.get(0).removeChild(log.children("li")[0]);
+            }
+        }
+        function getTime() {
+            var now= new Date(),
+                h=now.getHours(),
+                m=now.getMinutes(),
+                s=now.getSeconds(),
+                ms=now.getMilliseconds();
+            return (h+":"+m+":"+s+ " " +ms);
+        }
+
+        var newCount = 1;
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                + "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_"+treeNode.tId);
+            if (btn) btn.bind("click", function(){
+                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+                return false;
+            });
+        };
+        function removeHoverDom(treeId, treeNode) {
+            $("#addBtn_"+treeNode.tId).unbind().remove();
+        };
+        function selectAll() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");
+        }
+
+        $(document).ready(function(){
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            $("#selectAll").bind("click", selectAll);
+            fuzzySearch('treeDemo','#key',null,true);
+        });
+        //-->
+    </SCRIPT>
+    <style type="text/css">
+        .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+    </style>
+</HEAD>
+
+<BODY>
+
+<div class="content_wrap">
+    <div>   关键字：<input type="text" id="key" value="" class="empty" placeholder="请输入关键字"/><br/></div>
+    <div class="zTreeDemoBackground left">
+        <ul id="treeDemo" class="ztree"></ul>
+    </div>
+
+</div>
+</BODY>
+</HTML>

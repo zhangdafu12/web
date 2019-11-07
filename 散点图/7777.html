@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+</head>
+<body>
+<div id="mapBox" style="width: 800px ;height: 800px;"></div>
+</body>
+<script>
+    //各省份的地图json文件
+    var provinces = {
+        '上海': './map/上海.json',
+    };
+
+    var geoCoordMap = {
+        "海门": [121.15, 31.89],
+    };
+
+    //后台返回数据
+    var datas = [{
+        name: "海门",
+        value: 9
+    }
+    ];
+
+
+    var convertData = function(data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    value: geoCoord.concat(data[i].value)
+                });
+            }
+        }
+        return res;
+    };
+console.log(convertData(datas));
+    //各省份的数据
+    var allData = [{
+        name: '北京'
+    }];
+
+    for (var i = 0; i < allData.length; i++) {
+        allData[i].value = Math.round(Math.random() * 100);
+    };
+    loadMap('./world/world.json', 'world');//初始化全国地图
+    var mapBoxChart = echarts.init(document.getElementById('mapBox'));
+    var timeFn = null;
+
+    //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
+    mapBoxChart.on('click', function (params) {
+        clearTimeout(timeFn);
+        //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
+        timeFn = setTimeout(function () {
+            console.log(params.name);
+            var name = params.name; //地区name
+            var mapCode = provinces[name]; //地区的json数据
+            if (!mapCode) {
+                alert('无此区域地图显示');
+                return;
+            }
+            console.log(provinces[name]);
+            console.log(mapCode);
+            faultByHourIndex=0;
+            loadMap(mapCode, name);
+
+        }, 250);
+    });
+
+
+    // 绑定双击事件，返回全国地图
+    mapBoxChart.on('dblclick', function (params) {
+        //当双击事件发生时，清除单击事件，仅响应双击事件
+        clearTimeout(timeFn);
+        faultByHourIndex=0;
+        //返回全国地图
+        loadMap('./world/world.json', 'world');
+    });
+
+    /**
+     获取对应的json地图数据，然后向echarts注册该区域的地图，最后加载地图信息
+     @params {String} mapCode:json数据的地址
+     @params {String} name: 地图名称
+     */
+    function loadMap(mapCode, name) {
+        $.get(mapCode, function (data) {
+            if (data) {
+                echarts.registerMap(name, data);
+                console.log(name, data);
+var dataNew;
+if (name == "china"){
+    dataNew=allData;
+} else {
+    dataNew=[];
+}
+                var mapBoxOption = {
+                    tooltip: {
+                        trigger: 'item',
+                        show: true,
+                        formatter: function (params) {
+                            console.log(params);
+                            if (params.data['value'].length>1){
+                                return params.name + '该地区分店数量：'+"<br/>" + params.data['value'][2]
+                            }else {
+                                return params.name + '该地区分店数量：'+"<br/>" + params.data['value']
+                            }
+                        },
+
+                    },
+                    //左下角标注1
+                    // dataRange: {
+                    //     x: 'left',
+                    //     y: 'bottom',
+                    //     splitList: [{
+                    //         start: 200
+                    //     },
+                    //         {
+                    //             start: 125,
+                    //             end: 195
+                    //         },
+                    //         {
+                    //             start: 85,
+                    //             end: 120
+                    //         },
+                    //         {
+                    //             start: 25,
+                    //             end: 80
+                    //         },
+                    //         {
+                    //             start: 10,
+                    //             end: 20,
+                    //             label: '10 到 200'
+                    //         },
+                    //         {
+                    //             start: 5,
+                    //             end: 5,
+                    //             label: '5',
+                    //             color: 'black'
+                    //         },
+                    //         {
+                    //             end: 5
+                    //         }
+                    //     ],
+                    //     color: ['#eee', '#949fb1', '#f3ce85']
+                    // },
+                    //左下角标注2
+                    visualMap: {
+                        type: 'continuous',
+                        text: ['', ''],
+                        showLabel: true,
+                        left: '50',
+                        min: 0,
+                        max: 100,
+                        inRange: {
+                            color: ['#edfbfb', '#b7d6f3', '#40a9ed', '#3598c1', '#215096',]
+                        },
+                        splitNumber: 0
+                    },
+                    geo: {
+                        map: name,
+                        selectedMode: 'false',//是否允许选中多个区域
+                        label: {
+                            emphasis: {
+                                show: false
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                areaColor: 'rgb(19, 91, 153)',
+                                borderColor: 'rgb(9, 54, 95)'
+                            },
+                            emphasis: {
+                                areaColor: 'rgb(10, 105, 187)'
+                            }
+                        }
+                    },
+                    series: [
+                        {
+                            name: convertData(datas).name,
+                            type: 'scatter',
+                            coordinateSystem: 'geo',
+                            data: convertData(datas),
+                            symbolSize: 8,
+                            label: {
+
+                                normal: {
+                                    show: false
+                                },
+                                emphasis: {
+                                    show: false
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    areaColor: 'rgb(19, 91, 153)',
+                                    borderColor: 'rgb(9, 54, 95)'
+                                },
+                                emphasis: {
+                                    areaColor: 'rgb(10, 105, 187)',
+                                    borderWidth: 1,
+                                }
+                            }
+                        },
+
+                    ],
+                };
+
+                mapBoxChart.setOption(mapBoxOption);
+            } else {
+                alert('无法加载该地图');
+            }
+        });
+    }
+
+    var faultByHourIndex = 0; //播放所在下标
+    var faultByHourTime = setInterval(function () {
+        //使得tootip每隔三秒自动显示
+        mapBoxChart.dispatchAction({
+            type: "showTip", // 根据 tooltip 的配置项显示提示框。
+            seriesIndex: 0,
+            dataIndex: faultByHourIndex
+        });
+        mapBoxChart.dispatchAction({
+            type: 'highlight',
+            // 可选，系列 index，可以是一个数组指定多个系列
+            seriesIndex: 0,
+            // 可选，系列名称，可以是一个数组指定多个系列
+            // seriesName: string|Array,
+            // 可选，数据的 index
+            dataIndex: faultByHourIndex,
+            // 可选，数据的 名称
+            // name: string
+        });
+        if (faultByHourIndex > 0) {
+            mapBoxChart.dispatchAction({
+                type: 'downplay',
+                // 可选，系列 index，可以是一个数组指定多个系列
+                seriesIndex: 0,
+                // 可选，系列名称，可以是一个数组指定多个系列
+                // seriesName: string|Array,
+                // 可选，数据的 index
+                dataIndex: faultByHourIndex - 1,
+                // 可选，数据的 名称
+                // name: string
+            });
+        }
+
+
+        faultByHourIndex++;
+        // faultRateOption.series[0].data.length 是已报名纵坐标数据的长度
+        if (faultByHourIndex > allData.length) {
+            faultByHourIndex = 0;
+        }
+    }, 3000);
+
+</script>
+</html>

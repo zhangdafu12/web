@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- 引入 echarts.js -->
+    <!--    <script src="./js/echarts.js"></script>-->
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <script src="./js/china.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #page {
+            width: 1980px;
+            height: 1080px;
+            background-image: url('./images/backdrop2.png');
+            background-repeat: no-repeat;
+            position: relative;
+            font-family: 微软雅黑;
+        }
+
+        #title {
+            position: absolute;
+            left: 760px;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+        #title .nowTime{
+            margin-top: 10px;
+        }
+        #pandect {
+            width: 600px;
+            height: 90px;
+            position: absolute;
+            top: 190px;
+            left: 530px;
+            font-size: 24px;
+            color: #99a0b6;
+        }
+
+        #pandect div {
+            float: left;
+            margin-right: 30px;
+        }
+
+        #pandect span {
+            display: inline-block;
+            color: #19d1ff;
+            margin: 0 10px;
+        }
+
+        #seach input {
+            width: 459px;
+            height: 47px;
+            border: solid 1px #1663b4;
+            border-radius: 10px;
+            position: absolute;
+            top: 20px;
+            right: 31px;
+            background: transparent;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        #seach img {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 30px;
+            right: 95px;
+            cursor: pointer;
+        }
+
+        #seach #browsers option {
+            background: #0a0d35;
+            color: #ffffff;
+        }
+
+        #lefttable {
+            width: 411px;
+            height: 740px;
+            /*background: red;*/
+            border-radius: 10px;
+            /*border: solid 1px #1663b4;*/
+            color: #a6aec2;
+            position: absolute;
+            top: 106px;
+            left: 30px;
+        }
+        #lefttable div{
+            width: 100%;
+            height: 33%;
+            /*background-color: #1663b4;*/
+            text-align: center;
+            line-height: 30px;
+            border-radius: 10px;
+            border: solid 1px #1663b4;
+
+        }
+        #lefttable div h1{
+           display: block;
+          padding-top: 60px;
+            letter-spacing:8px;
+        }
+        #lefttable div p{
+            font-size: 24px;
+            margin-top: 20px;
+            letter-spacing:4px;
+        }
+        #lefttable div p span{
+            color: #19d1ff;
+        }
+
+
+            /*旧版左侧*/
+        /*#lefttable p{*/
+        /*    font-size: 18px;*/
+        /*    font-weight: bold;*/
+        /*    text-align: center;*/
+        /*    color: #19d1ff;*/
+        /*}*/
+
+        /*#lefttable table {*/
+        /*    width: 330px;*/
+        /*    text-align: left;*/
+        /*    margin: 0 auto;*/
+        /*    font-size: 16px;*/
+
+        /*}*/
+
+        /*#lefttable table td {*/
+        /*    width: 50%;*/
+        /*    padding: 0px;*/
+        /*    padding-bottom: 10px;*/
+        /*}*/
+
+        /*#lefttable table tr {*/
+        /*    width: 100%;*/
+
+        /*    padding: 0px;*/
+        /*}*/
+
+        /*#lefttable #Table_l {*/
+        /*    overflow: hidden;*/
+        /*    height: 630px;*/
+        /*}*/
+
+        /*#lefttable ul{*/
+        /*    font-size: 18px;*/
+        /*    font-weight: bold;*/
+        /*    text-align: center;*/
+        /*    list-style: none;*/
+        /*    display: flex;*/
+        /*    margin: 10px auto;*/
+        /*    padding: 0px;*/
+        /*}*/
+
+        /*#lefttable ul li{*/
+        /*    width: 50%;*/
+        /*    text-align: center;*/
+        /*}*/
+
+        #righttable {
+            width: 460px;
+            border-radius: 10px;
+            border: solid 1px #1663b4;
+            color: #a6aec2;
+            position: absolute;
+            top: 108px;
+            right: 30px;
+        }
+        #righttable ul li {
+            width: 50%;
+            text-align: center;
+        }
+        #righttable ul {
+            width: 350px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+        #righttable ul {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            list-style: none;
+            display: flex;
+            margin: 10px auto;
+            padding: 0px;
+        }
+        #righttable ul li {
+            width: 25%;
+            text-align: center;
+        }
+
+        #righttable table tr {
+            width: 100%;
+            padding: 0px;
+        }
+        #righttable p {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #19d1ff;
+        }
+        #righttable table {
+            width: 350px;
+            height: 330px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #righttable table td {
+            width: 25%;
+            padding-bottom: 10px;
+
+        }
+
+        #Table_r {
+            overflow: hidden;
+            height: 351px;
+        }
+
+        #visit {
+            width: 1600px;
+            height: 250px;
+            position: absolute;
+            bottom: -3px;
+            left: 150px;
+        }
+
+        #circle {
+            width: 500px;
+            height: 290px;
+            position: absolute;
+            top: 560px;
+            right: 40px;
+        }
+
+        #mapBox {
+            width: 900px;
+            height: 650px;
+            margin: 110px auto 0 auto;
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="page">
+    <!--    标题-->
+    <div id="title">
+        <h1>餐饮全国数据实时看板</h1>
+        <p class="nowTime">
+
+        </p>
+    </div>
+    <!--    搜索-->
+    <div id="seach">
+        <input type="text" list="browsers">
+        <img src="images/seach.png">
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
+    </div>
+    <!--    总览数据-->
+    <div id="pandect">
+        <div>
+            <!--            <p>今日访问人数<span>12342</span>万人</p>-->
+            <p>本月总单量<span>124324</span>万件</p>
+        </div>
+        <div>
+            <p>本月新加盟人数<span>111</span>人</p>
+            <!--            <p>本期销售总额<span>321412</span>万元</p>-->
+        </div>
+    </div>
+    <!--    左侧表格-->
+    <div id="lefttable">
+        <!--        <p>本期各省订单量和销售额</p>-->
+        <!--        <ul>-->
+        <!--            <li>店名</li>-->
+        <!--            <li>地址</li>-->
+        <!--        </ul>-->
+        <!--        <div id="Table_l">-->
+        <!--            <table>-->
+        <!--                &lt;!&ndash;            数据加载HTML&ndash;&gt;-->
+        <!--            </table>-->
+        <!--        </div>-->
+        <div>
+            <h1>销售额</h1>
+            <p><span>338667</span>万元</p>
+        </div>
+        <div>
+            <h1>销售量</h1>
+            <p><span>4456</span>件</p>
+        </div>
+        <div>
+            <h1>客人数 </h1>
+            <p><span>1278</span>人</p>
+        </div>
+
+
+    </div>
+    <!--    右侧表格-->
+    <div id="righttable">
+                <p>该地区菜品销量排名</p>
+                <ul>
+                    <li>排名</li>
+                    <li>菜名</li>
+                    <li>单价</li>
+                    <li>销量</li>
+                </ul>
+                <div id="Table_r">
+                    <table>
+                        <!--            数据加载HTML-->
+                    </table>
+
+                </div>
+
+    </div>
+    <!-- 中国地图展示 -->
+    <div id="mapBox"></div>
+    <!--   折线图 -->
+    <div id="visit"></div>
+    <!--    饼状图-->
+    <div id="circle"></div>
+</div>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    //饼状图
+    var circleChart = echarts.init(document.getElementById('circle'));
+    // 指定图表的配置项和数据
+    var circleOption = {
+        title: {
+            text: '客户年龄分布',
+            textStyle: {
+                color: "#19d1ff"
+            },
+            left: "60px",
+            x: 'left'
+        },
+        tooltip: {//鼠标移入提示
+            trigger: 'item',
+            formatter: "{b} : {c} ({d}%)"
+        },
+        toolbox: {//工具按钮
+            show: false,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {
+                    show: true,
+                    type: ['pie', 'funnel']
+                },
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        color: ['red', 'orange', 'yellow', 'green', '#91f2ff', '#f077ff'],
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: [30, 110],
+                center: ['60%', '50%'],
+                roseType: 'area',
+                x: '50%',               // for funnel
+                max: 40,                // for funnel
+                sort: 'ascending',     // for funnel
+                label: {
+                    normal: {
+                        //饼形图显示格式
+                        //formatter : '{per|{d}%} {b|{b}}',
+                        rich: {
+                            b: {
+                                color: 'white',
+                                fontSize: 12,
+                                lineHeight: 33
+                            },
+                            //设置百分比数字颜色
+                            per: {
+                                color: '#00B4FB',
+                                fontSize: 12,
+                                // padding : [ 2, 2 ],
+                                // borderRadius : 2
+                            }
+                        }
+                    }
+                },
+
+                labelLine: {
+                    normal: {
+                        length: 5,  // 改变标示线的长度
+                        lineStyle: {
+                            color: "#a9ddee"  // 改变标示线的颜色
+                        }
+                    },
+                },
+                data: [
+                    {value: 18, name: '0-18岁'},
+                    {value: 24, name: '18-25岁'},
+                    {value: 44, name: '25-30岁'},
+                    {value: 52, name: '30-40岁'},
+                    {value: 21, name: '40-50岁'},
+                    {value: 21, name: '50以上'}
+                ]
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    circleChart.setOption(circleOption);
+    // 基于准备好的dom，初始化echarts实例
+    //折线图
+    var visitChart = echarts.init(document.getElementById('visit'));
+    var visitOption = {
+        title: {
+            text: '近三月销售额',
+            textStyle: {
+                color: "#19d1ff",
+                fontSize: "16"
+            },
+            left: "left",
+            x: 'left',
+            y: "50px"
+        },
+
+        tooltip: {//鼠标移入提示
+            trigger: 'item',
+            formatter: "{b} : {c}"
+        },
+        xAxis: {
+            type: 'category',
+            name: "时间",
+            nameTextStyle: {
+                color: "#16809e",
+                fontSize: "14",
+                verticalAlign: "bottom"
+            },
+            nameLocation: "end",
+            data: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '24:00',],
+
+            //坐标轴样式
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(171,171,171,0.51)',
+                    fontSize: "16",
+                },
+            },
+
+            axisTick: {
+                data: [0, 5, 10, 15, 20],
+                inside: "true",
+                lineStyle: {
+                    opacity: "0",
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+
+            name: "万",//y轴脚注
+            min: 0,
+            splitNumber: 5,
+
+            // data: [ '0万','1万','2万','3万','4万','5万', '6万', '7万', '8万', '9万','10万','11万','12万','13万','14万','15万','16万','17万','18万','19万','20万'],
+            nameTextStyle: {
+                color: "#16809e",
+                fontSize: "14",
+                verticalAlign: "top",
+                align: "left",
+            },
+
+            nameLocation: "start",
+//y轴
+            axisLine: {
+                onZero: true,
+                lineStyle: {
+                    color: 'rgba(171,171,171,0.51)',
+                }
+            },
+//轴线
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(171,171,171,0.51)',
+                }
+            },
+            axisTick: {
+                show: true,
+                inside: "true",
+                length: 100,
+                lineStyle: {
+                    opacity: "0"
+                }
+            }
+        },
+        series: [{
+            data: [10, 5, 10, 15, 20, 13, 15, 13, 5, 6, 10, 18, 13],
+            // data: ["0万", "12万", "15万", "20万", "15万", "5万", "10万", "15万", "15万", "20万", "15万", "15万", "10万"],
+            type: 'line',
+            symbolSize: 8,   //拐点圆的大小
+            color: ['#17bae7'],  //折线条的颜色
+            smooth: true
+        }]
+    };
+    visitChart.setOption(visitOption);
+    // 基于准备好的dom，初始化echarts实例
+    //地图
+    var mapBoxEchart = echarts.init(document.getElementById('mapBox'));
+
+    //随机数据
+    function randomData() {//随机数据
+        return Math.round(Math.random() * 500);
+    };
+    //数据
+    var mapdata = [
+        {name: '北京', value: '100'}, {name: '天津', value: randomData()},
+        {name: '上海', value: randomData()}, {name: '重庆', value: randomData()},
+        {name: '河北', value: randomData()}, {name: '河南', value: randomData()},
+        {name: '云南', value: randomData()}, {name: '辽宁', value: randomData()},
+        {name: '黑龙江', value: randomData()}, {name: '湖南', value: randomData()},
+        {name: '安徽', value: randomData()}, {name: '山东', value: randomData()},
+        {name: '新疆', value: randomData()}, {name: '江苏', value: randomData()},
+        {name: '浙江', value: randomData()}, {name: '江西', value: randomData()},
+        {name: '湖北', value: randomData()}, {name: '广西', value: randomData()},
+        {name: '甘肃', value: randomData()}, {name: '山西', value: randomData()},
+        {name: '内蒙古', value: randomData()}, {name: '陕西', value: randomData()},
+        {name: '吉林', value: randomData()}, {name: '福建', value: randomData()},
+        {name: '贵州', value: randomData()}, {name: '广东', value: randomData()},
+        {name: '青海', value: randomData()}, {name: '西藏', value: randomData()},
+        {name: '四川', value: randomData()}, {name: '宁夏', value: randomData()},
+        {name: '海南', value: randomData()}, {name: '台湾', value: randomData()},
+        {name: '香港', value: randomData()}, {name: '澳门', value: randomData()},
+        // {name: '南海群岛', value: 0}
+
+    ];
+    //追加南海诸岛信息
+    var itemsMap = {
+        name: '南海诸岛',
+        value: 0
+    };
+    mapdata.push(itemsMap);
+    // 指定相关的配置项和数据
+    var mapBoxOption = {
+        title: {
+            // text: '全国地图大数据',//标题
+            subtext: '',
+            textStyle: {
+                color: "#19d1ff"
+            },
+            x: 'center'
+        },
+        tooltip: {//鼠标移入提示
+            trigger: 'item',
+            formatter: "{b}该地区总销售额 <br/>      :{c}"
+        },
+        // visualMap: {//左下角柱状模式
+        //     type: 'continuous',
+        //     min: 0,
+        //     max: 600,
+        //     text:['High','Low'],
+        //     realtime: false,
+        //     calculable : true,
+        //     color: ['orangered','yellow','lightskyblue']
+        // },
+        visualMap: {//左下角分块模式
+            show: true,
+            textStyle: {
+                color: "#fff"
+            },
+            splitList: [
+                {start: 500, end: 600}, {start: 400, end: 500},
+                {start: 300, end: 400}, {start: 200, end: 300},
+                {start: 100, end: 200}, {start: 0, end: 100},
+            ],
+            color: ['#5475f5', '#9feaa5', '#85daef', '#74e2ca', '#e6ac53', '#9fb5ea']
+        },
+        series: [{
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true, //显示省份标签
+                    textStyle: {
+                        color: "#807b74"
+                    } //省份标签字体颜色
+                },
+                emphasis: { //对应的鼠标悬浮效果
+                    show: true,
+                    textStyle: {
+                        color: "#800080"
+                    }
+                }
+            },
+            aspectScale: 0.75,//这个参数用于 scale 地图的长宽比。最终的 aspect 的计算方式是：geoBoundingRect.width / geoBoundingRect.height * aspectScale
+            zoom: 1.2,//当前视角的缩放比例。
+            itemStyle: {
+                normal: {
+                    borderWidth: .5, //区域边框宽度
+                    borderColor: '#009fe8', //区域边框颜色
+                    areaColor: "#42bee7", //区域颜色
+                },
+                emphasis: {//鼠标滑过地图高亮的相关设置
+                    borderWidth: .5,
+                    borderColor: '#4b0082',
+                    areaColor: "#28bafd",
+                }
+            },
+            data: mapdata  //数据
+        }]
+    };
+    // 使用制定的配置项和数据显示图表
+    mapBoxEchart.setOption(mapBoxOption);
+    // echart图表自适应
+    window.addEventListener("resize", function () {
+        mapBoxEchart.resize();
+    });
+    //点击事件,根据点击某个省份计算出这个省份的数据
+    mapBoxEchart.on('click', function (params) {
+        console.log(params);
+        console.log(params.name);
+
+
+
+        //控制右侧表格内容
+        rightHtml="";
+        rightTable[0].name=params.name;
+
+
+        $.each(rightTable, function (i, v) {
+            rightHtml += "<tr>" +
+                "<td>" + rightTable[i].ranking + "</td>" +
+                "<td>" + rightTable[i].name + "</td>" +
+                "<td>" + rightTable[i].price + "</td>" +
+                "<td>" + rightTable[i].number + "</td>"
+                + "</tr>"
+        });
+        console.log(rightHtml);
+        $("#righttable table").empty();
+
+        $("#righttable table").append(rightHtml);
+
+        //逻辑控制
+    });
+    var faultByHourIndex = 0; //播放所在下标
+    var faultByHourTime = setInterval(function() {
+        //使得tootip每隔三秒自动显示
+        mapBoxEchart.dispatchAction({
+            type: "showTip", // 根据 tooltip 的配置项显示提示框。
+            seriesIndex: 0,
+            dataIndex: faultByHourIndex
+        });
+        mapBoxEchart.dispatchAction({
+            type: 'highlight',
+            // 可选，系列 index，可以是一个数组指定多个系列
+            seriesIndex: 0,
+            // 可选，系列名称，可以是一个数组指定多个系列
+            // seriesName: string|Array,
+            // 可选，数据的 index
+            dataIndex: faultByHourIndex,
+            // 可选，数据的 名称
+            // name: string
+        });
+        if (faultByHourIndex>0) {
+            mapBoxEchart.dispatchAction({
+                type: 'downplay',
+                // 可选，系列 index，可以是一个数组指定多个系列
+                seriesIndex: 0,
+                // 可选，系列名称，可以是一个数组指定多个系列
+                // seriesName: string|Array,
+                // 可选，数据的 index
+                dataIndex: faultByHourIndex-1,
+                // 可选，数据的 名称
+                // name: string
+            });
+        }
+
+
+        faultByHourIndex++;
+        // faultRateOption.series[0].data.length 是已报名纵坐标数据的长度
+        if (faultByHourIndex > mapdata.length) {
+            faultByHourIndex = 0;
+        }
+    }, 3000);
+
+    //页面加载后发送请求获取服务器的数据
+    // $(function () {
+    //     $.ajax({
+    //         url: url,
+    //         dataType: "json",
+    //         async: false,
+    //         success: function (data) {
+    //             var datas = data.result;
+    //             var length = datas.length;
+    //             //逻辑控制
+    //         }
+    //     });
+
+
+    //模糊搜索
+    // var  mapData;//地图数据
+    // $('#seach').keyup(function() {
+    //     $("#browsers option").remove();
+    //     $.ajaxSetup({async: true});
+    //     $.get("url", {'username' : $("#seach").val() == "" ? null : $("#seach").val()}, function(data) {
+    //         for(var i in data) {
+    //             /* $("#browsers").append("<option value=data[i].username data-userId=data[i].id ></option>"); */
+    //             var html = "";
+    //             html += "<option value='" + data[i].username + "' data-userId='" + data[i].id + "'></option>";
+    //             $("#browsers").append(html);
+
+    //             /* console.log(html); */
+    //         }
+    //          mapData=data.map;
+    //     }, "json")
+    // });
+
+    //获取到数据通过js渲染到页面
+    //使用定时器刷新页面
+    //setInterval()
+    //获取到的数据
+    // var data=options.data;
+    //页面加载数据
+    // //饼状图
+    // circleOption.data=data.circle;
+    // circleChart.setOption(circleOption);
+    // //折线图
+    // visitOption.data=data.visit;
+    // visitChart.setOption(visitOption);
+    // //地图
+    // mapBoxOption.data=data.map;
+    // mapBoxEchart.setOption(mapBoxOption);
+    //左侧表格
+    var leftTable = [
+        {
+            name: "胡盛兴(文化宫店)",
+            addres: "人民路576号(工人文化宫北50米)",
+        },
+        {
+            name: "哥老官重庆美蛙鱼头(苏州中心店)",
+            addres: "星汉街苏州中心广场3幢南区L6层B06-09号近CGV影城)",
+        }, {
+            name: "青茫半山居·湖景农家乐",
+            addres: "人民路576号(工人文化宫北50米)",
+        }, {
+            name: "江南雅厨李公堤店)",
+            addres: ":李公堤路李公堤3期16号楼",
+        },
+        {
+            name: "江南雅厨泰华商城店",
+            addres: "人民路383号泰华商城西楼7层",
+        },
+        {
+            name: "傅记私房菜",
+            addres: "平江路317-1号(东北街、拙政园)",
+        },
+        {
+            name: "牛旺家炭烤牛肉店",
+            addres: "人民路576号",
+        },
+        {
+            name: "追夜小酒肆",
+            addres: "木渎金枫南路264号悠方购物中心6楼",
+        },
+        {
+            name: "裕兴记(乐桥店)",
+            addres: "通关坊8号",
+        },
+        {
+            name: "老北京涮肉坊烧烤",
+            addres: "三星路78号",
+        },
+        {
+            name: "裕兴记养育巷店",
+            addres: "苏绣路星悦汇苏州中心4层",
+        },
+        {
+            name: "山水湾湖景农家乐民宿",
+            addres: "莫厘村环山公路古尚锦小长湾G近东山宾",
+        },
+        {
+            name: "璇宫自助餐厅",
+            addres: "滨河路1969号金科大酒店1楼",
+        },
+        {
+            name: "吉碳烤吧",
+            addres: "平江路混堂巷20号",
+        },
+        {
+            name: "青鹤谷",
+            addres: "李公堤三期21幢(近金鸡湖景区)",
+        }, {
+            name: "水天堂西餐厅",
+            addres: "李公堤三期21幢",
+        }, {
+            name: "哥老官重庆美蛙鱼头",
+            addres: "李公堤三期21幢",
+        }, {
+            name: "桂满陇西湖船宴",
+            addres: "李公堤三期21幢",
+        }, {
+            name: "观景楼湖景农家乐",
+            addres: "李公堤三期21幢",
+        }, {
+            name: "豆壳",
+            addres: "李公堤三期21幢",
+        },
+    ];
+    //leftTable=data.leftTable;
+    var leftHtml;
+    // $("#lefttable tr").eq(i)
+    $.each(leftTable, function (i, v) {
+        leftHtml += "<tr>" +
+            "<td>" + leftTable[i].name + "</td>" +
+            "<td>" + leftTable[i].addres + "</td>"
+            + "</tr>"
+
+        // $("#lefttable td").eq(i).text()=leftTable[i];
+        // 或者
+    });
+    $("#lefttable table").append(leftHtml);
+    //表格滚动显示
+
+    var $this1 = $("#Table_l");
+    var $this2 = $("#Table_r");
+    var scrollTimer1;
+    var scrollTimer2;
+
+    function scrollSome($this, scrollTimer) {
+        $this.hover(function () {
+            clearInterval(scrollTimer);
+        }, function () {
+            scrollTimer = setInterval(function () {
+                scrollNews($this);
+            }, 2000);
+        }).trigger("mouseleave");
+    };
+    //左侧
+    scrollSome($this1, scrollTimer1);
+    scrollSome($this2, scrollTimer2);
+
+
+    //滚动函数
+    function scrollNews(obj) {
+        var $self = obj.find("table");
+        var lineHeight = $self.find("tr:first").height();
+        $self.animate({
+            "marginTop": -lineHeight + "px"
+        }, 600, function () {
+            $self.css({
+                marginTop: 0
+            }).find("tr:first").appendTo($self);
+        })
+    };
+
+    var rightTable = [
+        {
+            ranking: "NO.1",
+            name: "北京",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.2",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.3",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.4",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.5",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.6",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.7",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.8",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.9",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.9",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.10",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.11",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.12",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.13",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.14",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.15",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        }, {
+            ranking: "NO.16",
+            name: "原味鸡排",
+            price: "15",
+            number: "1130"
+        },
+
+
+    ];
+    //右侧表格
+    //rightTable=data.rightTable;
+    //["NO.1","500","20","85万"]
+    // [{
+    //     ranking: "NO.1",
+    //     name: "500",
+    //     ratio:"20",
+    //     money:"85万"
+    // }]
+    var rightHtml="";
+
+    $.each(rightTable, function (i, v) {
+        //     $("#lefttable td").eq(i).text()=rightTable[i];
+        //或者
+        rightHtml += "<tr>" +
+            "<td>" + rightTable[i].ranking + "</td>" +
+            "<td>" + rightTable[i].name + "</td>" +
+            "<td>" + rightTable[i].price + "</td>" +
+            "<td>" + rightTable[i].number + "</td>"
+            + "</tr>"
+    });
+
+    $("#righttable table").append(rightHtml);
+
+
+    setInterval(
+    function () {
+        //获取时间
+        var date = new Date();
+
+        var year = date.getFullYear();
+
+        var month = date.getMonth() + 1;
+
+        var day = date.getDate();
+
+        var hour = date.getHours();
+
+        var minute = date.getMinutes();
+
+        var second = date.getSeconds();
+        var week = date.getDay();
+        var weeks=["一","二","三","四","五","六","日"];
+        var newWeek=weeks[week];
+        console.log(year + '-' + month + '-' + day + '  '+"星期"+newWeek+ ' ' + hour + ':' + minute + ':' + second);
+        var nowTime=year + '-' + month + '-' + day + '  '+"星期"+newWeek+ ' ' + hour + ':' + minute + ':' + second;
+        $(".nowTime").text="";
+        $(".nowTime").text(nowTime);
+
+    },1000);
+    //获取时间
+    var date = new Date();
+
+    var year = date.getFullYear();
+
+    var month = date.getMonth() + 1;
+
+    var day = date.getDate();
+
+    var hour = date.getHours();
+
+    var minute = date.getMinutes();
+
+    var second = date.getSeconds();
+    var week = date.getDay();
+    var weeks=["一","二","三","四","五","六","日"];
+    var newWeek=weeks[week];
+    console.log(year + '-' + month + '-' + day + '  '+"星期"+newWeek+ ' ' + hour + ':' + minute + ':' + second);
+    var nowTime=year + '-' + month + '-' + day + '  '+"星期"+newWeek+ ' ' + hour + ':' + minute + ':' + second;
+    $(".nowTime").text="";
+    $(".nowTime").text(nowTime);
+    //中间总览
+    // pandectData = data.pandect;
+    // [{
+    //    number:123,
+    //    sum:321,
+    // }]
+    //获取随机数
+    function number(){
+
+        return   parseInt(Math.random()*5000+1,10);
+
+
+
+
+    };
+    setInterval(function () {
+        $("#pandect span").eq(0).text(number());
+        $("#pandect span").eq(1).text(number());
+        $("#lefttable span").eq(0).text(number());
+        $("#lefttable span").eq(1).text(number());
+        $("#lefttable span").eq(2).text(number());
+        console.log(number());
+    },1000)
+
+
+
+</script>
+
+</body>
+</html>

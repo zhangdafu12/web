@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block content_block %}
+<link rel="stylesheet" type="text/css" href="../static/css/btn.css">
+<link rel="stylesheet" href="../static/css/icons.css">
+<link rel="stylesheet" href="../static/css/like.css">
+<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/topic.css') }}>
+
+<div class="container">
+    <div class="card top-topic">
+        <div class="top-topic-left">
+            <div class="topic-head">
+                <h1 class="topic-title">#{{ result_obj.name }}#</h1>
+                <button class="btn beauty-btn subscribe">已订阅</button>
+                <a class="share" href="#">
+                    <div class="share-icon"></div>
+                    <span class="share-word">分享</span>
+                </a>
+            </div>
+            <div class="topic-content">
+                {{ result_obj.content }}
+            </div>
+            <div class="topic-footer">
+                <div class="label-icon"></div>
+                <span class="label-content">{{ result_obj.label }}</span>
+            </div>
+        </div>
+        <div class="top-topic-right">
+            <span class="word-1" style="float: left;margin-left: 16px">事件追溯</span>
+            <div class="full-page-icon"></div>
+            <a href="javascript:void(0)" class="full-page" data-url="/source/{{ id }}">
+            <span class="word-1" style="float: right;margin-right: 8px">全屏查看</span>
+            </a>
+        </div>
+    </div>
+
+    <div style="overflow: hidden">
+
+        <div class="card comment">
+            <div class="comment-head">
+                <div class="logo"></div>
+                <div class="comment-logo">评论</div>
+                <div class="comment-num-block">
+                    <span class="comment-num">4</span>
+                    <span class="comment-num-1">条评论</span>
+                </div>
+            </div>
+
+            <div class="comment-input-group">
+                <img src="{{ url_for('static', filename='img/1.png') }}" class="head-pic head-pic-small">
+                <div class="input-group comment-input">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn beauty-btn" type="button">发表评论</button>
+                    </span>
+                </div>
+            </div>
+        <div class="comment-list">
+            <hr/>
+            <div class="comment-item">
+                <div class="comment-user-info">
+                    <img src="{{ url_for('static', filename='img/1.png') }}" class="head-pic head-pic-small comment-head-pic">
+                    <span class="comment-user-name">懒得起名字</span>
+                    <span class="comment-user-intro">（中科院核物理专家）</span>
+                    <span class="comment-time">5小时前</span>
+                </div>
+                <div class="comment-body">
+                    <div class="comment-content">
+                        继港珠澳大桥深中通道建成后，琼州海峡大桥应该着手建设了！等到琼州海峡大桥建成后，再建大连烟台跨海大桥！之后就是着手建设福建通台湾的大桥了！
+                    </div>
+                    <div class="comment-item-operate">
+                        <span class="red-font">回复</span>
+                        <span class="red-font read-reply">查看回复（1条回复）</span>
+                        <div class="more-icon"></div>
+                        <div style="float: right">
+                            <div class="agree-icon"></div>
+                            <span class="agree-num">10</span>
+                            <div class="report-icon"></div>
+                        </div>
+                    </div>
+                    <div class="reply-list">
+                        <div class="reply-item">
+                            <div class="comment-user-info">
+                                <img src="{{ url_for('static', filename='img/1.png') }}" class="head-pic head-pic-small comment-head-pic">
+                                <span class="comment-user-name">懒得起名字</span>
+                                <span class="comment-user-intro">（中科院核物理专家）</span>
+                                <span class="comment-time">5小时前</span>
+                            </div>
+                            <div class="comment-content reply-content">继港珠澳大桥深中通道建成后，琼州海峡大桥应该着手建设了！等到琼州海峡大桥建成后，再建大连烟台跨海大桥！之后就是着手建设福建通台湾的大桥了！</div>
+                            <div class="comment-item-operate">
+                                <span class="red-font">回复</span>
+                                <span class="red-font read-reply">查看回复（1条回复）</span>
+                                <div class="more-icon"></div>
+                                <div style="float: right">
+                                    <div class="agree-icon"></div>
+                                    <span class="agree-num">10</span>
+                                    <div class="report-icon"></div>
+                                </div>
+                            </div>
+                            <div class="input-group comment-input reply-input">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn beauty-btn" type="button">发表评论</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+
+        <div class="card user">
+            <img src="{{ url_for('static', filename='img/1.png') }}" class="head-pic">
+            <span class="user-name">苹果味高级人机</span>
+            <div class="center text-center">
+                <span class="location">苏州</span>
+                <div class="sex-icon"></div>
+            </div>
+            <button class="btn beauty-btn center-block" style="margin-bottom: 30px">认证专家</button>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="full-page-modal" tabindex="-1"   role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content card">
+                <iframe id="full-page-modal-iframe" src=""></iframe>
+            </div><!-- /.modal-content -->
+
+
+        </div><!-- /.modal -->
+    </div>
+
+
+    <div class="card related-articles">
+        <div class="related-articles-title">相关文章</div>
+        <div class="full">
+            <!-- 新闻带图 -->
+            <div class="news">
+                <div class="picture">
+                    <img src="{{ url_for('static', filename='img/test_image.jpg') }}">
+                </div>
+                <div class="content">
+                    <div class="title">最高检:去年起诉生产销售伪劣商品犯罪1.5万余人</div>
+                    <div class="content-bottom">
+                        <span class="category">国内新闻</span>
+                        <div class="info">
+                            <span class="tag">男子</span> <span class="tag">霸王餐</span>
+                            <span>|</span> <span>3小时前</span>
+                        </div>
+                        <div class="counter">
+                            <span class="icon-view"></span>
+                            <span class="number">1632</span>
+                            <span class="icon-comment"></span>
+                            <span class="number">2468</span>
+                            <span class="icon-favour"></span>
+                            <span class="number">6575</span>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- 新闻带图 -->
+            <!-- 新闻无图 -->
+            <div class="news news-plain">
+                <div class="content">
+                    <div class="title">最高检:去年起诉生产销售伪劣商品犯罪1.5万余人</div>
+                    <div class="content-bottom">
+                        <span class="category">视频</span>
+                        <div class="info">
+                            <span class="tag">男子</span> <span class="tag">霸王餐</span>
+                            <span>|</span> <span>3小时前</span>
+                        </div>
+                        <div class="counter">
+                            <span class="icon-view"></span>
+                            <span class="number">1632</span>
+                            <span class="icon-comment"></span>
+                            <span class="number">2468</span>
+                            <span class="icon-favour"></span>
+                            <span class="number">6575</span>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- 新闻无图 -->
+
+        </div>
+    </div>
+    <script>
+        var data_url;
+        $('.full-page').on('click',function () {
+            data_url_1 = $(this).attr('data-url');
+            if (!data_url_1){
+                return
+            }
+            if(data_url_1!==data_url){
+                $('#full-page-modal-iframe').attr('src',data_url_1);
+                data_url = data_url_1
+            }
+            $('#full-page-modal').modal('show')
+        });
+    </script>
+</div>
+{% endblock %}

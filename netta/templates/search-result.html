@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% block content_block %}
+
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/btn.css">
+    <link rel="stylesheet" href="../static/css/icons.css">
+    <link rel="stylesheet" href="../static/css/comment.css">
+
+    <div class="container">
+        <div id="div_list" >
+        {% if user %}
+            {% for new in news %}
+                <div
+                        style="font-size:20px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;">
+                    <img style="width:140px;height:87px;float: left;margin-top: 16px;margin-left: 16px"
+                         src="{{ url_for("static", filename=new.get("img")) if new.get("img") else "" }}"/>
+                    <div style="margin-left: 178px">
+                        {{ new.get("title") }}
+                        <div style="display:-webkit-box;margin-top: 30px">
+                            <div
+                                    style="width:56px;height:21px;border: 1px solid rgba(225,0,0,1);font-size:12px;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(225,0,0,1);line-height:24px;text-align: center;">
+                                国内新闻
+                            </div>
+{#                            <div style="font-size:12px;font-family:PingFang-SC-Regular;font-weight:400;color:rgba(133,133,133,1);line-height:24px;margin-left: 18px">#}
+{#                                苏州#}
+{#                                道路#}
+{#                                3小时前#}
+{#                            </div>#}
+                            <div
+                                    style="font-size:12px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(173,173,173,1);margin-left: 100px;margin-top: -10px">
+                                <img src="https://i.loli.net/2019/03/31/5ca05e7655d0f.png"/>{{ new.get("watch_num") }}
+                                <img src="https://i.loli.net/2019/03/31/5ca05ec690abb.png"/>{{ new.get("comment_num") }}
+
+{#                                <img src="https://i.loli.net/2019/03/31/5ca05ef52f3b0.png"/>{{ new.get("like_num") }}#}
+                                {# 当存在in时，说明这条新闻已经被设置为喜欢，此时的心形标志应该显示为红色 #}
+                                {% if new.get("in") %}
+                                    <a class="icon-favour-a" href="javascript:void(0)"  id="{{ new.get("news_id") }}"><span class="icon-favour"></span> </a>
+                                    <span class="number">{{new.like_num}}</span>
+                                {% else %}
+                                    <a class="icon-favour-a" href="javascript:void(0)"  id="{{ new.get("news_id") }}"><span class="icon-favour" style="background-image: url(../static/img/favour_gray.png)"></span> </a>
+                                    <span class="number">{{new.like_num}}</span>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:788px;height:1px;border:1px solid rgb(225,213,213);margin-left: 16px"></div>
+            {% endfor %}
+        {% else %}
+
+            {% for new in news %}
+                <div
+                        style="font-size:20px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;">
+                    <img style="width:140px;height:87px;float: left;margin-top: 16px;margin-left: 16px"
+                         src="{{ url_for("static", filename=new.get("img")) if new.get("img") else "" }}"/>
+                    <div style="margin-left: 178px">
+                        {{ new.get("title") }}
+                        <div style="display:-webkit-box;margin-top: 30px">
+                            <div
+                                    style="width:56px;height:21px;border: 1px solid rgba(225,0,0,1);font-size:12px;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(225,0,0,1);line-height:24px;text-align: center;">
+                                国内新闻
+                            </div>
+                            <div
+                                    style="font-size:12px;font-family:PingFang-SC-Regular;font-weight:400;color:rgba(133,133,133,1);line-height:24px;margin-left: 18px">
+                                苏州
+                                道路
+                                3小时前
+                            </div>
+                            <div
+                                    style="font-size:12px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(173,173,173,1);margin-left: 100px;margin-top: -10px">
+                                <img src="https://i.loli.net/2019/03/31/5ca05e7655d0f.png"/>{{ new.get("watch_num") }}
+                                <img src="https://i.loli.net/2019/03/31/5ca05ec690abb.png"/>{{ new.get("comment_num") }}
+
+{#                                <img src="https://i.loli.net/2019/03/31/5ca05ef52f3b0.png"/>{{ new.get("like_num") }}#}
+                                <a class="icon-favour-a" href="javascript:void(0)"  id="{{ new.get("news_id") }}"><span class="icon-favour" style="background-image: url(../static/img/favour_gray.png)"></span> </a>
+                                <span class="number">{{new.like_num}}</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:788px;height:1px;border:1px solid rgba(225,225,225,1);margin-left: 16px"></div>
+            {% endfor %}
+        {% endif %}
+
+        </div>
+
+
+        <button id="loadmore"
+                style="width:108px;height:30px;border:1px solid rgba(224,0,1,1);border-radius:5px;background-color: white;font-size:16px;font-family:SourceHanSansCN-Normal;font-weight:400;color:rgba(224,0,1,1);margin-top: 45px;margin-left: 350px">
+            加载更多
+        </button>
+        <input type="hidden" id="last" value="1">
+    </div>
+
+    <script>
+        function more(e) {
+            var last = $("#last").val();
+            {#console.log(last);#}
+            var formdata = new FormData();
+            formdata.append("num", last);
+            $.ajax({
+                    type: "post",
+                    url: "/search",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        var data = result["result"];
+                        var num = result["flag"];
+                        var has_user = result["has_user"];
+                        console.log(has_user);
+
+                        console.log(result);
+                        for (var i = 0; i < data.length; i++) {
+
+                            var in_like = data[i].in;  // 判断搜索到的这则新闻是不是在喜欢之列
+
+                            console.log(in_like);
+                            var news_id = data[i].news_id;
+                            var img = data[i].img;
+                            var title = data[i].title;
+                            var watch_num = data[i].watch_num;
+                            var comment_num = data[i].comment_num;
+                            var like_num = data[i].like_num;
+                            console.log('++++++++++++++++');
+                            console.log(like_num);
+                            if (has_user){
+                                if (in_like){
+                                    var has_user_in_like = $('<div style="font-size:20px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;"><img style="width:140px;height:87px;float: left;margin-top: 16px;margin-left: 16px" src=' + img + '/><div style="margin-left: 178px">' + title + '<div style="display:-webkit-box;margin-top: 30px"><div style="width:56px;height:21px;border: 1px solid rgba(225,0,0,1);font-size:12px;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(225,0,0,1);line-height:24px;text-align: center;">国内新闻</div><div style="font-size:12px;font-family:PingFang-SC-Regular;font-weight:400;color:rgba(133,133,133,1);line-height:24px;margin-left: 18px">苏州 道路 3小时前</div><div style="font-size:12px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(173,173,173,1);margin-left: 100px;margin-top: -10px"><img src="https://i.loli.net/2019/03/31/5ca05e7655d0f.png"/>' + watch_num + '<img src="https://i.loli.net/2019/03/31/5ca05ec690abb.png"/>' + comment_num + '<a class="icon-favour-a" href="javascript:void(0)"  id=' + news_id + '><span class="icon-favour" style="background-image: url(../static/img/favour.png)"></span> </a><span class="number">' + like_num + '</span></div></div></div></div><div style="width:788px;height:1px;border:1px solid rgba(225,225,225,1);margin-left: 16px"></div>');
+                                    $("#div_list").append(has_user_in_like);
+                                }
+                                else {
+                                    var has_user_not_in_like = $('<div style="font-size:20px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;"><img style="width:140px;height:87px;float: left;margin-top: 16px;margin-left: 16px" src=' + img + '/><div style="margin-left: 178px">' + title + '<div style="display:-webkit-box;margin-top: 30px"><div style="width:56px;height:21px;border: 1px solid rgba(225,0,0,1);font-size:12px;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(225,0,0,1);line-height:24px;text-align: center;">国内新闻</div><div style="font-size:12px;font-family:PingFang-SC-Regular;font-weight:400;color:rgba(133,133,133,1);line-height:24px;margin-left: 18px">苏州 道路 3小时前</div><div style="font-size:12px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(173,173,173,1);margin-left: 100px;margin-top: -10px"><img src="https://i.loli.net/2019/03/31/5ca05e7655d0f.png"/>' + watch_num + '<img src="https://i.loli.net/2019/03/31/5ca05ec690abb.png"/>' + comment_num + '<a class="icon-favour-a" href="javascript:void(0)"  id=' + news_id + '><span class="icon-favour" style="background-image: url(../static/img/favour_gray.png)"></span> </a><span class="number">' + like_num + '</span></div></div></div></div><div style="width:788px;height:1px;border:1px solid rgba(225,225,225,1);margin-left: 16px"></div>');
+                                    $("#div_list").append(has_user_not_in_like);
+                                }
+                            }
+                            else {
+                                   var no_user_not_in_like = $('<div style="font-size:20px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(51,51,51,1);line-height:48px;"><img style="width:140px;height:87px;float: left;margin-top: 16px;margin-left: 16px" src=' + img + '/><div style="margin-left: 178px">' + title + '<div style="display:-webkit-box;margin-top: 30px"><div style="width:56px;height:21px;border: 1px solid rgba(225,0,0,1);font-size:12px;font-family:PingFang-SC-Medium;font-weight:500;color:rgba(225,0,0,1);line-height:24px;text-align: center;">国内新闻</div><div style="font-size:12px;font-family:PingFang-SC-Regular;font-weight:400;color:rgba(133,133,133,1);line-height:24px;margin-left: 18px">苏州 道路 3小时前</div><div style="font-size:12px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(173,173,173,1);margin-left: 100px;margin-top: -10px"><img src="https://i.loli.net/2019/03/31/5ca05e7655d0f.png"/>' + watch_num + '<img src="https://i.loli.net/2019/03/31/5ca05ec690abb.png"/>' + comment_num + '<a class="icon-favour-a" href="javascript:void(0)"  id=' + news_id + '><span class="icon-favour" style="background-image: url(../static/img/favour_gray.png)"></span> </a><span class="number">' + like_num + '</span></div></div></div></div><div style="width:788px;height:1px;border:1px solid rgba(225,225,225,1);margin-left: 16px"></div>');
+                                    $("#div_list").append(no_user_not_in_like);
+                            }
+
+                            var now = parseInt(last) + 1;
+                            $("#last").val(now);
+                        }
+
+                        if (num == 0) {
+                            $("#loadmore").html("无更多内容").unbind("click");
+                            return false;
+                        }
+
+                    },
+                    error: function () {
+                        console.log("fail")
+                    }
+
+                    },
+            );
+
+        }
+        $("#loadmore").on("click", more);
+
+
+
+
+    function aaa(e) {
+        event.stopPropagation();
+        var v_id = e.currentTarget.getAttribute('id');
+        console.log(v_id);
+        var formdata = new FormData();
+
+        alert("++++++++++++++");
+        formdata.append("new_id", v_id);
+        console.log(formdata.has("new_id"));
+        $.ajax({
+            type: "POST",
+            url: "/manage/favourite",
+            data: formdata,
+            processData:false,
+            contentType:false,
+            dataType:false,
+            success: function (result) {
+                console.log(result);
+
+                var current_like_num = $(e.currentTarget).next().html();
+                console.log(current_like_num);
+                var like_num = result["like_num"];
+                if (current_like_num > like_num)
+                    {
+                    $(e.currentTarget).next().html(like_num);
+                    $(e.currentTarget).children(".icon-favour").css('background','url(../static/img/favour_gray.png) no-repeat');
+                    }
+                else
+                    {
+                    $(e.currentTarget).next().html(like_num);
+                    $(e.currentTarget).children(".icon-favour").css('background','url(../static/img/favour.png) no-repeat');
+                    }
+
+                alert("OK")
+            },
+            error:function () {
+                // 此处无法执行
+                window.location.href = "/";
+                console.log("error");
+
+
+            }
+
+        })
+    }
+
+    {#$(".icon-favour-a").on("click",aaa)#}  // 事件绑定
+    $("#div_list").on("click", ".icon-favour-a", aaa);  // 事件委托，适用动态增加的元素
+
+    </script>
+
+
+{% endblock %}
+
+

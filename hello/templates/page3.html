@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="./static/js/tree.js"></script>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+
+<style>
+    /** tree.css zyj 2018.4.21 */
+    ul#nav{ width:100%; height:60px; background:#00A2CA;margin:0 auto}
+    ul#nav li{display:inline; height:60px}
+    ul#nav li a{display:inline-block; padding:0 20px; height:60px; line-height:60px;
+     color:#FFF; font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:16px}
+    ul#nav li a:hover{background:#0095BB}/*设置鼠标滑过或悬停时变化的背景颜色*/
+    ul, li {
+        list-style-type: none;
+    }
+
+    .tree {
+        display: block;
+        position: relative;
+        padding: 5px 15px;
+    }
+
+    .tree span {
+        display: inline-block;
+        box-sizing: border-box;
+        height: 30px;
+        line-height: 28px;
+        min-width: 60px;
+        text-align: center;
+        color: #888;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 0 8px;
+    }
+
+    .tree ul {
+        position: relative;
+        padding-left: 60px;
+        margin: 0;
+    }
+
+    .tree ul > li {
+        position: relative;
+        padding: 5px 0;
+    }
+
+    .tree > ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    /** 水平方向连线 */
+    .tree > ul ul > li:after {
+        content: ' ';
+        position: absolute;
+        top: 20px;
+        left: -45px;
+        width: 45px;
+        border: none;
+        border-top: 1px solid #ddd;
+    }
+
+    /** 垂直方向连线 */
+    .tree ul > li:not(:last-child):before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: -45px;
+        height: 100%;
+        border: none;
+        border-left: 1px solid #ddd;
+    }
+
+    .tree ul > li:last-child:before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: -45px;
+        height: 20px;
+        border: none;
+        border-left: 1px solid #ddd;
+    }
+
+    /** 控制鼠标移上去的颜色 */
+    .tree span:hover, .tree span:hover + ul span {
+        color: #fff;
+        background-color: orange;
+    }
+
+    .tree span:hover, .tree span:hover + ul span, .tree span:hover + ul li:before, .tree span:hover + ul li:after {
+        border-color: orange;
+    }
+
+    /** 折叠图标 */
+    .tree .fa:before {
+        margin-right: 5px;
+    }
+
+    .tree .fa-minus-circle, .tree .fa-plus-circle {
+        cursor: pointer;
+    }
+</style>
+<body>
+<ul id="nav">
+    <li><a href="http://127.0.0.1:5000/">服务描述</a></li>
+    <li><a href="http://127.0.0.1:5000/page2">术语定义</a></li>
+    <li><a href="http://127.0.0.1:5000/page3">术语可执行</a></li>
+    <li><a href="http://127.0.0.1:5000/page4">规则定义</a></li>
+</ul>
+<form class="form-horizontal" id="myform" action="/" method="">
+    <input type="text" name="text"  id="search"/><input type="button" onclick="searchHangye()" id="searchbutton" value="search"/>
+</form>
+<div class="tree">
+    <ul>
+        <li>
+            <span><i class="fa fa-minus-circle"></i>行业</span>
+            <ul>
+                <li>
+                    <span><i class="fa fa-minus-circle"></i>投资</span>
+
+                </li>
+                <li>
+                    <span>金融</span>
+                    <ul>
+                        <li><span>{{ nextName }}</span></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>保险</span>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <span><i class="fa fa-minus-circle"></i>{{ nextName }}</span>
+            <ul>
+                <li>
+                    <span><i class="fa fa-minus-circle"></i>{{ can1 }}</span>
+
+                    <select multiple="multiple" size="3">
+                        <option value="volvo">{{tag1_1 }}</option>
+                        <option value="saab">{{tag1_2 }}</option>
+                        <option value="opel">{{tag1_3 }}</option>
+                        <option value="audi">{{tag1_4 }}</option>
+                        <option value="audi">{{tag1_5 }}</option>
+                    </select>
+                </li>
+                <li>
+                    <span>{{ can2 }}</span>
+                        <select multiple="multiple" size="3">
+                        <option value="volvo">{{tag1_1 }}</option>
+                        <option value="saab">{{tag1_2 }}</option>
+                        <option value="opel">{{tag1_3 }}</option>
+                        <option value="audi">{{tag1_4 }}</option>
+                        <option value="audi">{{tag1_5 }}</option>
+                        </select>
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script>
+    $(function () {
+        $('#ddlLine').combotree({
+            valueField: "id", //Value字段
+            textField: "text", //Text字段
+            multiple: true,
+            data: [{
+                "id": 1,
+                "text": "All",
+                "children": [{"id": 13, "text": "C1"}, {"id": 14, "text": "C2"}, {"id": 15, "text": "C3"}]
+            }]
+            ,
+            //                url: "tree_data2.json", //数据源
+            onCheck: function (node, checked) {
+                //让全选不显示
+                $("#ddlLine").combotree("setText", $("#ddlLine").combobox("getText").toString().replace("全选,", ""));
+            },
+            onClick: function (node, checked) {
+                //让全选不显示
+                $("#ddlLine").combotree("setText", $("#ddlLine").combobox("getText").toString().replace("全选,", ""));
+            }
+        });
+    });
+    var dataTest1 = {
+        name: '影视',
+        children: [
+            {
+                name: 'ABC'
+            },
+            {
+                name: 'BCD'
+            }
+        ]
+    };
+    var dataTest2 = {
+        name: '账户',
+        children: [
+            {
+                name: '账户名'
+
+            },
+            {
+                name: '账户余额'
+            }
+        ]
+    };
+    function searchHangye(){
+        var searchText = document.getElementById("search").value;
+        $.ajax({
+                url: "http://127.0.0.1:5000/page2",
+                type: "POST",
+                data: {"searchText": searchText
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result) {
+                        console.log("success")
+
+                    } else {
+                        $("#error").attr("value", result['error']);
+                    }
+                },
+                error: function (msg) {
+                    console.log("error:", msg)
+                }
+            })
+        if (searchText == "互联网")
+            tree.setData('.tree', dataTest2);
+        else if(searchText == "影视")
+            tree.setData('.tree', dataTest1);
+    }
+
+</script>
+</body>
+</html>

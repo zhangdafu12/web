@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+</head>
+<style>
+    h1,
+    p {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #41BFE7;
+    }
+
+    .container {
+        width: 500px;
+        margin: 180px auto;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .container .text {
+        color: #C0C0C0;
+        font-size: 14px;
+    }
+
+    .container .logon {
+        width: 375px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding-top: 41px;
+    }
+
+    .container .logon-left {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .container .logon-right {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .container .input {
+        text-align: left;
+        position: relative;
+    }
+
+    .container .input input {
+        height: 38px;
+        border-radius: 5px;
+        border: 1px solid #E2E2E2;
+        font-size: 16px;
+        line-height: 40px;
+        margin: 24px 0 0 60px;
+        outline: none;
+    }
+
+    .container input::-webkit-input-placeholder {
+        color: #E5E5E5;
+        border: 0;
+    }
+
+    .container .email,
+    .container .confirm-password {
+        text-indent: 12px;
+        width: 378px;
+    }
+
+    .container .password {
+        text-indent: 12px;
+        width: 300px;
+    }
+
+    .container .input .phone {
+        text-indent: 12px;
+        width: 378px;
+        height: 40px;
+        margin: 24px 0 0 60px;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #E2E2E2;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .container .input .phone select {
+        text-indent: 12px;
+        width: 72px;
+        height: 44px;
+        color: #E5E5E5;
+        border: 1px solid #E2E2E2;
+        position: relative;
+        bottom: 2px;
+        border-left: 0;
+        outline: none;
+    }
+
+    .container .input .phone .cell {
+        text-indent: 12px;
+        width: 300px;
+        margin: 0;
+        border-radius: 0;
+        border: 0
+    }
+
+    .container .input .verify-code {
+        margin-top: 24px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .container .input .verify-code .verify {
+        width: 270px;
+        margin-top: 0;
+        text-indent: 12px;
+    }
+
+    .container .input .verify-code .code {
+        color: #41bfe7;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 40px;
+        margin-left: 24px;
+    }
+
+    .container .input .enroll {
+        width: 176px;
+        background-color: #41bfe7;
+        color: #ffffff;
+        position: absolute;
+        left: calc(50% - 88px);
+        margin: 24px 0 0 0;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>数据抓取任务发布平台</h1>
+        <div class="text">是东半球最具影响力的数据抓取任务发布平台</div>
+        <div class="logon">
+            <div class="logon-left">注册</div>
+            <p class="logon-right"><a href="登录.html">使⽤已有帐户登录</a></p>
+        </div>
+        <div class="input">
+            <form action="">
+                <input type="text" placeholder="邮箱" class="email"><br>
+                <input type="text" placeholder="6 - 16 位密码，区分⼤⼩写" class="password"><br>
+                <input type="text" placeholder="确认密码" class="confirm-password"><br>
+                <div class="phone">
+                    <select name="" id="">
+                        <option value="">+86</option>
+                        <option value="">+11</option>
+                    </select>
+                    <input type="text" placeholder="11 位⼿机号" class="cell">
+                </div>
+                <div class="verify-code">
+                    <input type="text" placeholder="输⼊验证码" class="verify"><br>
+                    <div class="code">获取验证码</div>
+                </div>
+                <input type="submit" value="注册" class="enroll">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

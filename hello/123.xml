@@ -1,0 +1,7 @@
+<A11 type='complexType'>
+    <A21 type='complexType'>
+        <A31 type='string'/>
+        <A32 type='string'/>
+    </A21>
+    <A22 type='string'/>
+</A11>
