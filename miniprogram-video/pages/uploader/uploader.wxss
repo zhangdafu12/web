@@ -1,0 +1,29 @@
+.video {
+  position: relative;
+  margin-top: 16rpx;
+}
+
+.play {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.delete {
+  position: absolute;
+  top: -16rpx;
+  right: -16rpx;
+  width: 32rpx;
+  height: 32rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 2;
+}
+.weui-btn-area .weui-btn{
+  background: #3bb1ff;
+}

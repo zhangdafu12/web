@@ -1,0 +1,82 @@
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="culum">
+  <view class="navbar">
+    <view bindtap='goback' class="goback">
+      <image src='/images/return.png' class="return"></image>
+    </view>
+    <view class="item item-left">
+      报名
+    </view>
+
+  </view>
+</view>
+
+
+<view class="container">
+  <view class="course">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}">
+      <block wx:for="{{imgUrls}}" wx:for-item="imgUrl" wx:key="{{imgUrl.id}}">
+        <swiper-item>
+          <image src="{{imgUrl.photo_url}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="residue">剩余名额
+      <text>{{ remainPlaces }}</text> 人
+    </view>
+  </view>
+  <view class="odds">
+    <view class="allPrice">课程总价：￥
+      <text>{{123123 }}      </text>
+    </view>
+    <view class="odds-left">
+      <view class="left-A">特惠</view>
+      <view class="left-B">{{ courseName }}</view>
+    </view>
+    <view class="odds-right">
+      <view class="right-A">定金￥{{ deposit }}元</view>
+      <view class="right-B">
+        <view class="astir">总价</view>
+        <view class="astir-price">￥
+          <text>{{ all_in_cost }}      </text>
+        </view>
+        <view class="astir">活动价</view>
+        <view class="astir-price">￥
+          <text>{{ activityPriceDeposit }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="gray"></view>
+  <view class="box">
+    <view class="apply">
+      <view class="apply-text">
+        <view class="stick"></view>
+        <view>报名</view>
+        <view class="stick"></view>
+      </view>
+      <form bindsubmit="saveForm">
+        <input placeholder='学生姓名' type='text' name="name" data-index="0" bindinput="changeName"></input>
+        <input placeholder='年龄' type="number" name="age" data-index="1" bindinput="changeName"></input>
+        <input placeholder='电话' type="number" name="phone" data-index="2" bindinput="changeName"></input>
+        <button formType="submit">报名</button>
+      </form>
+      <view class="surplus">剩余费用{{ remainFee }}元</view>
+    </view>
+    <view class="course">
+      <view class="apply-text">
+        <view class="stick"></view>
+        <view>课程说明</view>
+        <view class="stick"></view>
+      </view>
+      <view class='rule-cont'>
+        <view class="rule">1.每个微信可参与一次分享活动</view>
+        <view class="rule">2.优惠券全场通用</view>
+        <view class="rule">3.若用户使用领取的优惠券下单，订单取消后，优惠券将失效</view>
+        <view class="rule">4.定金一旦支付无法退还</view>
+        <view class="rule">4.商家保留法律范围内允许的对活动的解释权</view>
+        <view class="rule">5.本活动与BG课平台无关</view>
+      </view>
+    </view>
+  </view>
+</view>

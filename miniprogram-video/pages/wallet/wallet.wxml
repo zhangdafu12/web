@@ -1,0 +1,6 @@
+<!--pages/wallet/wallet.wxml-->
+<view class="wallet">
+  <text class="tit">余额:</text>
+  <text class="number">{{money}}</text>
+  <text class="but" bindtap="tixian" data-money="{{money}}">提现</text>
+</view>

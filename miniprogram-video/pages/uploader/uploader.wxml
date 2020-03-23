@@ -1,0 +1,47 @@
+<!-- 视频标题 -->
+<view class="weui-cells__title">视频标题</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入标题" bindinput="onTitleInput" />
+    </view>
+  </view>
+</view>
+<!-- 视频文字内容 -->
+<view class="weui-cells__title">文字内容</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em" maxlength="{{maxLength}}" bindinput="handleInput" />
+      <view class="weui-textarea-counter">{{length}}/{{maxLength}}</view>
+    </view>
+  </view>
+</view>
+<!-- 视频 -->
+<view class="weui-cells">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+          <view class="weui-uploader__title">视频上传</view>
+          <view class="weui-uploader__info">{{video==''?'0':'1'}}/1</view>
+        </view>
+        <view class="weui-uploader__bd">
+          <view class="weui-uploader__files" hidden="{{video==''}}">
+            <view class="weui-uploader__file video">
+              <video class="weui-uploader__img" id="video" src="{{video}}" show-fullscreen-btn="{{false}}" show-center-play-btn="{{false}}" show-play-btn="{{play?true:false}}" bindfullscreenchange="bindFullScreenChange" />
+              <image class="play" src="/images/icon_play.png" bindtap="bindPlay"></image>
+              <image class="delete" src="/images/icon_delete.png" bindtap="bindDeleteVideo"></image>
+            </view>
+          </view>
+          <view class="weui-uploader__input-box" hidden="{{video!=''}}">
+            <view class="weui-uploader__input" bindtap="bindChooseVideo"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="weui-btn-area">
+  <button class="weui-btn" type="primary" bindtap="bindSave">保存</button>
+</view>

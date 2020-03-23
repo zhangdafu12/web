@@ -1,0 +1,186 @@
+<view class="container">
+
+<block wx:if='{{ins==false}}'>
+<block wx:if='{{deposit_order.length>0}}'>
+  <block wx:for="{{deposit_order}}" wx:key="{{item}}">
+    <view class="box_cont">
+      <view class="box">
+        <view class="store">
+          <view>
+          </view>
+          <view>
+          </view>
+          <view class="time">订单编号:{{item.number}}</view>
+        </view>
+        <view class="cuisine-cont">
+          <image src="{{host+'/media/' + item.activity_photo}}"></image>
+          <view class="cuisine">
+            <view class="price">
+              <view class="current_price">￥{{item.money}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="text">
+          <view>学生姓名:{{item.student_name}}</view>
+          <view>联系电话:{{item.student_phone}}</view>
+          <view>微信账户:{{item.user_nickname}}</view>
+          <view>支付类型：定金支付</view>
+          <view>支付方式：微信支付</view>
+          <view>支付时间：{{item.time}}</view>
+        </view>
+   
+     
+      </view>
+    </view>
+  </block>
+</block>
+
+<block wx:else>
+    <view class="box_cont" bindtap="gotopaydepositprice">
+      <view class="box orderBox">
+
+          <view>课程名:  {{activity.course_name}} </view>
+          <view>金   额:   {{activity.deposit_price}}元</view>
+          <view>订单时间:   {{activity.time}}</view>
+          <view><text class="but">支付定金</text></view>
+      </view>
+    </view>
+</block>
+
+
+<block wx:if="{{deposit_order.length>0 && tail_order.length==0}}">
+    <view class="box_cont" bindtap="gotopaytailprice">
+      <view class="box orderBox">
+          <view>课程名:  {{activity.course_name}} </view>
+          <view>金   额:   {{activity.tail_price}}元</view>
+          <view>订单时间:   {{activity.time}}</view>
+          <view><text class="but">支付尾款</text></view>
+      </view>
+    </view>
+</block>
+
+  <block wx:for="{{tail_order}}" wx:key="{{item}}">
+    <view class="box_cont">
+      <view class="box">
+        <view class="store">
+          <view>
+          </view>
+          <view>
+          </view>
+          <view class="time">订单编号:{{item.number}}</view>
+        </view>
+        <view class="cuisine-cont">
+          <image src="{{host+'/media/' + item.activity_photo}}"></image>
+          <view class="cuisine">
+            <view class="price">
+              <view class="current_price">￥{{item.money}}</view>
+            </view>
+          </view>
+        </view>
+          <view class="text">
+          <view>学生姓名:{{item.student_name}}</view>
+          <view>联系电话:{{item.student_phone}}</view>
+          <view>微信账户:{{item.user_nickname}}</view>
+          <view>支付类型：尾款支付</view>
+          <view>支付方式：微信支付</view>
+          <view>支付时间：{{item.time}}</view>
+    </view>
+      </view>
+    </view>
+  </block>
+</block>
+
+
+
+
+<block wx:if='{{ins==true}}'>
+<block wx:if='{{deposit_order.length>0}}'>
+  <block wx:for="{{deposit_order}}" wx:key="{{item}}">
+    <view class="box_cont">
+      <view class="box">
+        <view class="store">
+          <view>
+          </view>
+          <view>
+          </view>
+          <view class="time">订单编号:{{item.number}}</view>
+        </view>
+        <view class="cuisine-cont">
+          <image src="{{host+'/media/' + item.activity_photo}}"></image>
+          <view class="cuisine">
+            <view class="price">
+              <view class="current_price">￥{{item.money}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="text">
+          <view>学生姓名:{{item.student_name}}</view>
+          <view>联系电话:{{item.student_phone}}</view>
+          <view>微信账户:{{item.user_nickname}}</view>
+          <view>支付类型：定金支付</view>
+          <view>支付方式：微信支付</view>
+          <view>支付时间：{{item.time}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+
+<block wx:else>
+    <view class="box_cont" >
+      <view class="box orderBox">
+
+          <view>课程名:  {{activity.course_name}} </view>
+          <view>金   额:   {{activity.deposit_price}}元</view>
+          <view>订单时间:   {{activity.time}}</view>
+          <view><text class="but">未支付定金</text></view>
+      </view>
+    </view>
+</block>
+
+
+<block wx:if="{{deposit_order.length>0 && tail_order.length==0}}">
+    <view class="box_cont" >
+      <view class="box orderBox">
+          <view>课程名:  {{activity.course_name}} </view>
+          <view>金   额:   {{activity.tail_price}}元</view>
+          <view>订单时间:   {{activity.time}}</view>
+          <view><text class="but">未支付尾款</text></view>
+      </view>
+    </view>
+</block>
+
+  <block wx:for="{{tail_order}}" wx:key="{{item}}">
+    <view class="box_cont">
+      <view class="box">
+        <view class="store">
+          <view>
+          </view>
+          <view>
+          </view>
+          <view class="time">订单编号:{{item.number}}</view>
+        </view>
+        <view class="cuisine-cont">
+          <image src="{{host+'/media/' + item.activity_photo}}"></image>
+          <view class="cuisine">
+            <view class="price">
+              <view class="current_price">￥{{item.money}}</view>
+            </view>
+          </view>
+        </view>
+          <view class="text">
+          <view>学生姓名:{{item.student_name}}</view>
+          <view>联系电话:{{item.student_phone}}</view>
+          <view>微信账户:{{item.user_nickname}}</view>
+          <view>支付类型：尾款支付</view>
+          <view>支付方式：微信支付</view>
+          <view>支付时间：{{item.time}}</view>
+    </view>
+      </view>
+    </view>
+  </block>
+</block>
+
+ <view wx:if='{{deposit_order.length>0  && ins==false}}' class='butt' bindtap='goShareLink'>分享链接 </view>
+
+</view>

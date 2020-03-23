@@ -1,0 +1,176 @@
+.statusbar {
+  background-color: #3bb1ff;
+}
+
+.navbar {
+  height: 56rpx;
+  padding: 16rpx 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+  background-color: #3bb1ff;
+  position: relative;
+}
+.goback{
+  height: 100%;
+  width: 60rpx;
+  display: flex;
+align-items: center;
+position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  padding-left: 26rpx;
+}
+.navbar .return {
+  width: 20rpx;
+  height: 34rpx;
+  
+}
+
+.navbar .item {
+  width: 150rpx;
+  height: 100%;
+  /* 垂直居中，三行 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3rpx solid #fff;
+  font-size: 28rpx;
+  background-color: #3bb1ff;
+  color: #fff;
+}
+
+.navbar .item-left {
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+}
+
+.navbar .item-right {
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+}
+
+.navbar .active {
+  background-color: #fff;
+  color: #3bb1ff;
+}
+.recommend-tab {
+  position: relative;
+
+}
+.culum {
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+
+.levy {
+
+  background-color: #fff;
+}
+
+.levy .title {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 0 0 15px;
+}
+
+.box {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+  margin: 15px 0 15px 15px;
+  border-bottom: 1px solid rgba(236, 238, 241, 1);
+}
+
+.box:last-child {
+  border: 0;
+}
+
+.box text {
+  display: block;
+}
+
+.box .left {
+  display: flex;
+  flex-direction: column;
+}
+
+.box .left .left-A {
+  width: 160px;
+  height: 50px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box .left .left-A text {
+  display: inline-block;
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.box .left>text {
+  font-size: 14px;
+  color: rgba(51, 177, 123, 1);
+  margin-top: 5px;
+}
+
+.box .right image {
+  width: 131px;
+  height: 70px;
+}
+
+.case {
+  height: 120rpx;
+  border-bottom: 2rpx solid #f3f3f3;
+  background-color: #fff;
+  padding: 30rpx 24rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.case:last-child {
+  border: 0;
+}
+
+.case-A {
+  width: 120rpx;
+  height: 120rpx;
+  position: relative;
+  margin-right: 20rpx;
+}
+
+.case-A .big {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.case-A .little {
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+  box-shadow: 0rpx 0rpx 12rpx 0rpx rgba(0, 0, 0, 0.16);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #fff;
+}
+
+.case-A .little image {
+  width: 26rpx;
+  height: 24rpx;
+  position: absolute;
+  left: calc(50% - 13rpx);
+  top: calc(50% - 12rpx);
+}
+
+.case-B {
+  font-size: 30rpx;
+  line-height: 132rpx;
+}

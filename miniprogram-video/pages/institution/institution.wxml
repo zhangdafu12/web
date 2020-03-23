@@ -1,0 +1,133 @@
+<!-- 配置区域 -->
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="culum">
+  <view class="navbar">
+  <view  bindtap='goback' class="goback">
+   <image src='/images/return.png' class="return"></image>
+  </view>
+    <view class="item item-left" style="color:#000" >
+      机构管理
+    </view>
+  </view>
+</view>
+
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" scroll-y="true">
+<view class="config">
+  <view class="item">
+    <image class="icon" src="/images/icon_institution.png"></image>
+    <text class="name">机构名称</text>
+    <input data-id="name" placeholder="请输入机构名称" value="{{info.name || ''}}" bindblur="handleSave" />
+  </view>
+  <view class="item" bindtap="bindChangeAvatar">
+    <image class="icon" src="/images/icon_avatar.png"></image>
+    <text class="name">头像</text>
+    <image class="avatar" src="{{info.avatar}}" mode="aspectFill"></image>
+     <image class="icon-more" src="/images/icon_more.png"></image>
+  </view>
+  <view class="item">
+    <image class="icon" src="/images/icon_address.png"></image>
+    <text class="name">地址</text>
+    <!-- <input data-id="address" placeholder="请输入地址" value="{{info.address || ''}}" bindblur="handleSave" /> -->
+    <text class="input" bindtap="changeAddress"> {{address}} </text>
+  </view>
+  <view class="item">
+    <image class="icon" src="/images/icon_phone.png"></image>
+    <text class="name">电话</text>
+    <input data-id="phone" placeholder="请输入手机号" value="{{info.phone || ''}}" bindblur="handleSave" />
+  </view>
+  <view class="item">
+    <image class="icon" src="/images/icon_license.png"></image>
+    <text class="name">营业执照</text>
+    <input data-id="license" placeholder="请输入营业执照" value="{{info.license || ''}}" bindblur="handleSave" />
+  </view>
+  <view class="item" data-id="scale" bindtap="showModal">
+    <image class="icon" src="/images/icon_coin.png"></image>
+    <text class="name">R币比例值</text>
+    <text class="text">{{info.scale}}</text>
+    <image class="icon-more" src="/images/icon_more.png"></image>
+  </view>
+  <view class="item" data-id="maxDeduction" bindtap="showModal">
+    <image class="icon" src="/images/icon_deduction.png"></image>
+    <text class="name">最多抵扣值</text>
+    <text class="text">{{info.maxDeduction}}</text>
+    <image class="icon-more" src="/images/icon_more.png"></image>
+  </view>
+  <view class="item" bindtap="showActivity" wx-if="{{isAdmin==true}}">
+    <image class="icon" src="/images/icon_playing.png"></image>
+    <text class="name">报名活动设置</text>
+     <image class="icon-more" src="/images/icon_more.png"></image>
+  </view>
+   <!-- <view class="item" bindtap="showPlayRegulate" wx-if="{{isAdmin==true}}">
+    <image class="icon" src="/images/icon_person.png"></image>
+    <text class="name">报名人员管理</text>
+    <image class="icon-more" src="/images/icon_more.png"></image>
+  </view> -->
+  <view class="item" bindtap="myWallet" wx-if="{{isAdmin==true}}" >
+    <image class="icon" src="/images/icon_bank.png" ></image>
+    <text class="name">我的钱包</text>
+    <image class="icon-more" src="/images/icon_more.png"></image>
+  </view>
+  <view class="item" bindtap="myBank"wx-if="{{isAdmin==true}}">
+    <image class="icon" src="/images/icon_bank.png"></image>
+    <text class="name">我的银行卡</text>
+    <image class="icon-more" src="/images/icon_more.png"></image>
+  </view>
+</view>
+
+
+<view class="videos" wx:if="{{isAdmin}}">
+  <text class="title">图片</text>
+  <view class="uploader">
+    <!-- <navigator url="/pages/uploader/uploader"> -->
+      <view class="center" bindtap='upload' data-type='0' >
+        <image src="/images/icon_upload.png"></image>
+        <view class="text">上传图片</view>
+      </view>
+    <!-- </navigator> -->
+
+
+
+
+  </view>
+    <view class="video-item" wx:for="{{imagelist}}" wx:key="id" data-item="{{item}}" bindtap="bindPlay" >
+    <image class="thumbnail" src="{{host+item.image}}" mode="aspectFill"></image>
+    <image  class='delete' catchtap="deleteImg" data-imgid="{{item.id}}" src="/images/icon_delete.png"></image>
+  </view>
+
+  <!-- <view class="video-item" wx:for="{{uploadimgList}}" wx:key="id" data-item="{{item}}" bindtap="bindPlay" >
+    <image class="thumbnail" src="{{item}}" mode="aspectFill"></image>
+    <image  class='delete' catchtap="deleteImg" data-num="{{index}}" src="/images/icon_delete.png"></image>
+  </view> -->
+
+</view>
+<!-- 视频列表 -->
+<!-- <view class="videos" wx:if="{{isAdmin}}"> -->
+  <!-- <text class="title">视频</text>
+  <view class="uploader">
+    <navigator url="/pages/uploader/uploader">
+      <view class="center">
+        <image src="/images/icon_upload.png"></image>
+        <view class="text">上传视频</view>
+      </view>
+    </navigator>
+  </view>
+  <view class="video-item" wx:for="{{videos}}" wx:key="id" data-item="{{item}}" bindtap="bindPlay" >
+    <image class="thumbnail" src="{{item.thumbnail}}" mode="aspectFill"></image>
+    <image  class='delete' catchtap="bindDelete" data-item="{{index}}" src="/images/icon_delete.png"></image>
+  </view> -->
+<!-- </view> -->
+<view class='submit' wx-if="{{isAdmin==false}}">
+  <button bindtap="submit">提交审核</button>
+</view>
+</scroll-view>
+<!-- 自定义模态框 -->
+<modal class="modal" hidden="{{modalKey == null}}" title="{{dict[modalKey]}}" confirm-text="确认" cancel-text="取消" bindcancel="modalCancel" bindconfirm="modalConfirm">
+  <view wx:if="{{modalKey == 'scale'}}">
+    <input type="number" placeholder="比例值" value="{{scale}}" bindinput="modalInput" auto-focus />
+    :
+    <text>1</text>
+  </view>
+  <block wx:if="{{modalKey == 'maxDeduction'}}">
+    <input class='deduction' type="number" placeholder="最多抵扣" value="{{maxDeduction}}" bindinput="modalInput" auto-focus />
+  </block>
+</modal>

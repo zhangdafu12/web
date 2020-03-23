@@ -1,0 +1,23 @@
+function formatNum(number) {
+  var str = ''
+  if (number <= 0) {
+    str = '0'
+  } else if (number < 10000) {
+    str = number + ''
+  } else if (number < 1000000) {
+    number /= 10000
+    str = Math.floor(number * 10) / 10 + ''
+    if (number.toString().indexOf('.') < 0) {
+      str += '.0'
+    }
+    str += '万'
+  } else {
+    number /= 10000
+    str = Math.floor(number) + '万'
+  }
+  return str
+}
+
+module.exports = {
+  formatNum: formatNum
+}

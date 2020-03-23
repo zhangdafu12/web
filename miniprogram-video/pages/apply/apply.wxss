@@ -1,0 +1,235 @@
+/* pages/apply/apply.wxss */
+.statusbar {
+  background-color: #3bb1ff;
+}
+
+.navbar {
+  height: 56rpx;
+  padding: 16rpx 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+  background-color: #3bb1ff;
+  position: relative;
+}
+
+.goback{
+  height: 100%;
+  width: 60rpx;
+  display: flex;
+align-items: center;
+position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  padding-left: 26rpx;
+}
+.navbar .return {
+  width: 20rpx;
+  height: 34rpx;
+  
+}
+
+.navbar .item {
+  width: 150rpx;
+  height: 100%;
+  /* 垂直居中，三行 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  background-color: #3bb1ff;
+  color: #fff;
+}
+
+.navbar .item-left {
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+}
+
+.navbar .item-right {
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+}
+
+
+.container swiper {
+  width: 100%;
+  height: 480rpx;
+}
+
+.slide-image {
+  width: 750rpx;
+  height: 480rpx;
+}
+
+.odds {
+  width: 750rpx;
+  height: 140rpx;
+  display: flex;
+  justify-content: space-between;
+  position:relative;
+}
+.allPrice{
+  position: absolute;
+  top: 96rpx;
+  left: 50rpx;
+  font-size: 24rpx;
+
+}
+.allPrice text{
+  color: #ff0e0e;
+}
+
+.odds .odds-left {
+  display: flex;
+  justify-content: flex-start;
+  margin: 48rpx 0 48rpx 24rpx;
+}
+
+.odds-left .left-A {
+  width: 60rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background-color: #3bb1ff;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  margin: 6px 6px 6px 0;
+}
+
+.odds-left .left-B {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.odds-right {
+  margin: 30rpx 24rpx 30rpx 0;
+}
+
+.right-A {
+  font-size: 24rpx;
+  color: #8c8c8c;
+  text-decoration: line-through;
+  text-align: right;
+}
+
+.right-B {
+  display: flex;
+  justify-content: flex-end;
+  line-height: 30rpx;
+}
+
+.right-B .astir {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+  font-weight: bold;
+}
+
+.right-B .astir-price {
+  font-size: 20rpx;
+  color: #ff0e0e;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.right-B .astir-price text {
+  font-size: 36rpx;
+  color: #ff0e0e;
+}
+
+.gray {
+  width: 750rpx;
+  height: 20rpx;
+  background-color: #f3f3f3;
+}
+
+.box .apply {
+  padding-top: 56rpx;
+}
+
+.apply-text {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 52rpx 24rpx 52rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.apply-text .stick {
+  width: 240rpx;
+  height: 0rpx;
+  border-bottom: solid 1rpx rgb(224, 223, 223);
+  margin-top: 24rpx;
+}
+
+/* .apply form{
+  margin: 0 75rpx;
+} */
+
+.apply input {
+  width: 576rpx;
+  height: 72rpx;
+  background-color: #f3f3f3;
+  border-radius: 10rpx;
+  margin: 0 75rpx 16rpx 75rpx;
+  padding-left: 24rpx;
+  font-size: 28rpx;
+}
+
+.apply button {
+  width: 600rpx;
+  height: 80rpx;
+  background-color: #3bb1ff;
+  border-radius: 10rpx;
+  margin-top: 14px;
+}
+
+.apply button::after {
+  border: 0;
+}
+
+.box .course {
+  margin: 52rpx 0 28rpx 0;
+}
+
+.box .course .apply-text {
+  margin-bottom: 34rpx;
+}
+
+.rule-cont {
+  margin-left: 52rpx;
+}
+
+.rule-cont .rule {
+  font-size: 24rpx;
+  color: #8c8c8c;
+  margin-bottom: 12rpx;
+}
+
+.surplus {
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 12rpx;
+}
+
+.course {
+  position: relative;
+}
+
+.residue {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 24rpx 14rpx 0;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.residue text {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #f4f4f4;
+  border-radius: 6rpx;
+  color: #000;
+  padding: 3rpx 6rpx;
+}

@@ -1,0 +1,92 @@
+/* pages/red/red.wxss */
+
+.search {
+  width: 100%;
+  height: 66rpx;
+  background-color: #3bb1ff;
+  padding: 15rpx 35rpx;
+  position: relative;
+}
+
+.search input {
+  width: 612rpx;
+  height: 68rpx;
+  background-color: rgba(0, 0, 0, 0.14);
+  border-radius: 40rpx;
+  padding-left: 68rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.search image {
+  width: 26rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 36rpx;
+  left: 60rpx;
+}
+
+.box {
+  height: 138rpx;
+  padding: 30rpx 24rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+}
+
+.box-one {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.box-one image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.box-one view {
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 60rpx;
+}
+
+.box-one .name {
+  margin-right: 4rpx;
+}
+
+.box-one .pay {
+  margin-right: 16rpx;
+}
+
+.box-one .money {
+  color: #ff0e0e;
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+.box-two{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 84rpx;
+
+}
+.serial{
+	font-size: 24rpx;
+}
+.serial view:last-child{
+  margin-top: 10rpx;
+}
+.fees{
+  width: 142rpx;
+	height: 52rpx;
+	background-color: #3bb1ff;
+	border-radius: 10rpx;
+  font-size: 26rpx;
+  text-align:center;
+  line-height: 52rpx;
+  margin-top: 22rpx;
+}
+.yet-fees{
+  color: #fff;
+  background-color: #25ce25;
+}

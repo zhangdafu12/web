@@ -1,0 +1,76 @@
+/* 引入 weui 样式 */
+@import 'weui.wxss';
+
+page {
+  background-color: #f8f8f8;
+}
+
+/* 卡片效果 */
+
+.card {
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background-color: white;
+}
+
+.card-no-margin-top {
+  padding: 30rpx;
+  background-color: white;
+}
+
+.card-title {
+  width: 100%;
+  margin-bottom: 24rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+/* 机构信息侧边栏 */
+
+.sidebar {
+  position: absolute;
+  bottom: 15%;
+  right: 22rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-avatar-btn {
+  width: 92rpx;
+  height: 92rpx;
+  margin-bottom: 32rpx;
+}
+
+.sidebar-avatar {
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+}
+
+.sidebar-btn {
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 32rpx;
+  padding: 0;
+  background-color: transparent;
+}
+
+.sidebar-btn::after {
+  border: none;
+}
+
+.sidebar-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.sidebar-text {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

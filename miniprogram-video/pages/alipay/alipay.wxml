@@ -1,0 +1,45 @@
+<!--pages/alipay/alipay.wxml-->
+<view class="container">
+  <view class="info">
+    <image src="{{ imgUrl }}" class="image1"></image>
+    <view class="info-detail">
+      <view class="name">
+        <text>{{ courseName }}</text>
+        <view class="icon-cut">特惠</view>
+      </view>
+      <view class="site">
+        <image src='/images/shop.png'></image>
+        <view>{{ institutionName }}</view>
+      </view>
+      <view class="pre-price" wx:if='{{flag==0}}'> 金额￥{{ activityPriceDeposit }}</view>
+      <!-- <view class="pre-price" wx:if='{{flag==1}}'> 金额￥{{ activityPriceDeposit }}</view> -->
+      <view class="last-price">
+        <view class="last-price-1" wx:if='{{flag==0}}'>金额￥
+        <text>{{ price }}</text>
+      </view>
+        <view class="last-price-1" wx:if='{{flag==1}}'>金额￥
+          <text>{{ last_price }}</text>
+        </view>
+        <!-- <text class="time">剩余支付时间:{{clock}}</text> -->
+      </view>
+    </view>
+  </view>
+  <view class="pay">支付方式</view>
+  <view class="weixin">
+    <view class="wx-left">
+      <image src='/images/微信.png'></image>
+      <view>微信支付</view>
+    </view>
+    <image src='/images/选择.png' class="wx-right"></image>
+  </view>
+  <view wx:if='{{flag==0}}'>
+    <button class="btn-pay" bindtap="pay">支付{{price}}元</button>
+  </view>
+  <view wx:if='{{flag==1}}'>
+    <button class="btn-pay" bindtap="pay">支付{{last_price}}元</button>
+  </view>
+  <view class="state">
+    <view>支付完定金请在规定时间内报名，逾期定金作废</view>
+    <view>详见《课程说明》</view>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+<!-- <wxs src="../../utils/util.wxs" module="util" />
+<video id="video" src="{{video.video}}" autoplay="true" show-fullscreen-btn="false" bindplay="onPlay" bindpause="onPause" bindended="onEnded" bindtimeupdate="onTimeUpdate"></video>
+<view class="sidebar">
+  <!-- 头像 -->
+  <!-- <view class="sidebar-avatar-btn" data-id="{{institutionId}}" bindtap="goToInstitution">
+    <image class="sidebar-avatar" src="{{institutionAvatar}}"></image>
+  </view> -->
+  <!-- 赞 -->
+  <!-- <view class="sidebar-btn" bindtap="bindLike">
+    <image class="sidebar-icon" src="{{video.isLike ? '/images/icon_like_red.png' : '/images/icon_like_gray.png'}}"></image>
+  </view>
+  <view class="sidebar-text">{{util.formatNum(video.like)}}</view> -->
+  <!-- 评论 -->
+  <!-- <view class="sidebar-btn" bindtap="onShowComments">
+    <image class="sidebar-icon" src="/images/icon_comment.png"></image>
+  </view>
+  <view class="sidebar-text">评论</view> -->
+  <!-- 分享 -->
+  <!-- <button class="sidebar-btn" open-type='share'>
+    <image class="sidebar-icon" src="/images/icon_share.png"></image>
+  </button>
+  <view class="sidebar-text">分享</view>
+</view> -->
+<!-- 评论 -->
+<!-- <view class="comments" style="display:{{isShowComments ? 'block' : 'none'}}"> -->
+  <!-- 评论头部 -->
+  <!-- <view class="comments-header">
+    <view class="detail">{{video.title}}</view>
+    <view class="close" bindtap="onHideComments">
+      <image src="/images/icon_close.png"></image>
+    </view>
+  </view> -->
+  <!-- 评论列表 -->
+  <!-- <view class="comments-container">
+    <block wx:for="{{comments}}" wx:key="id" wx:for-item="comment" wx:for-index="commentIndex">
+      <!-- 根评论 -->
+      <!-- <view class="comment" data-index="{{commentIndex}}" bindtap="onReply">
+        <view class="info">
+          <image class="avatar" src="{{usersInfo[comment.user].avatar_url}}"></image>
+          <view class="name">{{usersInfo[comment.user].nickname}}</view>
+          <view class="time">{{comment.reltiveTime}}</view>
+        </view>
+        <view class="content">{{comment.content}}</view>
+      </view> --> -->
+      <!-- 回复评论 -->
+      <!-- <view class="reply" wx:for="{{comment.reply_set}}" wx:key="id" wx:for-item="reply" data-index="{{commentIndex}}" data-reply="{{reply}}" bindtap="onReply">
+        <view class="info"> -->
+          <!-- <image class="avatar" src="{{usersInfo[reply.user].avatar_url}}"></image>
+          <view class="name">{{usersInfo[reply.user].nickname}}</view>
+          <view class="time">{{reply.reltiveTime}}</view>
+        </view>
+        <view class="content">
+          <block wx:if="{{reply.reply_user}}"> -->
+            回复
+            <!-- <span class="name">{{usersInfo[reply.reply_user].nickname}}</span>
+          </block>
+          {{reply.content}}
+        </view>
+      </view> -->
+      <!-- 展开评论 -->
+      <!-- <view class="unfold">
+        <text>展开回复</text>
+        <image src="/images/icon_more_down.png"></image>
+      </view> -->
+    <!-- </block>
+  </view> -->
+  <!-- 评论输入栏 -->
+  <!-- <form bindsubmit="onComment">
+    <view class="comments-input">
+      <view class="reply-to" hidden="{{!isReply}}" bindtap="cancelReply">
+        <span class="name">@{{usersInfo[replyUser].nickname}}</span>
+      </view>
+      <input class="input" name="content" type="text" placeholder="说两句吧" value="{{content}}" />
+      <button class="send" form-type="submit">
+        <image src="/images/icon_send.png"></image>
+      </button>
+    </view>
+  </form>
+</view> --> -->

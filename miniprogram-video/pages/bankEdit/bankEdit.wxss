@@ -1,0 +1,55 @@
+/* pages/bankEdit/bankEdit.wxss */
+.bank_info{
+  background: #fff;
+  margin-top: 30rpx;
+}
+.item {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 20rpx;
+}
+
+.item .icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.item .name {
+  flex: 1;
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  color: rgba(56, 56, 56, 1);
+  font-weight: bold;
+}
+
+.item input {
+  text-align: right;
+  font-size: 28rpx;
+  color: rgba(166, 166, 166, 1);
+  padding-right: 10rpx;
+}
+
+.item .avatar {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 8rpx;
+}
+
+.item .text {
+  font-size: 28rpx;
+  color: rgba(166, 166, 166, 1);
+}
+
+.item .icon-more {
+  width: 60rpx;
+  height: 60rpx;
+}
+.btn{
+  width: 80%;
+  height: 80rpx;
+  margin: 40rpx auto;
+  text-align: center;
+  line-height: 80rpx;
+  background: #3bb1ff;
+}

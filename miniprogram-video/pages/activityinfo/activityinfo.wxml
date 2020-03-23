@@ -1,0 +1,150 @@
+
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="navbar">
+  <view  bindtap='goback' class="goback">
+   <image src='/images/return.png' class="return"></image>
+  </view>
+  <view class="item item-left ">
+    活动详情
+  </view>
+</view>
+<block wx:if="{{isShow}}">
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" scroll-y="true" >
+<view class="container">
+  <view>
+    <view class="content-text">
+      <view class="box" bindtap='onName'>
+        <view class="box1">课程名称</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueName}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box" bindtap='totalPrice'>
+        <view class="box1">课程总费用</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueTotal}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box" bindtap='shopPrice'>
+        <view class="box1">报名定金</view>
+        <view class="box2">
+          <text class='box2-A'>{{valuePrice}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+
+      <view class="box last-child" bindtap='shopActivity'>
+        <view class="box1">报名定金活动价</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueActivity}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="gray"></view>
+      <view class="box alone" bindtap='astrict'>
+        <view class="box1">已报名人数</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueAstrict}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="charge_explain">
+        <view class="box1">课程收费说明
+        </view>
+        <view class='explain'>
+          <textarea value='{{chargeStatement}}' disabled='true' bindinput='csInput'></textarea>
+        </view>
+      </view>
+      <view class='regulation' bindtap='regulationAll'>
+        <image src='/images/icon_tips.png'></image>
+        <text>平台规则</text>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view>
+<!-- 商品名称 -->
+<modal hidden="{{hiddenName}}" title="商品名称" confirm-text="确定" cancel-text="取消" bindcancel="cancelName" bindconfirm="confirmName" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="请输入名称" bindinput="changName"></input>
+</modal>
+<!-- 课程总费用 -->
+<modal hidden="{{hiddenTotal}}" title="课程总费用" confirm-text="确定" cancel-text="取消" bindcancel="cancelTotal" bindconfirm="confirmTotal" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="课程总费用" bindinput="changTotal"></input>
+</modal>
+<!-- 报名定金 -->
+<modal hidden="{{hiddenPrice}}" title="报名定金" confirm-text="确定" cancel-text="取消" bindcancel="cancelPrice" bindconfirm="confirmPrice" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="报名定金" bindinput="changPrice"></input>
+</modal>
+<modal hidden="{{hiddenActivity}}" title="报名定金活动价" confirm-text="确定" cancel-text="取消" bindcancel="cancelActivity" bindconfirm="confirmActivity" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="报名定金活动价" bindinput="changActivity"></input>
+</modal>
+<!-- 报名人数上限 -->
+<modal hidden="{{hiddenAstrict}}" title="报名人数上限" confirm-text="确定" cancel-text="取消" bindcancel="cancelAstrict" bindconfirm="confirmAstrict" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="报名人数上限" bindinput="changAstrict"></input>
+</modal>
+</block>
+<block wx:if="{{isShow==false}}" >
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" scroll-y="true" >
+<view class="container" >
+  <view>
+    <view class="content-text">
+      <view class="box" bindtap='onName'>
+        <view class="box1">课程名称</view>
+        <view class="box2">
+          <text class='box2-A'>{{activity.course_name}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box" bindtap='totalPrice'>
+        <view class="box1">课程总费用</view>
+        <view class="box2">
+          <text class='box2-A'>{{activity.all_in_cost}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box" bindtap='shopPrice'>
+        <view class="box1">报名定金</view>
+        <view class="box2">
+          <text class='box2-A'>{{activity.deposit}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box last-child" bindtap='shopActivity'>
+        <view class="box1">报名定金活动价</view>
+        <view class="box2">
+          <text class='box2-A'>{{activity.activity_price_deposit}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="gray"></view>
+      <view class="box alone" bindtap='astrict'>
+        <view class="box1">已报名人数</view>
+        <view class="box2">
+          <text class='box2-A'>{{num}}/{{activity.upper_limit}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="charge_explain">
+        <view class="box1">课程收费说明
+        </view>
+        <view class='explain'>
+          <view >{{activity.statement}}</view>
+        </view>
+      </view>
+      <button  bindtap="apply" data-aid="{{activity.id}}">报名活动详情</button>
+      <button wx:if='{{activity.activity_price_deposit>3 || activity.activity_price_deposit==3}}' 
+data-way="0" bindtap='goShareLink' > 分享活动返现{{backprice}}元/人次</button>
+<button wx:else  data-way="1"  >定金小于3元不予返现</button>
+    </view>
+  </view>
+</view>
+</scroll-view>
+</block>
+
+<view class='share_box' style='height:{{windowHeight}}px' hidden="{{showCanvas}}">
+  <canvas class='canvas' canvas-id="shareCanvas" style="width:{{windowWidth-40}}px;height:{{windowHeight*0.8-statusBarHeight-30}}px;background:#fff;top:{{30+statusBarHeight}}px"></canvas>
+<view class='share_but' style='top:{{contentHeight*0.92+statusBarHeight}}px'>
+</view>
+</view>

@@ -1,0 +1,42 @@
+/* pages/bank/bank.wxss */
+.addBank{
+  width: 80%;
+  margin: 20rpx auto;
+  height: 80rpx;
+  color: #000;
+  background: #3bb1ff;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+.bank_car{
+  width: 650rpx;
+  height: 150rpx;
+  background: #3bb1ff;
+  display: flex;
+  font-size: 26rpx;
+  margin: 10px auto;
+  padding: 30rpx 20rpx 20rpx 30rpx;
+  border-radius: 20rpx;
+  justify-content: space-around
+}
+.bank_car image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  background: #fff;
+
+}
+.bank_class{
+  display: flex;
+  flex-direction: column;
+  width: 450rpx;
+}
+.bank_class text{
+  display: inline-block;
+  margin-bottom: 10rpx;
+}
+.bank_class .bank_name,.bank_class .bank_num{
+  font-size: 32rpx;
+  font-weight: bold;
+}

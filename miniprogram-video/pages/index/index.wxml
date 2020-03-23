@@ -1,0 +1,155 @@
+<!-- 顶部导航栏 -->
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="navbar">
+  <view class="item item-left {{currentTab==0 ? 'active' : ''}}" data-id="{{0}}" bindtap="onNavbarTap">
+    首页
+  </view>
+  <view class="item item-right {{currentTab==1 ? 'active' : ''}}" data-id="{{1}}" bindtap="onNavbarTap">
+    {{city}}
+  </view>
+</view>
+<!-- 推荐页 -->
+<view class="recommend-tab" style="height: {{contentHeight}}px" hidden="{{currentTab!=0}}">
+
+  <swiper indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <swiper-item>
+          <image class='background-image' src='{{url}}'></image>
+          </swiper-item>
+         <swiper-item>
+          <image class='background-image' src='{{url}}'></image>
+          </swiper-item>
+      </swiper>
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search">
+      <icon class="search-icon" type="search" size="14" color="white"></icon>
+      <input type="text" placeholder="搜索" placeholder-class="input-placeholder" value="{{searchText}}" bindinput="handleSearchInput" bindconfirm="search" />
+    </view>
+    <view class="cancel" hidden="{{!isShowCancel}}" bindtap="onCancelSearch">取消</view>
+  </view>
+  <!-- 机构信息边栏 -->
+  <cover-view class="sidebar">
+    <!-- 头像 -->
+    <!-- <cover-image class="sidebar-avatar" src="/images/icon_avatar.png"></cover-image> -->
+    <!-- 评论 -->
+    <!-- <cover-view class="sidebar-btn" bindtap="onTapComment">
+      <cover-image class="sidebar-icon" src="/images/icon_comment.png"></cover-image>
+    </cover-view>
+    <cover-view class="sidebar-text">评论</cover-view> -->
+    <!-- 分享 -->
+    <!-- <button class="sidebar-btn" open-type='share'>
+      <cover-image class="sidebar-icon" src="/images/icon_share.png"></cover-image>
+    </button>
+    <cover-view class="sidebar-text">分享</cover-view> -->
+  </cover-view>
+  <!-- 权限获取窗口 -->
+  <view class="modal-mask" wx:if="{{showAuthModal}}">
+    <view class="modal-dialog">
+      <view class="modal-title">请求获取用户信息权限</view>
+      <view class="modal-footer">
+        <navigator class="modal-btn-cancel" target="miniProgram" open-type="exit">退出</navigator>
+        <button class="modal-btn-confirm" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+          确定
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 地点页面 -->
+<scroll-view hidden="{{currentTab!=1}}" style="height: {{contentHeight}}px" scroll-y="true">
+  <wxs src="../../utils/util.wxs" module="util" />
+  <block wx:if="{{institution.top==true}}"  wx:for="{{institutionList}}" wx:for-index="institutionIndex" wx:for-item="institution" wx:key="id">
+    <view class="block"></view>
+    <!-- scroll-view 第一个子元素使用带 margin-top 的样式，会使页面未满也能滚动 -->
+    <view class="card-no-margin-top" bindtap='insinfo' data-insid='{{institution.id}}'>
+      <title class="card-title">{{institution.name}}</title>
+
+      <scroll-view wx:if='{{m1.getMax(photolist,institution.id)}}' class="card-title-box" scroll-x style="height:80px;width:100%;">
+        <block wx:for='{{photolist}}' wx:for-item="photo" wx:key="id">
+          <image catchtap="bigImg" data-src="{{host+photo.image}}" mode="acpectFill" wx:if="{{photo.institution==institution.id}}" class="card-title-img" src="{{host+photo.image}}"></image>
+        </block>
+      </scroll-view>
+
+
+
+
+      <!-- <view class="videos">
+        <view class="video-item" wx:for="{{institution.videos}}" wx:key="id" data-index="{{institutionIndex}}" data-item="{{item}}" bindtap="test" bindtouchstart="touchStart" bindtouchend="touchEnd">
+          <image class="video-thumbnail" src="{{item.thumbnail}}" mode="aspectFill"></image>
+          <image class="video-thumbnail" src="https://www.heiyunworld.com:8800/media/thumbnail/315770.jpg" mode="aspectFill"></image>
+          <view class="video-like">
+            <image class="video-like-icon" src="{{item.isLike ? '/images/icon_like_red.png' : '/images/icon_like_gray.png'}}"></image>
+            <text class="video-like-number">{{util.formatNum(item.like)}}</text>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </block>
+    <block wx:if="{{institution.top==false}}"  wx:for="{{institutionList}}" wx:for-index="institutionIndex" wx:for-item="institution" wx:key="id">
+    <view class="block"></view>
+    <!-- scroll-view 第一个子元素使用带 margin-top 的样式，会使页面未满也能滚动 -->
+    <view class="card-no-margin-top" bindtap='insinfo' data-insid='{{institution.id}}'>
+      <title class="card-title">{{institution.name}}</title>
+
+      <scroll-view wx:if='{{m1.getMax(photolist,institution.id)}}' class="card-title-box" scroll-x style="height:80px;width:100%;">
+        <block wx:for='{{photolist}}' wx:for-item="photo" wx:key="id">
+          <image catchtap="bigImg" mode="acpectFill" wx:if="{{photo.institution==institution.id}}" class="card-title-img" data-src="{{host+photo.image}}" src="{{host+photo.image}}"></image>
+        </block>
+      </scroll-view>
+
+
+
+
+      <!-- <view class="videos">
+        <view class="video-item" wx:for="{{institution.videos}}" wx:key="id" data-index="{{institutionIndex}}" data-item="{{item}}" bindtap="test" bindtouchstart="touchStart" bindtouchend="touchEnd">
+          <image class="video-thumbnail" src="{{item.thumbnail}}" mode="aspectFill"></image>
+          <image class="video-thumbnail" src="https://www.heiyunworld.com:8800/media/thumbnail/315770.jpg" mode="aspectFill"></image>
+          <view class="video-like">
+            <image class="video-like-icon" src="{{item.isLike ? '/images/icon_like_red.png' : '/images/icon_like_gray.png'}}"></image>
+            <text class="video-like-number">{{util.formatNum(item.like)}}</text>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </block>
+  <!-- 精品课程列表 -->
+  <!-- <view class="card">
+    <title class="card-title">精品课程</title>
+    <view class="videos">
+      <view class="video-item" wx:for="{{videos}}" wx:key="id" data-item="{{item}}" bindtap="bindPlay">
+        <image class="video-thumbnail" src="{{item.thumbnail}}" mode="aspectFill"></image>
+        <view class="video-like">
+          <image class="video-like-icon" src="/images/icon_like_gray.png"></image>
+          <text class="video-like-number">{{util.formatNum(item.like)}}</text>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- 爱好班列表 -->
+  <!-- <view class="card">
+    <title class="card-title">爱好班</title>
+    <view class="videos">
+      <view class="video-item" wx:for="{{videos}}" wx:key="id" data-item="{{item}}" bindtap="bindPlay">
+        <image class="video-thumbnail" src="{{item.thumbnail}}" mode="aspectFill"></image>
+        <view class="video-like">
+          <image class="video-like-icon" src="/images/icon_like_gray.png"></image>
+          <text class="video-like-number">{{util.formatNum(item.like)}}</text>
+        </view>
+      </view>
+    </view>
+  </view> -->
+</scroll-view>
+<wxs module="m1">
+  var getMax = function(array, id) {
+    var bool = false;
+    for (var i = 0; i < array.length; ++i) {
+      if (array[i].institution == id) {
+        bool = true
+        return bool;
+      }
+
+    }
+  }
+  module.exports.getMax = getMax;
+</wxs>

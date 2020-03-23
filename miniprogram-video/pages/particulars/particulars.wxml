@@ -1,0 +1,36 @@
+<!--pages/particulars/particulars.wxml-->
+<view class="container">
+  <view class="box" bindtap='onBargain'>
+    <view class="left">
+      <!-- <image src="{{'http://192.168.3.136:8000/' + result.photo}}"></image> -->
+      <image src="{{host+'/media/' + result.photo}}"></image>
+    </view>
+    <view class="right">
+      <view class="right-name">{{result.activity_name}}</view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view class="site">
+        <image src="/images/shop.png"></image>
+        <view>{{result.institution_name}}</view>
+
+      </view>
+      <view class='original'>课程收费说明:{{result.statement}}</view>
+      <view class="price">
+        <!-- <view class="present-price">已支付</view> -->
+      </view>
+    </view>
+   
+  </view>
+  <view class='rule-cont'>
+    <view class="rule">转账单号:{{result.order_id}}</view>
+    <view class="rule">支付金额：￥{{result.price}}</view>
+    <view class="rule">订单状态：支付成功</view>
+    <view class="rule">{{result.time}}</view>
+    <!-- <view class="rule">转账单号：2468321000008</view> -->
+
+  </view>
+   <view>
+    <button class="share" >点击分享参与定金优惠活动</button>
+  </view>
+</view>

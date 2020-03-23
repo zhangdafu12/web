@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/apply/apply",
+    "pages/scan/scan",
+    "pages/alipay/alipay",
+    "pages/upload/upload",
+    "pages/bankEdit/bankEdit",
+    "pages/bank/bank",
+    "pages/institution/institution",
+    "pages/uploader/uploader",
+    "pages/details/details",
+    "pages/player/player",
+    "pages/register/register",
+    "pages/mine/mine",
+    "pages/course/course",
+    "pages/check/check",
+    "pages/search/search",
+    "pages/particulars/particulars",
+    "pages/control/control",
+    "pages/activityinfo/activityinfo",
+    "pages/accredit/accredit",
+    "pages/wallet/wallet",
+    "pages/orderInfo/orderInfo",
+    "pages/incomeStatement/incomeStatement"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+ 
+  },
+  
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#1a97d5",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/icon_home.png",
+        "iconPath": "images/icon_home_gray.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/icon_mine.png",
+        "iconPath": "images/icon_mine_gray.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.1",
+      "provider": "wx50b5593e81dd937a"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于定位所在城市"
+    }
+  },
+  
+  "sitemapLocation": "sitemap.json"
+ 
+}

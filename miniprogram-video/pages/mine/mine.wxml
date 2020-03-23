@@ -1,0 +1,113 @@
+<view class="mine">
+  <view wx:if="{{status}}" class="private">
+    <image src="{{userInfo.avatarUrl}}"></image>
+    <view class="screen">
+      <text class="myname">{{userInfo.nickName}}</text>
+      <view class="site">
+        <text class="site-A">{{userInfo.city}}</text>
+        <image src="{{userInfo.gender == 1 ? '/images/icon_male.png' : '/images/icon_female.png'}}"></image>
+      </view>
+    </view>
+  </view>
+    <view wx:else class="private" >
+      <text bindtap="login" class="login">登录</text>
+    </view>
+  <!-- </view> -->
+  <view class="box">
+    <!-- <view class="learn" bindtap="showview">
+      <!-- <view class="left">
+        <image src='/images/icon_wallet.png'></image>
+        <text>我的学习V币</text>
+      </view> -->
+      <!-- <view class="right">
+        <text>{{balance}}</text>
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view> -->
+    <!-- </view> -->
+    <view class="course" bindtap='onStudy' wx:if="{{isAdmin==false}}">
+      <view class="left">
+        <image src='/images/icon_course.png'></image>
+        <text>我的课程</text>
+      </view>
+      <view class="right">
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view>
+
+    </view>
+        <view class="course" bindtap='Myactivity' wx:if="{{isAdmin==true}}">
+      <view class="left">
+        <image src='/images/icon_course.png'></image>
+        <text>机构活动</text>
+      </view>
+      <view class="right">
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view>
+    </view>
+
+    <view class="bill" bindtap='onCheck' >
+      <view class="left">
+        <image src='/images/icon_coin.png'></image>
+        <text>V币账单</text>
+      </view>
+      <view class="right">
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view>
+    </view>
+    <view class="order" bindtap='onOrder' data-flag="0" wx:if="{{isAdmin==false}}">
+      <view class="left">
+        <image src='/images/icon_bill.png'></image>
+        <text>我的订单</text>
+      </view>
+      <view class="right">
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view>
+    </view>
+    
+        <view class="order" bindtap='onOrder' data-flag="1" wx:if="{{isAdmin==true}}">
+      <view class="left">
+        <image src='/images/icon_bill.png'></image>
+        <text>机构订单</text>
+      </view>
+            <view class="right">
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view>
+    </view>
+    <view bindtap="goToInstitution">
+      <view class="left">
+        <image src='/images/icon_institution.png'></image>
+        <text>{{isAdmin ? '机构管理' : '机构入驻'}}</text>
+      </view>
+      <view class="right">
+        <image src='/images/icon_more_gray.jpg'></image>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="tickling">
+    <view class="left">
+      <image src='/images/icon_bug.png'></image>
+      <text>反馈</text>
+    </view>
+    <view class="right">
+      <image src='/images/icon_more_gray.jpg'></image>
+    </view>
+  </view> -->
+  <view class="mask" style='display:{{display}}'>
+    <view class="bg" bindtap='hideview'></view>
+    <view class="show">
+      <view class="show-bar">我的学习V币</view>
+      <image src="/images/test_code.png"></image>
+      <view class="show-fot">
+        V币码自动
+        <text>刷新</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view>
+    <button class="call_me" open-type="contact" session-from="weapp">
+      <image  src="/images/kefu.png"></image>
+    </button>
+  </view>
+
+</view>

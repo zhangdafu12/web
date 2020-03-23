@@ -1,0 +1,136 @@
+/* pages/alipay/alipay.wxss */
+
+.info {
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  height: 168rpx;
+  padding: 30rpx 24rpx;
+}
+
+.info .image1 {
+  width: 216rpx;
+  height: 168rpx;
+  border-radius: 10rpx;
+}
+
+.info-detail {
+  margin-left: 14px;
+}
+
+.name {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.name text {
+  font-weight: 600;
+  font-size: 30rpx;
+}
+
+.icon-cut {
+  width: 60rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background-color: #3bb1ff;
+  border-radius: 6rpx;
+  margin-left: 12rpx;
+  font-size: 20rpx;
+  margin-top: 12rpx;
+}
+
+.site {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.site image {
+  width: 26rpx;
+  height: 24rpx;
+  margin: 6rpx 6rpx 0 0;
+}
+
+.site view {
+  font-size: 24rpx;
+}
+
+.pre-price {
+  font-size: 24rpx;
+  text-decoration: line-through;
+  color: gray;
+}
+
+.last-price {
+  display: flex;
+  flex-direction: row;
+}
+
+.last-price-1 {
+  flex: 1;
+  align-items: center;
+  color: red;
+  font-weight: bold;
+  font-size: 20rpx;
+}
+
+.last-price-1 text {
+  font-size: 36rpx;
+}
+
+.time {
+  color: #323232;
+  font-size: 22rpx;
+  margin: 10rpx 0 0 100rpx;
+}
+
+.pay {
+  margin: 17rpx 0 17rpx 24rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.weixin {
+  height: 98rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.wx-left {
+  margin: 28rpx 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.wx-left image {
+  width: 46rpx;
+  height: 42rpx;
+  margin-right: 14rpx;
+}
+
+.wx-left view {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.wx-right {
+  width: 40rpx;
+  height: 42rpx;
+  margin: 26rpx 0 30rpx 0;
+}
+
+.btn-pay {
+  width: 600rpx;
+  height: 80rpx;
+  margin-top: 470rpx;
+  background-color: #25ce25;
+  color: white;
+}
+.state{
+  font-size: 24rpx;
+  color: #a6b5d4;
+  text-align: center;
+  margin-top: 16rpx;
+}

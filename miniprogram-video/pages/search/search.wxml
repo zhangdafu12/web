@@ -1,0 +1,21 @@
+
+<!-- 地点页面 -->
+<scroll-view style="height: {{contentHeight}}px" scroll-y="true">
+  <wxs src="../../utils/util.wxs" module="util" />
+  <block wx:for="{{institutionList}}" wx:for-index="institutionIndex" wx:for-item="institution" wx:key="id">
+    <view class="block"></view>
+    <!-- scroll-view 第一个子元素使用带 margin-top 的样式，会使页面未满也能滚动 -->
+    <view class="card-no-margin-top" bindtap="insinfo" data-insid="{{institution.id}}">
+      <title class="card-title">{{institution.name}}</title>
+      <view class="videos">
+        <view class="video-item" wx:for="{{institution.videos}}" wx:key="id" data-index="{{institutionIndex}}" data-item="{{item}}" bindtap="handleTap" bindtouchstart="touchStart" bindtouchend="touchEnd">
+          <image class="video-thumbnail" src="{{item.thumbnail}}" mode="aspectFill"></image>
+          <view class="video-like">
+            <image class="video-like-icon" src="{{item.isLike ? '/images/icon_like_red.png' : '/images/icon_like_gray.png'}}"></image>
+            <text class="video-like-number">{{util.formatNum(item.like)}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

@@ -1,0 +1,165 @@
+video {
+  width: 100%;
+  height: 100vh;
+  /* 解决底部溢出白边 */
+  vertical-align: middle;
+}
+
+.comments-header {
+  width: 100%;
+  height: 80rpx;
+  margin-bottom: 108rpx;
+  position: absolute;
+  bottom: 70%;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+  background: #fff;
+}
+
+.comments-header .detail {
+  flex: 1;
+  margin-left: 40rpx;
+  font-weight: bold;
+}
+
+.comments-header .close {
+  margin-right: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments-header .close image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.comments-container {
+  width: 100%;
+  height: 70%;
+  padding: 0 35rpx;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 108rpx;
+  background: #fff;
+  overflow: auto;
+}
+
+.name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: rgba(128, 128, 128, 1);
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.info .name {
+  margin-left: 14rpx;
+  flex: 1;
+}
+
+.info .time {
+  font-size: 22rpx;
+  color: rgba(166, 166, 166, 1);
+}
+
+.comment {
+  margin-top: 16rpx;
+  overflow: hidden;
+}
+
+.comment .info .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.comment .content {
+  margin-left: 94rpx;
+  font-size: 28rpx;
+}
+
+.reply {
+  margin-top: 14rpx;
+  margin-left: 94rpx;
+  overflow: hidden;
+}
+
+.reply .info .avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.reply .content {
+  margin-left: 64rpx;
+  font-size: 28rpx;
+}
+
+.unfold text {
+  margin-left: 94rpx;
+  font-size: 24rpx;
+  color: #505050;
+}
+
+.unfold image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.comments-input {
+  width: 100%;
+  height: 108rpx;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 235, 59, 1);
+}
+
+.comments-input .reply-to {
+  height: 50rpx;
+  margin-left: 30rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-radius: 25rpx;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+.comments-input .input {
+  height: 70rpx;
+  margin: 0 30rpx;
+  padding: 0 40rpx;
+  flex: 1;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: rgba(80, 80, 80, 1);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.comments-input .send::after {
+  border: none;
+}
+
+.comments-input .send {
+  margin-right: 30rpx;
+  padding: 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+  background: transparent;
+}
+
+.comments-input .send image {
+  width: 52rpx;
+  height: 52rpx;
+}

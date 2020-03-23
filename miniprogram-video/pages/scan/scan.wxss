@@ -1,0 +1,164 @@
+/* pages/scan/scan.wxss */
+
+page {
+  background: #eee;
+}
+.statusbar {
+  background-color:#3bb1ff;
+}
+
+.navbar {
+  height: 56rpx;
+  padding: 16rpx 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+ background-color: #3bb1ff;
+ position: relative;
+}
+
+.navbar .item {
+  width: 300rpx;
+  height: 100%;
+  /* 垂直居中，三行 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 28rpx;
+
+  color: #000000;
+}
+.goback{
+  height: 100%;
+  width: 60rpx;
+  display: flex;
+align-items: center;
+position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  padding-left: 26rpx;
+}
+.navbar .return {
+  width: 20rpx;
+  height: 34rpx;
+  
+}
+
+swiper {
+  width: 100%;
+  height: 480rpx;
+}
+
+.slide_image {
+  width: 100%;
+  height: 480rpx;
+}
+
+.title {
+  width: 100%;
+  height: 140rpx;
+  background: #fff;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.title view:last-child {
+  display: flex;
+  flex-direction: column;
+  margin-left: 220rpx;
+}
+
+.title view {
+  display: flex;
+  align-items: center;
+}
+
+.title text {
+  display: inline-block;
+}
+
+.title .preferential {
+  width: 60rpx;
+  height: 32rpx;
+  font-size: 24rpx;
+  background: #3bb1ff;
+  color: #000;
+  text-align: center;
+  line-height: 32rpx;
+  margin-left: 24rpx;
+}
+
+.title .cont_tit {
+  font-size: 32rpx;
+  margin-left: 20rpx;
+}
+
+.title .price_txt {
+  font-size: 24rpx;
+  margin-top: 30rpx;
+}
+
+.title .price_now {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: red;
+}
+
+.course_explain {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title_line {
+  width: 85%;
+  height: 74rxp;
+  border-bottom: solid 1px #cccc;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  text-align: center;
+  position: relative;
+}
+
+.course_explain .title_line text {
+  display: inline-block;
+  font-size: 16px;
+  color: #000;
+  position: absolute;
+  top: -26rpx;
+  right: 40%;
+  background: #fff;
+
+}
+
+.explain_cont {
+  display: flex;
+  flex-direction: column;
+}
+.explain_cont text{
+  margin-bottom: 20rpx;
+}
+button.btn{
+  width: 600rpx;
+  height: 80rpx;
+  background: #3bb1ff;
+  font-size: 36rpx;
+
+  text-align: center;
+  line-height: 80rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+.form input{
+/* border: solid 1px #999; */
+	width: 600rpx;
+	height: 72rpx;
+  border-radius: 10rpx;
+  margin-bottom:20rpx; 
+  background: #eee; 
+  padding-left: 20rpx;
+}

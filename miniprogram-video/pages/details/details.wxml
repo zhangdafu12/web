@@ -1,0 +1,79 @@
+<wxs src="../../utils/util.wxs" module="util" />
+<!-- 信息栏 -->
+<view class="info">
+  <!-- 头像 -->
+  <view class="info-cont">
+    <image bindtap="bigImg" data-src="{{host+info.avatar}}"  class="avatar" src="{{host+info.avatar}}" mode="aspectFill"></image>
+  </view>
+  <!-- 信息内容 -->
+  <view class="content">
+    <text class="name">{{info.name}}</text>
+    <view class="collect-and-like">
+      <view class="collect">
+        <image class="icon" src="/images/icon_collect.png"></image>
+        <text>收藏：{{num}}</text>
+      </view>
+      <view class="like">
+        <image class="icon" src="/images/icon_like.png"></image>
+        <text>获赞: {{love}}</text>
+      </view>
+    </view>
+    <!-- 收x藏按钮 -->
+    <button class="btn-collect" size="mini" type="{{info.isCollected ? 'default' : 'primary'}}" bindtap="bindCollect">
+      {{info.isCollected ? '已收藏' : '收藏'}}
+    </button>
+    <!-- 电话 -->
+    <view bindtap="bindMakePhoneCall" >
+      <text>电话：{{info.phone}}</text>
+      <image class="icon-detail" src="/images/icon_detail.png"></image>
+    </view>
+    <!-- 地址 -->
+    <view bindtap="gotoadress" bindtap="Navigation">
+      <text>地址：{{info.address}}</text>
+      <image class="icon-detail" src="/images/icon_detail.png"></image>
+    </view>
+  </view>
+
+</view>
+<block  wx:for="{{activitys}}">
+<view wx:if='{{item.status==true}}' class="activityInfo">
+<view>
+<view>
+<text>活动：</text>
+<text>{{item.course_name}}</text>
+
+</view>
+<view>
+<text>定金：</text>
+<text>{{item.deposit}}</text>
+
+</view>
+<view>
+<view class="">
+<text>金额：</text>
+<text>{{item.all_in_cost}}</text>
+</view>
+</view>
+</view>
+<view class="details_but">
+<text wx:if="{{admin==true}}" class="details" bindtap="deleteactivity" data-index="{{index}}"  data-aid="{{item.id}}">删除活动</text>
+<text class="details" bindtap="activityinfo"  data-aid="{{item.id}}">查看详情</text>
+</view>
+</view>
+</block>
+
+<!-- 视频列表 -->
+<!-- <view class="videos">
+  <text class="title">Ta的视频</text>
+  <view class="video-item" wx:for="{{videos}}" wx:key="id" data-item="{{item}}" bindtap="handleTap" bindtouchstart="touchStart" bindtouchend="touchEnd"> -->
+    <!-- 视频缩略图 -->
+    <!-- <image class="capture" src="{{item.thumbnail}}" mode="aspectFill"></image> -->
+    <!-- 获赞情况 -->
+    <!-- <view class="like">
+      <image class="icon-like" src="{{item.isLike ? '/images/icon_like_red.png' : '/images/icon_like_gray.png'}}"></image>
+      <text class="number">{{util.formatNum(item.like)}}</text>
+    </view>
+  </view>
+</view> -->
+
+

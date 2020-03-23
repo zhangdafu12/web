@@ -1,0 +1,48 @@
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="culum">
+  <view class="navbar">
+  <view  bindtap='goback' class="goback">
+   <image src='/images/return.png' class="return"></image>
+  </view>
+   
+    <view class="item item-left {{currentTab==0 ? 'active' : ''}}" data-id="{{0}}" bindtap="onNavbarTap">
+      我的课程
+    </view>
+    <view class="item item-right {{currentTab==1 ? 'active' : ''}}" data-id="{{1}}" bindtap="onNavbarTap">
+      商家收藏
+    </view>
+
+  </view>
+</view>
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" hidden="{{currentTab!=0}}" scroll-y="true">
+  <view class="levy">
+    <view class="title">我的课程</view>
+    <view class="box" wx:for="{{historyList}}" wx:key="id">
+      <view class="left">
+        <view class="left-A">
+          <text>{{item.video_title}}</text>
+          <text>【{{item.video_institution}}】</text>
+        </view>
+        <text class='schedule'>已学{{item.percent}}%</text>
+      </view>
+      <view class="right">
+        <image mode="center" src="{{item.video_thumbnail}}"></image>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" hidden="{{currentTab!=1}}" scroll-y="true">
+<block wx:for="{{collectinfo}}">
+  <view class="case" bindtap="insinfo" data-insid="{{item.id}}">
+    <view class="case-A">
+      <image src='{{host+item.avatar}}' class="big"></image>
+      <view class="little">
+        <image src="/images/icon_address.png"></image>
+      </view>
+    </view>
+    <view class="case-B">{{item.name}}</view>
+  </view>
+</block>
+
+</scroll-view>

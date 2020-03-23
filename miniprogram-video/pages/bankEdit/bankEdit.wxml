@@ -1,0 +1,24 @@
+<!--pages/bankEdit/bankEdit.wxml-->
+<view class='bank_info'>
+  <view class="item">
+
+    <text class="name">银行卡号</text>
+    <input data-id="address" placeholder="卡号" value="{{num || ''}}" bindblur="handleSave" 
+    bindinput='num'/>
+  </view>
+    <view class="item">
+  
+    <text class="name">开户名</text>
+    <input data-id="address" placeholder="开户名" value="{{name || ''}}" bindblur="handleSave" 
+    bindinput='name'/>
+  </view>
+    <view class="item">
+
+    <text class="name">开户地</text>
+    <input data-id="address" placeholder="开户地址" value="{{address || ''}}" bindblur="handleSave"
+    bindinput='address' />
+  </view>
+  </view>
+  <button wx:if="{{!isSave}}" class='save btn' bindtap='saveBank'>保存</button>
+  <button wx:else class='save btn' bindtap='changeBank' >修改</button>
+  

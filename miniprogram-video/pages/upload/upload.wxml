@@ -1,0 +1,141 @@
+
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="navbar">
+   <view  bindtap='goback' class="goback">
+   <image src='/images/return.png' class="return"></image>
+  </view>
+  <view class="item item-left ">
+    报名活动设置
+  </view>
+  
+</view>
+
+
+<block wx:if="{{isShow}}">
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" scroll-y="true" >
+<view class="container">
+  <view>
+    <view class="content-text">
+      <view class="box-gray">
+        <view class="box1">上传活动图片</view>
+        <view class='box_flex'>
+          <view class='box1_img' wx:for="{{uploadimgList}}" wx:key="index">
+            <image class='box_img_del' src='/images/delete.png' data-num="{{index}}" bindtap="deleteImg"></image>
+            <image class='box_img' src='{{item}}' data-ind="{{index}}"></image>
+          </view>
+          <view class="box3" bindtap='upload' data-type='0' wx:if="{{uploadimgNum < 5}}">
+            <view class="box3-A"></view>
+            <view class="box3-B"></view>
+          </view>
+        </view>
+      </view>
+      <view class="box" bindtap='onName'>
+        <view class="box1">报名课程名称</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueName}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box" bindtap='totalPrice'>
+        <view class="box1">课程总费用</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueTotal}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="box" bindtap='shopPrice'>
+        <view class="box1">报名定金</view>
+        <view class="box2">
+          <text class='box2-A'>{{valuePrice}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+
+      <view class="box last-child" bindtap='shopActivity'>
+        <view class="box1">报名定金活动价</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueActivity}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+      <view class="gray"></view>
+      <view class="box alone" bindtap='astrict'>
+        <view class="box1">报名人数上限</view>
+        <view class="box2">
+          <text class='box2-A'>{{valueAstrict}}</text>
+          <image class="box2-B" src="/images/icon_more_gray.jpg"></image>
+        </view>
+      </view>
+
+      <view class="charge_explain">
+        <view class="box1">课程收费说明
+        </view>
+
+
+
+
+        <view class='explain'>
+          <textarea value='{{chargeStatement}}' bindinput='csInput'></textarea>
+        </view>
+
+
+      </view>
+      <view class='regulation' >
+      <checkbox-group bindchange="checkboxChange"><checkbox value="" checked="{{checked}}"	/></checkbox-group>
+        <image src='/images/icon_tips.png'></image>
+        <text bindtap='regulationAll'>平台规则</text>
+
+      </view>
+      <button class='activity_but' bindtap='showCanvas'>生成活动二维码</button>
+    </view>
+  </view>
+
+</view>
+</scroll-view>
+<!-- 商品名称 -->
+<modal hidden="{{hiddenName}}" title="商品名称" confirm-text="确定" cancel-text="取消" bindcancel="cancelName" bindconfirm="confirmName" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="请输入名称" bindinput="changName"></input>
+</modal>
+<!-- 课程总费用 -->
+
+<modal hidden="{{hiddenTotal}}" title="课程总费用" confirm-text="确定" cancel-text="取消" bindcancel="cancelTotal" bindconfirm="confirmTotal" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="课程总费用" bindinput="changTotal"></input>
+</modal>
+<!-- 报名定金 -->
+<modal hidden="{{hiddenPrice}}" title="报名定金" confirm-text="确定" cancel-text="取消" bindcancel="cancelPrice" bindconfirm="confirmPrice" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="报名定金" bindinput="changPrice"></input>
+</modal>
+<modal hidden="{{hiddenActivity}}" title="报名定金活动价" confirm-text="确定" cancel-text="取消" bindcancel="cancelActivity" bindconfirm="confirmActivity" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="报名定金活动价" bindinput="changActivity"></input>
+</modal>
+<!-- 报名人数上限 -->
+<modal hidden="{{hiddenAstrict}}" title="报名人数上限" confirm-text="确定" cancel-text="取消" bindcancel="cancelAstrict" bindconfirm="confirmAstrict" no-cancel="{{nocancel}}">
+  <input class='name_inp' type="text" placeholder="报名人数上限" bindinput="changAstrict"></input>
+</modal>
+<!--  -->
+
+
+</block>
+
+
+
+<block wx:else>
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" scroll-y="true">
+<view class='content'>
+<!-- <text>更新日期：2018年12月21日 </text>
+<text>生效日期：2018年12月21日</text> -->
+<!-- <text>微信是一款由我们提供服务的社交产品，为说明微信会如何收集、使用和存储你的个人信息及你享有何种权利，我们将通过本指引向你阐述相关事宜，其中要点如下：</text> -->
+
+<text wx:for='{{rules}}' wx:key='{{index}}'>{{item}}</text>
+</view>
+<button class='but'  bindtap='showEnd'>已阅读并同意</button>
+
+</scroll-view>
+</block>
+<view class='share_box' style='height:{{windowHeight}}px' hidden="{{showCanvas}}">
+  <canvas class='canvas' canvas-id="shareCanvas" style="width:{{windowWidth-40}}px;height:{{windowHeight*0.8-statusBarHeight-30}}px;background:#fff;top:{{30+statusBarHeight}}px"></canvas>
+<view class='share_but' style='top:{{contentHeight*0.92+statusBarHeight}}px'>
+<view class='share_img' bindtap='saveImg'>保存图片后分享</view>
+<view class='share_cancel'  bindtap='hideCanvas'>取消</view>
+</view>
+</view>

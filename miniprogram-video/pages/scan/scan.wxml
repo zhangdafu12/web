@@ -1,0 +1,51 @@
+<!--pages/scan/scan.wxml-->
+
+<view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+<view class="navbar">
+ <view  bindtap='goback' class="goback">
+   <image src='/images/return.png' class="return"></image>
+  </view>
+  <view class="item item-left ">
+    分享报名享优惠 
+  </view>
+  
+</view>
+<scroll-view class="recommend-tab" style="height: {{contentHeight}}px" scroll-y="true" >
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}">
+  <block wx:for="{{imagePaths}}" wx:for-item="imagePath" wx:key="{{imagePath.id}}">
+    <swiper-item>
+    <image src="{{imagePath.photo_url}}" class="slide_image" />
+  </swiper-item>
+  </block>
+  
+</swiper>
+<view class='title'>
+  <view>
+    <text class='preferential'>特惠</text>
+  </view>
+  <view>
+    <text class='cont_tit'>{{result.course_name}}</text>
+  </view>
+  <view>
+    <text class='price_txt'>活动优惠价</text>
+    <text class='price_now'>{{result.activity_price_deposit}}</text>
+  </view>
+</view>
+<view class='course_explain'>
+<view class='title_line'>
+<text>课程说明</text>
+</view>
+<view class='explain_cont'>
+<text>1.每位用户分享只可获得一次</text>
+<text>2.优惠券全场通用</text>
+<text>3.若用户使用领取的优惠券下单，订单取消后，优惠券将失效</text>
+<text>4.定金一旦支付无法退回</text>
+<text>5.商家保留法律范围内允许的对活动的解释权</text>
+<text>6.本活动与BG课平台无关</text>
+</view>
+<!-- <button  class='btn' type="primary" open-type="share" > 报名返现{{backprice}}元</button> -->
+<button wx:if='{{result.activity_price_deposit>3 || result.activity_price_deposit==3}}' class='btn' type="primary" open-type="share"
+data-way="0" > 分享活动返现{{backprice}}元/人次</button>
+<button wx:else class='btn' type="primary" open-type="share" data-way="1" >定金小于3元不予返现</button>
+</view>
+</scroll-view>

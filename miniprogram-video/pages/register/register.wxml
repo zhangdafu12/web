@@ -1,0 +1,2 @@
+
+<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">注册</button>

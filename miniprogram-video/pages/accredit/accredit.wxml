@@ -1,0 +1,31 @@
+<!--pages/accredit/accredit.wxml-->
+<view class="modal-mask" wx:if="{{showAuthModal}}">
+  <view class="modal-dialog">
+    <view class="modal-title">请求获取用户信息权限</view>
+    <view class="modal-footer">
+      <navigator class="modal-btn-cancel" target="miniProgram" open-type="exit">退出</navigator>
+      <button class="modal-btn-confirm" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+        确定
+      </button>
+    </view>
+  </view>
+</view>
+<view class="nav" style="padding-top:{{statusBarHeight}}px">
+  <view class="nav-text">
+    <text>登录授权</text>
+  </view>
+  <view bindtap='goback' class="goback" style="top:{{statusBarHeight}}px">
+    <image src='/images/return.png' class="return"></image>
+  </view>
+</view>
+<view>
+  <image class="store_icon" src="/images/icon_avatar.png"></image>
+</view>
+<view class="content">
+  <text>该程序将获得以下授权:</text>
+  <text>获得您的公开信息（头像、昵称等）</text>
+</view>
+<view class="options">
+  <text bindtap="refuse" class="refuse">拒绝</text>
+  <text bindtap="allowed" class="allowed">允许</text>
+</view>

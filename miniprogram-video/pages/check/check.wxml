@@ -1,0 +1,17 @@
+<view class="bill">
+  <view class="check">
+    <view class="title">账单</view>
+    <view class="box" wx:for="{{bill}}" wx:key="id">
+      <view class="left">
+        <image src="{{userInfo.avatarUrl}}"></image>
+        <view class="left-A">
+          <view>{{item.content}}</view>
+          <text>{{item.datetime}}</text>
+        </view>
+      </view>
+      <view class="right">
+        <view>{{item.amount}} V币</view>
+      </view>
+    </view>
+  </view>
+</view>

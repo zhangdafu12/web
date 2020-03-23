@@ -1,0 +1,144 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.4",
+	"appid": "wx2aecf55dbbd3c0dd",
+	"projectname": "miniprogram-video",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 10,
+			"list": [
+				{
+					"id": 0,
+					"name": "pp=2",
+					"pathName": "pages/rule/rule",
+					"query": "pp=2",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "\"pages/apply/apply\"",
+					"pathName": "pages/apply/apply",
+					"query": "user_id=87&activity_id=322",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "scan",
+					"pathName": "pages/scan/scan",
+					"query": "scene=1&1",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/upload/upload",
+					"pathName": "pages/upload/upload",
+					"query": "institution=1",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/course/course",
+					"pathName": "pages/course/course",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "pages/institution/institution",
+					"pathName": "pages/institution/institution",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/bank/bank",
+					"pathName": "pages/bank/bank",
+					"query": "user_id=87&activity_id=322",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "pages/activityinfo/activityinfo",
+					"pathName": "pages/activityinfo/activityinfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/order",
+					"pathName": "pages/order/order",
+					"query": "flag=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/orderInfo/orderInfo",
+					"pathName": "pages/orderInfo/orderInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "pages/scan/scan",
+					"pathName": "pages/scan/scan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "pages/upload/upload",
+					"pathName": "pages/upload/upload",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

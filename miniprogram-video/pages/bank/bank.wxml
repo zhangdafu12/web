@@ -1,0 +1,25 @@
+<!--pages/bank/bank.wxml-->
+
+
+<view >
+  <view class='bank_car' wx:for="{{bank}}" wx:key="{{item}}">
+    <!-- <image src='/images/bank_img.svg'></image> -->
+    <view class='bank_class' >
+      <text class='bank_name'>{{item.bank_name}}</text>
+      <text>{{bank_address}}</text>
+      <text class='bank_num'>{{item.num}}</text>
+    </view>
+    <view wx:if="{{item.status==true && action==0}}" class='bank_' data-have='yes' bindtap='revisionBank' data-num="{{item.num}}"
+  data-name="{{item.name}}" data-address="{{item.address}}" data-bid="{{item.id}}">
+      修改
+    </view>
+      <view wx:if="{{item.status==false}}" style="color: #ff1a1a;" class='bank_' >
+      审核中
+    </view>
+      <view wx:if="{{item.status==true && action==1}}" class='bank_' bindtap="choose" >
+      选择
+    </view>
+  </view>
+</view>
+<button  class='addBank' data-have='no' bindtap='tixian'>提现到微信零钱</button>
+<button  class='addBank' data-have='no' bindtap='addBank'>添加新的银行卡</button>

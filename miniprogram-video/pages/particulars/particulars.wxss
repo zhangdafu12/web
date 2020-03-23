@@ -1,0 +1,106 @@
+/* pages/particulars/particulars.wxss */
+
+.box {
+  height: 168rpx;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #fff;
+  padding: 30rpx 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.box .left image {
+  width: 216rpx;
+  height: 168rpx;
+  border-radius: 10rpx;
+  margin-right: 14rpx;
+}
+
+.box .right {
+  width: 482rpx;
+}
+
+.right .right-name {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.site {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5rpx;
+}
+
+.site view {
+  font-size: 24rpx;
+}
+
+.site image {
+  width: 26rpx;
+  height: 24rpx;
+  margin: 6rpx 6rpx 0 0;
+}
+
+.original {
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+
+.price {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.right .present-price {
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+
+.right .discount {
+  font-size: 20rpx;
+  color: #ff4040;
+  font-weight: 600;
+}
+
+.right .discount text {
+  font-size: 36rpx;
+  margin-left: 8rpx;
+}
+
+.rule-cont {
+  padding: 30rpx 24rpx;
+  background-color: #fff;
+}
+
+.rule-cont .rule {
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+}
+
+.rule-cont .rule:last-child {
+  margin-bottom: 0;
+}
+
+.btn-pay {
+  width: 600rpx;
+  height: 80rpx;
+  margin-top: 250rpx;
+  background-color: #25ce25;
+  color: white;
+  	font-size: 32rpx;
+}
+
+.share {
+  width: 600rpx;
+  height: 80rpx;
+  margin-top: 30rpx;
+  background-color: #3bb1ff;
+  	font-size: 32rpx;
+}
+
+button::after{
+  border: 0;
+}

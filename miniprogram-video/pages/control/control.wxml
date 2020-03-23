@@ -1,0 +1,31 @@
+<block wx:if='{{have==true}}'>
+<block wx:for="{{res}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+  <view class="container">
+    <view class="box" >
+      <view class="box-one">
+        <image src="{{host+'/media/' + item.photo}}"></image>
+        <view class="name">{{item.user}}</view>
+        <view class="pay">支付</view>
+        <view class="money" wx:if="{{item.status==1}}">+0元</view>
+        <view class="money" wx:if="{{item.status==2}}">+{{item.deposit_activity}}元</view>
+        <view class="money" wx:if="{{item.status==3}}">+{{item.tail}}元</view>
+      </view>
+      <view class='box-two'>
+        <view class="serial">
+          <view>流水号：{{item.order_id}}</view>
+          <view>{{item.time}}</view>
+        </view>
+        <block wx:if="{{item.status==1}}">
+          <view class="fees yet-fees">未缴定金</view>
+        </block>
+        <block wx:if="{{item.status==2}}">
+          <view class="fees yet-fees">未缴尾款</view>
+        </block>
+        <block wx:if="{{item.status==3}}">
+          <view class="fees yet-fees">已缴清</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+</block>

@@ -1,0 +1,27 @@
+
+<view class="box">
+<block wx:for="{{order_list}}" wx:for-index="orderindex" wx:for-item="order" wx:key="id">
+      <view class="container">
+        <view class="box">
+            <view class="box1" >
+              <view class="left">
+                <image src="{{host+'/media/' + order.activity_photo}}"></image>
+              </view>
+              <view class="right">
+                <view class="right-name">{{order.apply_activity}}</view>
+                <view class="site">
+                  <view>姓名:</view>
+                  <!-- <image src="/images/shop.png"></image> -->
+                  <view>{{order.student_name}}</view>
+                </view>
+                <view class='original'>订单号:{{order.number}}</view>
+                <view class="pay details" bindtap='oninsorder' 
+                data-order_id='{{order.id}}'>查看详情</view>
+                
+              </view>
+            </view>
+                </view>
+    </view>
+          </block>
+
+</view>

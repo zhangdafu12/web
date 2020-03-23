@@ -1,0 +1,257 @@
+.statusbar {
+  background-color: #3bb1ff;
+}
+
+.navbar {
+  height: 56rpx;
+  padding: 16rpx 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+  background-color: #3bb1ff;
+  position: relative;
+}
+
+.goback{
+  height: 100%;
+  width: 60rpx;
+  display: flex;
+align-items: center;
+position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  padding-left: 26rpx;
+}
+.navbar .return {
+  width: 22rpx;
+  height: 40rpx;
+  
+}
+
+.navbar .item {
+  width: 150rpx;
+  height: 100%;
+  /* 垂直居中，三行 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  background-color: #3bb1ff;
+  color: #fff;
+}
+
+.navbar .item-left {
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+}
+
+.navbar .item-right {
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+}
+
+.config {
+  width: 100%;
+  margin-top: 20rpx;
+  /* background-color: white; */
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 20rpx;
+}
+
+.item .icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.item .name {
+  flex: 1;
+  margin-left: 10rpx;
+  font-size: 30rpx;
+  color: rgba(56, 56, 56, 1);
+}
+
+.item input {
+  text-align: right;
+  font-size: 28rpx;
+  color: rgba(166, 166, 166, 1);
+}
+
+.item .avatar {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 8rpx;
+}
+
+.item .text {
+  font-size: 28rpx;
+  color: rgba(166, 166, 166, 1);
+}
+.item .input {
+  font-size: 28rpx;
+  color: rgba(166, 166, 166, 1);
+}
+.item .icon-more {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+
+/* 提交按钮 */
+
+button {
+  width: 610rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: rgba(64, 166, 255, 1);
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 32rpx;
+  margin: 60rpx 74rpx 62rpx 76rpx;
+  color: #fff;
+}
+
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background-color: white;
+}
+
+.title {
+  width: 100%;
+  margin-bottom: 24rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.videos .uploader {
+  width: 48.5%;
+  height: 50vw;
+  font-size: 28rpx;
+  line-height: 150%;
+  background-color: rgba(229, 229, 229, 1);
+   position: relative;
+  text-align: center;
+  display: flex;
+  
+}
+
+
+.uploader .center {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.uploader image {
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.uploader .text {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 120%;
+  color: rgba(80, 80, 80, 1);
+}
+
+.video-item {
+  width: 48.5%;
+  height: 50vw;
+  position: relative;
+  margin-bottom: 18rpx;
+}
+
+.video-item .thumbnail {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.modal {
+  width: 540rpx;
+  height: 356rpx;
+  border-radius: 20rpx;
+  background-color: rgba(248, 248, 248, 0.82);
+}
+
+.modal text {
+  margin-left: 25%;
+}
+
+.modal view {
+  margin-left: 20rpx;
+  display: flex;
+}
+
+.modal input {
+  width: 220rpx;
+  margin: 0 20rpx;
+  border-radius: 5rpx;
+  background-color: #fff;
+}
+
+.modal .deduction {
+  margin-left: 170rpx;
+}
+
+.delete {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #fff;
+  border-radius: 18rpx;
+}
+
+.box-gray {
+  margin-left: 32rpx;
+  padding-bottom: 30rpx;
+}
+
+.box-gray .box1 {
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+
+.box-gray .box3 {
+  width: 195rpx;
+  height: 152rpx;
+  background: rgba(242, 242, 242, 1);
+  border-radius: 10px;
+  position: relative;
+}
+
+.box-gray .box3 .box3-A {
+  width: 46rpx;
+  height: 6rpx;
+  background-color: rgba(220, 220, 220, 1);
+  position: absolute;
+  left: calc(50% - 23rpx);
+  top: calc(50% - 3rpx);
+}
+
+.box-gray .box3 .box3-B {
+  width: 6rpx;
+  height: 46rpx;
+  background-color: rgba(220, 220, 220, 1);
+  position: absolute;
+  top: calc(50% - 23rpx);
+  left: calc(50% - 3rpx);
+}
+

@@ -1,0 +1,9 @@
+/* pages/incomeStatement/incomeStatement.wxss */
+.content{
+  padding: 30rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  color: #000;line-height: 60rpx;
+
+
+}
